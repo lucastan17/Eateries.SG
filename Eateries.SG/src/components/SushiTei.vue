@@ -1,0 +1,140 @@
+<template>
+  <body>
+    <div id="Banner" class="banner">
+      <div class="banner-wrap">
+        <div class="notice-text">
+          Check out our promotions and don't forget to invite yourfriends for
+          more perks!
+        </div>
+      </div>
+    </div>
+    <div
+      data-collapse="medium"
+      data-animation="default"
+      data-duration="400"
+      id="Navigation"
+    >
+      <div class="navigation-container">
+        <div class="navigation-left">
+          <img
+            src="../assets/EateriesSG.png"
+            loading="lazy"
+            width="83"
+            height="auto"
+          />
+          <div class="logo-text">EATERIES.SG</div>
+        </div>
+        <div class="navigation-right">
+          <router-link to="/" exact>Home</router-link>
+          <router-link to="/profile" exact>Profile</router-link>
+          <router-link class="current" to="/partnereateries" exact
+            >Partner Eateries</router-link
+          >
+          <router-link to="/currentbookings" exact
+            >Current Bookings</router-link
+          >
+          <router-link to="/declaration" exact>Declaration</router-link>
+        </div>
+      </div>
+    </div>
+    <div id="Header" class="header">
+      <div id="container-flex">
+        <div class="head-content">
+          <h1>Partner Eateries</h1>
+          <p>
+            Treat your taste buds and satisfy your cravings with our wide
+            selection of partner eateries!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2>Sushi Tei Menu</h2>
+      <SushiTeiMenu v-bind:itemsList="itemsList"></SushiTeiMenu>
+    </div>
+  </body>
+</template>
+
+<script>
+import SushiTeiMenu from "../components/SushiTeiMenu.vue";
+
+export default {
+  name: "SushiTei",
+  components: {
+    'SushiTeiMenu': SushiTeiMenu
+  },
+  data() {
+    return {
+      itemsList: [
+        {
+          id: "#000",
+          name: "Yakitori Don",
+          imageURL:
+            "https://www.sushitei.co.id/admin/images/menu/Yakitoro-Don.jpg",
+          price: 12.00,
+        },
+        {
+          id: "#025",
+          name: "Salmon Mentai Sushi",
+          imageURL:
+            "https://www.sushitei.co.id/admin/images/menu/Salmon-Mentai.jpg",
+          price: 3.00,
+        },
+        {
+          id: "#067",
+          name: "Ebi Mentai Mayo Sushi",
+          imageURL:
+            "https://www.sushitei.co.id/admin/images/menu/Ebi-Mentai-Mayo-Sushi.jpg",
+          price: 3.00,
+        },
+        {
+          id: "#077",
+          name: "Crispy Cheese Roll Sushi",
+          imageURL:
+            "https://www.sushitei.co.id/admin/images/menu/Crispy-Cheese-Roll.jpg",
+          price: 3.00,
+        },
+        {
+          id: "#099",
+          name: "Salmon Don",
+          imageURL:
+            "https://www.sushitei.co.id/admin/images/menu/Salmon-Don.jpg",
+          price: 14.00,
+        },
+        {
+          id: "#200",
+          name: "Dragon Roll Sushi",
+          imageURL:
+            "https://static.wixstatic.com/media/9fc90b_d5caa5106976483f86fb7a5ca5373643~mv2_d_1654_1236_s_2.jpg/v1/fill/w_232,h_232,usm_1.20_1.00_0.01/file.jpg",
+          price: 10.00,
+        },
+        {
+          id: "#001",
+          name: "Salmon Miso Nabe",
+          imageURL:
+            "https://scontent.fsin8-2.fna.fbcdn.net/v/t1.0-0/cp0/e15/q65/p320x320/22851776_1562637603802517_7285309164642454890_n.jpg?_nc_cat=107&ccb=2&_nc_sid=8024bb&efg=eyJpIjoibyJ9&_nc_ohc=q-7v7MZ_jWkAX_L1Btz&_nc_ht=scontent.fsin8-2.fna&tp=3&oh=48f488f11e89b7184ccc3108628c727e&oe=5FC4E8A9",
+          price: 1.80,
+        },
+        {
+          id: "#002",
+          name: "Kaisen King Nabe",
+          imageURL:
+            "https://scontent.fsin8-2.fna.fbcdn.net/v/t1.0-9/24232610_1595028780563399_6867387327556287343_n.jpg?_nc_cat=106&ccb=2&_nc_sid=730e14&_nc_ohc=viOrczXeQ6YAX_8MlZ3&_nc_ht=scontent.fsin8-2.fna&oh=4e6ede5c69927896dd2ddada21757971&oe=5FC2BFCA",
+          price: 12.00,
+        },
+        {
+          id: "#003",
+          name: "Chawanmushi",
+          imageURL:
+            "https://lh5.ggpht.com/NKp6uw5otzbmaZboKxE4FPvIAyr2h5HePuiqStRYoAlgGJ3a5JKlqGR1AG1RSrQE9J-IRYQ7mUj0xtoh9NUUZC0f=s800",
+          price: 2.95,
+        },
+      ],
+    };
+  },
+};
+</script>
+
+<style>
+@import "../assets/basic_style.css";
+</style>

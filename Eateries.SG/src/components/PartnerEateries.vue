@@ -40,7 +40,9 @@
       <div class="layout-grid content-grid">
         <div class="content-card"><img src="../assets/kfc.jpg" width="270" height="200" alt="" class="step-image">
           <div class="content-wrapper">
+            <router-link to="/KFC" exact>
             <h5>KFC @ Nex</h5>
+            </router-link>
             <p>Fast Food <br>Rating: 4/5</p>
           </div>
         </div>
@@ -49,7 +51,9 @@
         </div>
         <div class="content-card"><img src="../assets/breadyard.jpg" width="270" height="200" alt="" class="step-image">
           <div class="content-wrapper">
+            <router-link to="/BreadYard" exact>
             <h5>Bread Yard @ Fusionopolis</h5>
+            </router-link>
             <p>Western, Café, Brunch<br>Rating: 4.4/5</p>
           </div>
         </div>
@@ -58,7 +62,9 @@
         </div>
         <div class="content-card"><img src="../assets/sushitei.jpg" width="270" height="200" alt="" class="step-image">
           <div class="content-wrapper">
+            <router-link to="/SushiTei" exact>
             <h5>Sushi Tei @ Thomson Plaza</h5>
+            </router-link>
             <p>Japanese, Sushi<br>Rating: 4.7/5</p>
           </div>
         </div>
