@@ -14,8 +14,7 @@
 export default {
   name: 'App',
   components: {
-    //PartnerEateries,
-    //CurrentBookings
+
   }
 }
 </script>

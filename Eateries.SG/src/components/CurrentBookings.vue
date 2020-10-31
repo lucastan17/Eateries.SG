@@ -28,12 +28,51 @@
         </div>
     </div>
 
+    <div class="navigation-left">
+        <h4>Upcoming Bookings</h4>
+    </div>
+    <ul>
+        <li v-bind:key ="item" v-for="item in employeesData">
+            {{item.Eatery}}
+            {{item.Pax}}
+        </li>
+    </ul>
+
 </body>  
 </template>
 
 <script>
+import db from '../firebase.js'
     export default {
         name: 'CurrentBookings',
+        data(){
+            return{
+                employeesData:[],
+            }
+        },
+        methods:{
+            readEmployees() {
+                let employeesData = [];
+                db.collection("bookings")
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                    employeesData.push({
+                        Eatery: doc.data().Eatery,
+                        Pax: doc.data().Pax,
+                    });
+                    console.log(doc.id, " => ", doc.data());
+                });
+                return employeesData
+                })
+                .catch((error) => {
+                    console.log("Error getting documents: ", error);
+                });
+            }
+        },
+        mounted(){
+            this.readEmployees();
+        }
     }
 
 </script>
