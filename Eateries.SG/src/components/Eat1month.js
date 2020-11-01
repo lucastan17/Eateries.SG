@@ -36,7 +36,6 @@ export default {
                 } else {
                     this.datacollection.datasets[0].data[x] += 1;
                 }
-                //this.datacollection.datasets[0].backgroundColor.push(doc.data().color)
             })
             this.renderChart(this.datacollection, this.options)
       })
