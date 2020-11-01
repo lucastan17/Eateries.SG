@@ -1,10 +1,5 @@
 <template>
 <body>
-    <div id="Banner" class="banner">
-        <div class="banner-wrap"> 
-            <div class="notice-text">Check out our promotions and don't forget to invite your friends for more perks!</div>
-        </div>
-    </div>
     <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
         <div class="navigation-container">
             <div class="navigation-left"><img src="../assets/EateriesSG.png" loading="lazy" width="83" height="auto">

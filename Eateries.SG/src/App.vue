@@ -3,6 +3,7 @@
 
 <template>
   <div id="app">
+    <banner></banner>
     <router-view></router-view>
   </div>
 </template>
@@ -10,12 +11,14 @@
 <script>
 //import PartnerEateries from './components/PartnerEateries.vue'
 //import CurrentBookings from './components/CurrentBookings.vue'
+import Banner from './components/Banner.vue'
 
 export default {
   name: 'App',
   components: {
     //PartnerEateries,
     //CurrentBookings
+    Banner
   }
 }
 </script>
@@ -27,6 +30,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
 }
 </style>
