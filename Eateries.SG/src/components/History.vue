@@ -50,12 +50,21 @@
         <div class="sort-by-buttons w-container">
             <p>Plots of the past transactions (in SG$)</p>
             <div>
-                <button class="button">Last 1 Month</button>
-                <button class="button">Last 3 Months</button>
-                <button class="button">Last 6 months</button>
+                <button class="button" v-on:click="MonthSales(1)">Last 1 Month</button>
+                <button class="button" v-on:click="MonthSales(3)">Last 3 Months</button>
+                <button class="button" v-on:click="MonthSales(6)">Last 6 months</button>
             </div>
             <div>
-                <img src="..\assets\breadyard.jpg" loading="lazy" alt="">
+                <div v-if="display4 == true">
+                    <chart4></chart4>
+                </div>
+                <div v-if="display5 == true">
+                    <chart5></chart5>
+                </div>
+                <div v-if="display6 == true">
+                    <chart6></chart6>
+                </div>
+                <!--img src="..\assets\breadyard.jpg" loading="lazy" alt=""-->
             </div>
         </div>
     </div>
@@ -66,6 +75,9 @@
 import Chart1 from "./Eat1month.js";
 import Chart2 from "./Eat3month.js";
 import Chart3 from "./Eat6month.js";
+import Chart4 from "./Sales1Month.js";
+import Chart5 from "./Sales3Months.js";
+import Chart6 from "./Sales6Months.js";
 
 export default {
     name: 'History',
@@ -73,13 +85,19 @@ export default {
         return {
             display1 : true,
             display2 : false, 
-            display3 : false
+            display3 : false,
+            display4 : true,
+            display5 : false, 
+            display6 : false
         }
     },
     components: {
         chart1: Chart1,
         chart2: Chart2,
-        chart3: Chart3
+        chart3: Chart3,
+        chart4: Chart4,
+        chart5: Chart5,
+        chart6: Chart6
     },
     methods: {
         MonthEat: function(x) {
@@ -95,6 +113,21 @@ export default {
                 this.display1 = false
                 this.display2 = false
                 this.display3 = true                
+            }
+        },
+        MonthSales: function(x) {
+            if (x == 1){
+                this.display4 = true
+                this.display5 = false
+                this.display6 = false
+            } else if (x == 3) {
+                this.display4 = false
+                this.display5 = true
+                this.display6 = false                
+            } else if (x == 6) {
+                this.display4 = false
+                this.display5 = false
+                this.display6 = true                
             }
         }    
     }

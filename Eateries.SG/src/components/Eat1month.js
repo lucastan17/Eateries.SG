@@ -19,6 +19,13 @@ export default {
               display: true,
               text: 'Number of Visits in last 1 month'
             },
+            scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+            },
             responsive: true,
             maintainAspectRatio: false
         }
