@@ -30,12 +30,21 @@
         <div class="sort-by-buttons w-container">
             <p>Plots of the past eateries visited</p>
             <div>
-                <button class="button">Last 1 Month</button>
-                <button class="button">Last 3 Months</button>
-                <button class="button">Last 6 months</button>
+                <button class="button" v-on:click="MonthEat(1)">Last 1 Month</button>
+                <button class="button" v-on:click="MonthEat(3)">Last 3 Months</button>
+                <button class="button" v-on:click="MonthEat(6)">Last 6 months</button>
             </div>
             <div>
-                <img src="..\assets\breadyard.jpg" loading="lazy" alt="">
+                <div v-if="display1 == true">
+                    <chart1></chart1>
+                </div>
+                <div v-if="display2 == true">
+                    <chart2></chart2>
+                </div>
+                <div v-if="display3 == true">
+                    <chart3></chart3>
+                </div>
+                <!--img src="..\assets\breadyard.jpg" loading="lazy" alt=""-->
             </div>
         </div>
         <div class="sort-by-buttons w-container">
@@ -54,9 +63,42 @@
 </template>
 
 <script>
-    export default {
-        name: 'History',
+import Chart1 from "./Eat1month.js";
+import Chart2 from "./Eat3month.js";
+import Chart3 from "./Eat6month.js";
+
+export default {
+    name: 'History',
+    data() {
+        return {
+            display1 : true,
+            display2 : false, 
+            display3 : false
+        }
+    },
+    components: {
+        chart1: Chart1,
+        chart2: Chart2,
+        chart3: Chart3
+    },
+    methods: {
+        MonthEat: function(x) {
+            if (x == 1){
+                this.display1 = true
+                this.display2 = false
+                this.display3 = false
+            } else if (x == 3) {
+                this.display1 = false
+                this.display2 = true
+                this.display3 = false                
+            } else if (x == 6) {
+                this.display1 = false
+                this.display2 = false
+                this.display3 = true                
+            }
+        }    
     }
+}
 
 </script>
 
