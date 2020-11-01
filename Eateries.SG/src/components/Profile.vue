@@ -6,12 +6,12 @@
                 <div class="logo-text">EATERIES.SG</div>
             </div>
             <div class="navigation-right">
-                <router-link to="/" exact>Home</router-link>
+                <router-link class = "link" to="/" exact>Home</router-link>
                 <router-link class = "current"  to="/profile" exact>Profile</router-link>
-                <router-link to="/history" exact>History</router-link>
-                <router-link to="/partnereateries" exact>Partner Eateries</router-link>
-                <router-link to="/currentbookings" exact>Current Bookings</router-link>
-                <router-link to="/declaration" exact>Declaration</router-link>
+                <router-link class = "link" to="/history" exact>History</router-link>
+                <router-link class = "link" to="/partnereateries" exact>Partner Eateries</router-link>
+                <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
+                <router-link class = "link" to="/declaration" exact>Declaration</router-link>
             </div>
         </div>
     </div>
