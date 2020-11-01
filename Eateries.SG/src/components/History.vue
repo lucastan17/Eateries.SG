@@ -35,7 +35,8 @@
                 <button class="button">Last 6 months</button>
             </div>
             <div>
-                <img src="..\assets\breadyard.jpg" loading="lazy" alt="">
+                <chartTop></chartTop>
+                <!--img src="..\assets\breadyard.jpg" loading="lazy" alt=""-->
             </div>
         </div>
         <div class="sort-by-buttons w-container">
@@ -54,9 +55,14 @@
 </template>
 
 <script>
-    export default {
-        name: 'History',
+import Chart from "./CallAPI.js";
+
+export default {
+    name: 'History',
+    components: {
+        chartTop: Chart
     }
+}
 
 </script>
 
