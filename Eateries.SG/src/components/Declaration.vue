@@ -19,11 +19,11 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>Declaration</h1>
-                <p>Do your part to make it a safer place for all</p>
+                <h4>Do your part to make it a safer place for all</h4>
             </div>
         </div>
     </div>
-    <div>
+    <div id='dec'>
         <h3>Complete before entering the Eatery</h3>
         <div class="">
             <form id="temperature-form">
@@ -151,6 +151,9 @@ label {
     border: 1px solid #cccccc;
 }
 
+#dec {
+    margin: 30px;
+}
 /*
 button{
     display: inline-block;
