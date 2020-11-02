@@ -47,6 +47,24 @@
             <ul id="temperature-list"></ul>
         </div>
     </div>
+    <table>
+        <thead><samp></samp>
+            <tr>
+                <th>Temperature</th>
+                <th>Response to Question 2</th>
+                <th>Response to Question 3</th>
+                <!--th>Time stamp</th-->
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="entry in entries" :key = "entry">
+                <td>{{entry.temp}}</td>
+                <td>{{entry.q1}}</td>
+                <td>{{entry.q2}}</td>
+                <!--td>{{entry.Time.toDate()}}</td-->
+            </tr>
+        </tbody>
+    </table>
 
 
 </body>  
@@ -59,6 +77,7 @@ import database from '../firebase.js'
         
         data() {
             return {
+                entries: [],
                 content : {
                     temp : "",
                     q1: "",
@@ -105,17 +124,28 @@ import database from '../firebase.js'
                         this.renderTemperature(doc, tempList);
                     });
                 });
+                this.entries = [];
+                database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').get().then(snapshot => {
+                    snapshot.forEach(doc => {
+                        this.entries.push(doc.data());
+                    });
+                });
             },
 
             saveTemps: function() {
-                //const form = document.querySelector('#temperature-form');
-                //window.alert("donezo saving");
                 database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').add(this.content);
-                //window.alert("finished")
+                /*
+                database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').add({
+                    Time: Date.now()
+                });
+                */
                 this.content.temp = "";
                 this.content.q1 = "";
                 this.content.q2 = "";
             }
+        },
+        created() {
+            this.loadTemps();
         }
 
     }

@@ -36,14 +36,14 @@
         <button class="button" v-on:click.prevent="updatePassword()">Change my Password</button>        
       </form>
     </div>
-      <button id="toggler" class="button" v-on:click="toggleShow()">Show my Profile</button>
+      <button id="toggler" class="button" v-on:click="toggleShow()">Show your current Particulars</button>
       <div id="currentProfile" v-if="showProfile == true">
         <table>
           <thead><samp></samp>
               <tr>
                   <th>Username</th>
                   <th>Name</th>
-                  <th>PhoneNumber</th>
+                  <th>Phone Number</th>
                   <th>Email</th>
               </tr>
           </thead>
@@ -105,10 +105,10 @@ export default {
           this.loadProfile();
           if (this.showProfile == true) {
             this.showProfile = false;
-            document.getElementById("toggler").innerHTML = "Show my Profile";
+            document.getElementById("toggler").innerHTML = "Show your current Particulars";
           } else {
             this.showProfile = true;
-            document.getElementById("toggler").innerHTML = "Hide my Profile";
+            document.getElementById("toggler").innerHTML = "Hide your current Particulars";
           }
         },
 
@@ -141,8 +141,6 @@ export default {
           this.profile.forEach(user =>
             this.userDetail.myoldPass = user.Password
           )
-          alert(this.userDetail.newPass)
-          alert(this.userDetail.myoldPass)
           if(this.userDetail.myoldPass === this.userDetail.oldPass && this.userDetail.myoldPass != this.userDetail.newPass){
             database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').update( {
               Password: this.userDetail.newPass
@@ -171,5 +169,26 @@ export default {
 
 <style>
 @import '../assets/basic_style.css';
+
+table {
+  font-family: 'Arial';
+  margin: 25px auto;
+  width: 1000px;
+  border-collapse: collapse;
+}
+
+th, td {
+  color: #000000;
+  border: 1px solid #b1b2d8;
+  padding: 12px 35px;
+  border-collapse: collapse;
+}
+
+th {
+  background: #b1b2d8;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 22px;
+}
 
 </style>
