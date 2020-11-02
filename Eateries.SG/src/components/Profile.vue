@@ -27,24 +27,47 @@
     <div>
       <h4>Change your password</h4>
     </div>
-    <div class="form-block w-form">
-      <form id="wf-form-Email-Form" name="wf-form-Email-Form" data-name="Email Form"><label for="name">Old Password:</label><input type="text" class="w-input" maxlength="256" name="name" data-name="Name" placeholder="" id="name"><label for="email">New Password:</label><input type="text" maxlength="256" name="email-2" data-name="Email 2" placeholder="" id="email-2" class="w-input"><input type="submit" value="Update Password" data-wait="Please wait..." class="button w-button"></form>
-      <div class="w-form-done">
-        <div>Thank you! Your submission has been received!</div> <!-- can change to alert -->
-      </div>
-      <div class="w-form-fail">
-        <div>Oops! Something went wrong while submitting the form.</div>
-      </div>
+    <div>
+      <form id="wf-form-Email-Form" name="wf-form-Email-Form" data-name="Email Form">
+        <label for="name">Old Password:</label>
+        <input type="text" class="w-input" v-model.lazy="userDetail.oldPass" required>
+        <label for="email">New Password:</label>
+        <input type="text" class="w-input" v-model.lazy="userDetail.newPass" required>
+        <button class="button" v-on:click.prevent="updatePassword()">Change my Password</button>        
+      </form>
     </div>
+      <button id="toggler" class="button" v-on:click="toggleShow()">Show my Profile</button>
+      <div id="currentProfile" v-if="showProfile == true">
+        <table>
+          <thead><samp></samp>
+              <tr>
+                  <th>Username</th>
+                  <th>Name</th>
+                  <th>PhoneNumber</th>
+                  <th>Email</th>
+              </tr>
+          </thead>
+          <tbody>      
+            <tr v-for="user in profile" :key="user">
+              <td>{{user.Username}}</td>
+              <td>{{user.Name}}</td>
+              <td>{{user.Phone}}</td>
+              <td>{{user.Email}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     <h4 class="heading-4">Update your particulars</h4>
-    <div class="w-form">
-      <form id="email-form" name="email-form" data-name="Email Form" class="form"><label for="name-2">Name</label><input type="text" class="w-input" maxlength="256" name="name-2" data-name="Name 2" placeholder="" id="name-2"><label>Phone Number</label><input type="text" class="w-input" maxlength="256" name="field" data-name="Field" id="field" required=""><label for="email-3">Email Address</label><input type="email" class="w-input" maxlength="256" name="email-3" data-name="Email 3" placeholder="" id="email-3" required=""><input type="submit" value="Save" data-wait="Please wait..." class="button w-button"></form>
-      <div class="w-form-done">
-        <div>Thank you! Your submission has been received!</div>
-      </div>
-      <div class="w-form-fail">
-        <div>Oops! Something went wrong while submitting the form.</div>
-      </div>
+    <div>
+      <form id="email-form" name="email-form" data-name="Email Form" class="form">
+        <label for="name-2">Name</label>
+        <input type="text" class="w-input" v-model.lazy="userDetail.newName" required>
+        <label>Phone Number</label>
+        <input type="text" class="w-input" v-model.lazy="userDetail.newPhone" required>
+        <label for="email-3">Email Address</label>
+        <input type="text" class="w-input" v-model.lazy="userDetail.newEmail" required>
+        <button class="button" v-on:click.prevent="updateProfile()">Update Records</button>
+      </form>
     </div>
   </div>
 
@@ -52,10 +75,80 @@
 </template>
 
 <script>
-    export default {
-        name: 'Profile',
-    }
+import database from '../firebase.js'
 
+export default {
+    name: 'Profile',
+    data(){
+        return{
+            profile:[],
+            showProfile:true,
+            userDetail: {
+              newName: "",
+              newPhone: "",
+              newEmail: "",
+              oldPass: "",
+              myoldPass: "",
+              newPass: ""
+            }
+        }
+    },  
+    methods:{
+        loadProfile: function(){
+            database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').get().then(x => {
+                this.profile.pop();
+                this.profile.push(x.data());
+            })
+        },
+        toggleShow: function() {
+          this.loadProfile();
+          if (this.showProfile == true) {
+            this.showProfile = false;
+            document.getElementById("toggler").innerHTML = "Show my Profile";
+          } else {
+            this.showProfile = true;
+            document.getElementById("toggler").innerHTML = "Hide my Profile";
+          }
+        },
+        updateProfile: function() {
+          database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').update( {
+            Name: this.userDetail.newName,
+            Phone: this.userDetail.newPhone,
+            Email: this.userDetail.newEmail
+          });
+          this.userDetail.newName = "";
+          this.userDetail.newPhone = "";
+          this.userDetail.newEmail = "";
+          if(this.showProfile == true) {
+            this.toggleShow();
+          }
+        },
+        updatePassword: function() {
+          this.getOldPass();
+          alert(this.userDetail.myoldPass)
+          alert(this.userDetail.oldPass)
+          if(this.userDetail.myoldPass === this.userDetail.oldPass){
+            database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').update( {
+              Password: this.userDetail.newPass
+            })
+            alert("Password Updated Successfully");
+          } else {
+            alert("Old Password enterd incorrectly! Please try again")
+          }
+          this.userDetail.oldPass = "";
+          this.userDetail.newPass = "";
+        },
+
+        getOldPass: function() {
+          database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').get().then(x => {
+            this.userDetail.myoldPass = x.doc().Password
+          })
+        }
+    },
+    created(){
+        this.loadProfile();
+    }
+}
 </script>
 
 <style>
