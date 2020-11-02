@@ -28,9 +28,9 @@
       <h4>Change your password</h4>
     </div>
     <div class="form-block w-form">
-      <form id="wf-form-Email-Form" name="wf-form-Email-Form" data-name="Email Form"><label for="name">Old Password: </label><input type="text" class="w-input" maxlength="256" name="name" data-name="Name" placeholder="" id="name"><label for="email">New Password:  </label><input type="text" maxlength="256" name="email-2" data-name="Email 2" placeholder="" id="email-2" class="w-input"><input type="submit" value="Update Password" data-wait="Please wait..." class="button w-button"></form>
+      <form id="wf-form-Email-Form" name="wf-form-Email-Form" data-name="Email Form"><label for="name">Old Password:</label><input type="text" class="w-input" maxlength="256" name="name" data-name="Name" placeholder="" id="name"><label for="email">New Password:</label><input type="text" maxlength="256" name="email-2" data-name="Email 2" placeholder="" id="email-2" class="w-input"><input type="submit" value="Update Password" data-wait="Please wait..." class="button w-button"></form>
       <div class="w-form-done">
-        <div>Thank you! Your submission has been received!</div>
+        <div>Thank you! Your submission has been received!</div> <!-- can change to alert -->
       </div>
       <div class="w-form-fail">
         <div>Oops! Something went wrong while submitting the form.</div>
