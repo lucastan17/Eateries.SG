@@ -1,21 +1,16 @@
 <template>
 <body>
-    <div id="Banner" class="banner">
-        <div class="banner-wrap">
-            <div class="notice-text">Check out our promotions and don't forget to invite your friends for more perks!</div>
-        </div>
-    </div>
     <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
         <div class="navigation-container">
             <div class="navigation-left"><img src="../assets/EateriesSG.png" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
             </div>
             <div class="navigation-right">
-                <router-link to="/" exact>Home</router-link>
-                <router-link to="/profile" exact>Profile</router-link>
-                <router-link to="/history" exact>History</router-link>
-                <router-link to="/partnereateries" exact>Partner Eateries</router-link>
-                <router-link to="/currentbookings" exact>Current Bookings</router-link>
+                <router-link class = "link" to="/" exact>Home</router-link>
+                <router-link class = "link" to="/profile" exact>Profile</router-link>
+                <router-link class = "link" to="/history" exact>History</router-link>
+                <router-link class = "link" to="/partnereateries" exact>Partner Eateries</router-link>
+                <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "current" to="/declaration" exact>Declaration</router-link>
             </div>
         </div>
@@ -24,11 +19,11 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>Declaration</h1>
-                <p>Do your part to make it a safer place for all</p>
+                <h4>Do your part to make it a safer place for all</h4>
             </div>
         </div>
     </div>
-    <div>
+    <div id='dec'>
         <h3>Complete before entering the Eatery</h3>
         <div class="">
             <form id="temperature-form">
@@ -156,6 +151,9 @@ label {
     border: 1px solid #cccccc;
 }
 
+#dec {
+    margin: 30px;
+}
 /*
 button{
     display: inline-block;
