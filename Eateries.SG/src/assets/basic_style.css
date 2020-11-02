@@ -245,7 +245,14 @@ p {
   grid-column-gap: 16px;
 }
 
+.form-block {
+  margin-top: 20px;
+}
 
+.form {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 
 /* .footer-link {
     margin-bottom: 12px;
