@@ -46,27 +46,27 @@
 </template>
 
 <script>
-    import db from '../firebase.js'
-    export default {
-        name: 'CurrentBookings',
-        data(){
-            return{
-                bookings:[]
-            }
-        },  
-        methods:{
-            readData(){
-                db.collection("bookings").get().then((querySnapshot) =>{
-                querySnapshot.forEach((doc)=>{
-                    this.bookings.push(doc.data());
-                })
-            })
-            },
-        },
-        created(){
-            this.readData();
+import db from '../firebase.js'
+export default {
+    name: 'CurrentBookings',
+    data(){
+        return{
+            bookings:[]
         }
+    },  
+    methods:{
+        readData(){
+            db.collection("bookings").get().then((querySnapshot) =>{
+            querySnapshot.forEach((doc)=>{
+                this.bookings.push(doc.data());
+            })
+        })
+        },
+    },
+    created(){
+        this.readData();
     }
+}
 
 </script>
 
