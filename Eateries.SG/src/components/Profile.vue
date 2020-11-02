@@ -82,7 +82,7 @@ export default {
     data(){
         return{
             profile:[],
-            showProfile:true,
+            showProfile:false,
             userDetail: {
               newName: "",
               newPhone: "",
@@ -100,6 +100,7 @@ export default {
                 this.profile.push(x.data());
             })
         },
+
         toggleShow: function() {
           this.loadProfile();
           if (this.showProfile == true) {
@@ -110,6 +111,7 @@ export default {
             document.getElementById("toggler").innerHTML = "Hide my Profile";
           }
         },
+
         updateProfile: function() {
           database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').update( {
             Name: this.userDetail.newName,
@@ -119,19 +121,35 @@ export default {
           this.userDetail.newName = "";
           this.userDetail.newPhone = "";
           this.userDetail.newEmail = "";
-          if(this.showProfile == true) {
-            this.toggleShow();
+          this.refreshProfile();
+          this.refreshProfile();
+          this.refreshProfile();
+          this.refreshProfile();
+
+        },
+
+        refreshProfile: function() {
+          this.loadProfile();
+          if (this.showProfile == true) {
+            this.showProfile = false;
+          } else {
+            this.showProfile = true;
           }
         },
+
         updatePassword: function() {
-          this.getOldPass();
+          this.profile.forEach(user =>
+            this.userDetail.myoldPass = user.Password
+          )
+          alert(this.userDetail.newPass)
           alert(this.userDetail.myoldPass)
-          alert(this.userDetail.oldPass)
-          if(this.userDetail.myoldPass === this.userDetail.oldPass){
+          if(this.userDetail.myoldPass === this.userDetail.oldPass && this.userDetail.myoldPass != this.userDetail.newPass){
             database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').update( {
               Password: this.userDetail.newPass
             })
             alert("Password Updated Successfully");
+          } else if(this.userDetail.myoldPass === this.userDetail.newPass) {
+            alert("New password cannot be the same as the old password")
           } else {
             alert("Old Password enterd incorrectly! Please try again")
           }
