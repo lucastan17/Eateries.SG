@@ -60,12 +60,12 @@
     <div>
       <form id="email-form" name="email-form" data-name="Email Form" class="form">
         <label for="name-2">Name</label>
-        <input type="text" class="w-input" maxlength="256" name="name-2" data-name="Name 2" placeholder="" id="name-2">
+        <input type="text" class="w-input" v-model.lazy="userDetail.newName" required>
         <label>Phone Number</label>
-        <input type="text" class="w-input" maxlength="256" name="field" data-name="Field" id="field" required="">
+        <input type="text" class="w-input" v-model.lazy="userDetail.newPhone" required>
         <label for="email-3">Email Address</label>
-        <input type="email" class="w-input" maxlength="256" name="email-3" data-name="Email 3" placeholder="" id="email-3" required="">
-        <input type="submit"  class="button w-button">
+        <input type="text" class="w-input" v-model.lazy="userDetail.newEmail" required>
+        <button class="button" v-on:click.prevent="updateProfile()">Update Records</button>
       </form>
     </div>
   </div>
@@ -81,17 +81,24 @@ export default {
     data(){
         return{
             profile:[],
-            showProfile:true
+            showProfile:true,
+            userDetail: {
+              newName: "",
+              newPhone: "",
+              newEmail: "",
+              oldPass: "",
+              newPass: ""
+            }
         }
     },  
     methods:{
-        loadProfile(){
+        loadProfile: function(){
             database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').get().then(x => {
                 this.profile.pop();
                 this.profile.push(x.data());
             })
         },
-        toggleShow() {
+        toggleShow: function() {
           this.loadProfile();
           if (this.showProfile == true) {
             this.showProfile = false;
@@ -100,6 +107,22 @@ export default {
             this.showProfile = true;
             document.getElementById("toggler").innerHTML = "Hide my Profile";
           }
+        },
+        updateProfile: function() {
+          database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').update( {
+            Name: this.userDetail.newName,
+            Phone: this.userDetail.newPhone,
+            Email: this.userDetail.newEmail
+          });
+          this.userDetail.newName = "";
+          this.userDetail.newPhone = "";
+          this.userDetail.newEmail = "";
+          if(this.showProfile == true) {
+            this.toggleShow();
+          }
+        },
+        updatePassword: function() {
+          
         }
     },
     created(){
