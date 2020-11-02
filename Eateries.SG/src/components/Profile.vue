@@ -30,9 +30,10 @@
     <div>
       <form id="wf-form-Email-Form" name="wf-form-Email-Form" data-name="Email Form">
         <label for="name">Old Password:</label>
-        <input type="text" class="w-input" maxlength="256" name="name" data-name="Name" placeholder="" id="name">
-        <label for="email">New Password:</label><input type="text" maxlength="256" name="email-2" data-name="Email 2" placeholder="" id="email-2" class="w-input">
-        <input type="submit" value="Update Password" class="button w-button">
+        <input type="text" class="w-input" v-model.lazy="userDetail.oldPass" required>
+        <label for="email">New Password:</label>
+        <input type="text" class="w-input" v-model.lazy="userDetail.newPass" required>
+        <button class="button" v-on:click.prevent="updatePassword()">Change my Password</button>        
       </form>
     </div>
       <button id="toggler" class="button" v-on:click="toggleShow()">Show my Profile</button>
@@ -87,6 +88,7 @@ export default {
               newPhone: "",
               newEmail: "",
               oldPass: "",
+              myoldPass: "",
               newPass: ""
             }
         }
@@ -122,7 +124,25 @@ export default {
           }
         },
         updatePassword: function() {
-          
+          this.getOldPass();
+          alert(this.userDetail.myoldPass)
+          alert(this.userDetail.oldPass)
+          if(this.userDetail.myoldPass === this.userDetail.oldPass){
+            database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').update( {
+              Password: this.userDetail.newPass
+            })
+            alert("Password Updated Successfully");
+          } else {
+            alert("Old Password enterd incorrectly! Please try again")
+          }
+          this.userDetail.oldPass = "";
+          this.userDetail.newPass = "";
+        },
+
+        getOldPass: function() {
+          database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').get().then(x => {
+            this.userDetail.myoldPass = x.doc().Password
+          })
         }
     },
     created(){
