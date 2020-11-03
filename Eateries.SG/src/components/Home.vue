@@ -6,7 +6,7 @@
                 <div class="logo-text">EATERIES.SG</div>
             </div>
             <div class="navigation-right">
-                <router-link class = "current" to="/" exact>Home</router-link>
+                <router-link class = "current" to="/home" exact>Home</router-link>
                 <router-link class = "link" to="/profile" exact>Profile</router-link>
                 <router-link class = "link" to="/history" exact>History</router-link>
                 <router-link class = "link" to="/partnereateries" exact>Partner Eateries</router-link>
@@ -26,7 +26,7 @@
     <div id="Home-container">
         <h2>Welcome! What would you like to do today?</h2>
         <div class="buttons-flex">
-           <!-- <div class="button-cover">
+           <div class="button-cover">
                 <button class="homebtn" @click="$router.push('profile')"><img src="..\assets\profile.svg" width="150" height="150"><br>Profile</button>
             </div>
             <div class="button-cover">
@@ -45,7 +45,7 @@
             </div>
             <div class="button-cover">
                 <button class="homebtn" @click="$router.push('logout')"><img src="..\assets\logout.svg" width="150" height="150"><br>Logout</button>
-            </div> -->
+            </div> 
         </div>
     </div>
     

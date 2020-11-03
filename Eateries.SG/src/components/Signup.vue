@@ -11,7 +11,7 @@
                 <div class="logo-text">EATERIES.SG</div>
             </div>
             <div class="navigation-right">
-                <router-link class ="link" to="/login" exact>Log-In</router-link>
+                <router-link class ="link" to="/" exact>Log-In</router-link>
                 <router-link class = "current" to="/signup" exact>Sign-Up</router-link>
             </div>
         </div>

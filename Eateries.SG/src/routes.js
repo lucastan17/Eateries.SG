@@ -13,13 +13,13 @@ import Signup from './components/Signup.vue'
 export default[
     {path:'/currentbookings',component:CurrentBookings},
     {path:'/partnereateries',component:PartnerEateries},
-    {path:'/',component:Home},
+    {path:'/home',component:Home},
     {path:'/profile',component:Profile},
     {path:'/declaration',component:Declaration},
     {path:'/KFC',component:KFC},
     {path:'/SushiTei',component:SushiTei},
     {path:'/BreadYard',component:BreadYard},
     {path:'/History',component:History},
-    {path:'/login', component:Login},
+    {path:'/', component:Login},
     {path:'/signup', component:Signup}
 ]
