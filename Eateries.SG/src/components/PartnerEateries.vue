@@ -6,7 +6,7 @@
                 <div class="logo-text">EATERIES.SG</div>
             </div>
             <div class="navigation-right">
-                <router-link class = "link" to="/" exact>Home</router-link>
+                <router-link class = "link" to="/home" exact>Home</router-link>
                 <router-link class = "link" to="/profile" exact>Profile</router-link>
                 <router-link class = "link" to="/history" exact>History</router-link>
                 <router-link class = "current" to="/partnereateries" exact>Partner Eateries</router-link>

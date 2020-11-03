@@ -11,7 +11,7 @@
                 <div class="logo-text">EATERIES.SG</div>
             </div>
             <div class="navigation-right">
-                <router-link class ="current" to="/login" exact>Log-In</router-link>
+                <router-link class ="current" to="/" exact>Log-In</router-link>
                 <router-link class = "link" to="/signup" exact>Sign-Up</router-link>
             </div>
         </div>
@@ -29,7 +29,11 @@
         <input type="text" placeholder="Email"><br>
         <input type="password" placeholder="Password"><br>
         <button>Log-In</button>
-        <p>No account? Sign up for an account!</p>
+        <!--
+            <p>No account? Sign up for an account!</p>
+        -->
+        <p></p>
+        <router-link class = "link" to="/signup" exact>No account? Click here to Sign Up!</router-link>
     </div>
     
 
