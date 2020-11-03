@@ -29,7 +29,11 @@
         <input type="text" placeholder="Email"><br>
         <input type="password" placeholder="Password"><br>
         <button>Log-In</button>
-        <router-link class = "link" to="/signup" exact>No account? Click here to Sign up!</router-link>
+        <!--
+            <p>No account? Sign up for an account!</p>
+        -->
+        <p></p>
+        <router-link class = "link" to="/signup" exact>No account? Click here to Sign Up!</router-link>
     </div>
     
 

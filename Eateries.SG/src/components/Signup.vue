@@ -26,12 +26,11 @@
     </div>
     <div>
         <h2>
-        <input type="text" placeholder="Name"><br>
-        <input type="text" placeholder="Phone Number"><br>
-        <input type="text" placeholder="Company"><br>
-        <input type="text" placeholder="Email"><br>
-        <input type="password" placeholder="Password"><br>
-        <button>Sign-Up</button>
+        <input type="text" v-model="form.name" placeholder="Name"><br>
+        <input type="text" v-model="form.phoneNo" placeholder="Phone Number"><br>
+        <input type="email" v-model="form.email" placeholder="Email"><br>
+        <input type="password" v-model="form.password" placeholder="Password"><br>
+        <button type="submit" v-on:click="submit()">Sign-Up</button>
         </h2>
     </div>
     
@@ -40,7 +39,51 @@
 </template>
 
 <script>
-    
+    import firebase from 'firebase';
+    import database from '../firebase.js'
+    export default {
+        data(){
+            return{
+                form:{
+                    name:"Enter Name Here",
+                    email:"email here",
+                    password:"password here",
+                    phoneNo:"",
+                }
+            }
+        },
+        methods:{
+            submit(){
+                firebase
+                .auth()
+                .createUserWithEmailAndPassword(this.form.email, this.form.password)
+                .then( res => {
+                    res.user.updateProfile({
+                        displayName: this.form.name
+                    })
+
+                    .then(
+                        database.collection('Users').doc(res.user.uid)
+                        .set({
+                            name: this.form.name,
+                            email:this.form.email,
+                            password: this.form.password,
+                            phoneNumber:this.form.phoneNumber
+                        })
+                        .then(function(){
+                            console.log("Succesfully created!")
+                        })
+                        .catch(err =>{
+                            this.error = err.message;
+                        })
+                    )
+                })
+                .catch(err => {
+                this.error = err.message;
+                });
+            }
+        }
+    }
 </script>
 
 <style>
