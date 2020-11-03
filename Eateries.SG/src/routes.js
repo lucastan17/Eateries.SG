@@ -7,6 +7,8 @@ import KFC from './components/KFC.vue'
 import SushiTei from './components/SushiTei.vue'
 import BreadYard from './components/BreadYard.vue'
 import History from './components/History.vue'
+import Login from './components/Login.vue'
+import Signup from './components/Signup.vue'
 
 export default[
     {path:'/currentbookings',component:CurrentBookings},
@@ -17,5 +19,7 @@ export default[
     {path:'/KFC',component:KFC},
     {path:'/SushiTei',component:SushiTei},
     {path:'/BreadYard',component:BreadYard},
-    {path:'/History',component:History}
+    {path:'/History',component:History},
+    {path:'/login', component:Login},
+    {path:'/signup', component:Signup}
 ]
