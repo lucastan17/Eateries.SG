@@ -72,6 +72,7 @@
 
 <script>
 import database from '../firebase.js'
+import fb from 'firebase';
     export default {
         name: 'Declaration',
         
@@ -119,13 +120,13 @@ import database from '../firebase.js'
                 while (tempList.firstChild) {
                     tempList.removeChild(tempList.lastChild);
                 }
-                database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').get().then(snapshot => {
+                database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').get().then(snapshot => {
                     snapshot.docs.forEach(doc => {
                         this.renderTemperature(doc, tempList);
                     });
                 });
                 this.entries = [];
-                database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').get().then(snapshot => {
+                database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').get().then(snapshot => {
                     snapshot.forEach(doc => {
                         this.entries.push(doc.data());
                     });
@@ -133,7 +134,8 @@ import database from '../firebase.js'
             },
 
             saveTemps: function() {
-                database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').add(this.content);
+                alert(fb.auth().currentUser.uid)
+                database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').add(this.content);
                 /*
                 database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').add({
                     Time: Date.now()
