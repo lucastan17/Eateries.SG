@@ -26,9 +26,9 @@
     </div>
     <div>
         <h2></h2>
-        <input type="text" placeholder="Email"><br>
-        <input type="password" placeholder="Password"><br>
-        <button>Log-In</button>
+        <input type="text" v-model="email" placeholder="Email"><br>
+        <input type="password" v-model="password" placeholder="Password"><br>
+        <button @click ="login()" >Log-In</button>
         <!--
             <p>No account? Sign up for an account!</p>
         -->
@@ -41,7 +41,32 @@
 </template>
 
 <script>
-    
+    import fb from 'firebase';
+    export default{
+        data(){
+            return{
+                email:'',
+                password:'',
+            }
+        },
+        methods:{
+            login(){
+                if(this.email == '' || this.password =='') {
+                    alert('Enter details to Sign in!')
+                }
+                fb.auth().signInWithEmailAndPassword(this.email,this.password)
+                .then(() =>{
+                    this.$router.replace("/home")  
+                }).then(()=>{
+                    this.email = ""
+                    this.password = ""
+                })
+                .catch(err =>{
+                    this.error = err.message;
+                })
+            }    
+        }
+    }
 </script>
 
 <style>
