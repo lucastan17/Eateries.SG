@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 import database from '../firebase.js'
     export default {
         name: 'Declaration',
@@ -137,7 +138,7 @@ import database from '../firebase.js'
                 });
 */
                 this.entries = [];
-                database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').orderBy("time").get().then(snapshot => {
+                database.collection('Users').doc(firebase.auth().currentUser.uid).collection('temperature').orderBy("time").get().then(snapshot => {
                     snapshot.forEach(doc => {
                         this.entries.push(doc.data());
                     });
@@ -153,13 +154,13 @@ import database from '../firebase.js'
 
             saveTemps: function() {
                 this.content.time = Date.now();
-                database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').add(this.content);
+                database.collection('Users').doc(firebase.auth().currentUser.uid).collection('temperature').add(this.content);
                 this.content.temp = "";
                 this.content.q1 = "";
                 this.content.q2 = "";
                 this.content.time = "";
                 this.entries = [];
-                database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').get().then(snapshot => {
+                database.collection('Users').doc(firebase.auth().currentUser.uid).collection('temperature').get().then(snapshot => {
                     snapshot.forEach(doc => {
                         this.entries.push(doc.data());
                     });

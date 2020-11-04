@@ -24,13 +24,13 @@
             </div>
         </div>
     </div>
-    <div v-if="display == true">
+    <div>
         <h2>
-        <input type="text" v-model="form.name" placeholder="Name"><br>
-        <input type="text" v-model="form.phoneNo" placeholder="Phone Number"><br>
-        <input type="email" v-model="form.email" placeholder="Email"><br>
-        <input type="password" v-model="form.password" placeholder="Password"><br>
-        <button type="submit" v-on:click="submit()">Sign-Up</button>
+        <input type="text" v-model="name" placeholder="Name"><br>
+        <input type="text" v-model="phoneNo" placeholder="Phone Number"><br>
+        <input type="text" v-model="email" placeholder="Email"><br>
+        <input type="password" v-model="password" placeholder="Password"><br>
+        <button type="submit" @click="submit()">Sign-Up</button>
         </h2>
     </div>
     
@@ -39,55 +39,45 @@
 </template>
 
 <script>
-    import firebase from 'firebase';
+    import fb from 'firebase';
     import database from '../firebase.js'
     export default {
         data(){
             return{
-                form:{
-                    name:"",
-                    email:"",
-                    password:"",
-                    phoneNo:"",
-                    uid: "",
-                },
-                display : true
+                name:"Enter Name Here",
+                email:"email here",
+                password:"",
+                phoneNo:"",
             }
         },
         methods:{
             submit(){
-                firebase
+                fb
                 .auth()
-                .createUserWithEmailAndPassword(this.form.email, this.form.password)
-                .then(res => {
+                .createUserWithEmailAndPassword(this.email, this.password)
+                .then( res => {
                     res.user.updateProfile({
-                        displayName: this.form.name
+                        displayName: this.name
                     })
                     .then(
                         database.collection('Users').doc(res.user.uid)
                         .set({
-                            name: this.form.name,
-                            email:this.form.email,
-                            password: this.form.password,
-                            phoneNumber:this.form.phoneNo
-                        })
-                        .then(function(){
-                            alert("Succesfully created!")
-                            this.form.uid = res.user.uid
-                        }, err => {this.error = err.message; alert(this.error)})
+                            name: this.name,
+                            email:this.email,
+                            password: this.password,
+                            phoneNumber:this.phoneNo,
+                    })
+                    .then(function(){
+                        alert("Successfully created!")
+                        //console.log("Document successfully written")
+                    },
+                    err => {this.error = err.message; alert(this.error)})
                     , err => {this.error = err.message; alert(this.error)})
                 }, err => {this.error = err.message; alert(this.error)});
+                this.$router.push("/")   
             },
-
-            clearInputs: function() {
-                this.form.name = "";
-                this.form.email = "";
-                this.form.password = "";
-                this.form.phoneNo = "";
-                this.display = false;
-                this.display = true;
-            }
-        }
+        },
+        
     }
 </script>
 
