@@ -12,6 +12,7 @@
                 <router-link class = "link" to="/partnereateries" exact>Partner Eateries</router-link>
                 <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "link" to="/declaration" exact>Declaration</router-link>
+                <button @click ="signOut()">Sign Out</button>
             </div>
         </div>
     </div>
@@ -44,7 +45,7 @@
                 <button class="homebtn" @click="$router.push('declaration')"><img src="..\assets\sick.svg" width="150" height="150"><br>Declaration</button>
             </div>
             <div class="button-cover">
-                <button class="homebtn" @click="$router.push('logout')"><img src="..\assets\logout.svg" width="150" height="150"><br>Logout</button>
+                <button class="homebtn" @click="signOut()"><img src="..\assets\logout.svg" width="150" height="150"><br>Logout</button>
             </div> 
         </div>
     </div>
@@ -62,7 +63,7 @@ export default {
     methods:{
         signOut(){
                 fb.auth().signOut().then(() => {
-                this.$router.replace('/Login')
+                this.$router.replace('/')
             })
             .catch(err =>{
                 this.error = err.message;

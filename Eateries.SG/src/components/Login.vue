@@ -56,7 +56,10 @@
                 }
                 fb.auth().signInWithEmailAndPassword(this.email,this.password)
                 .then(() =>{
-                    this.$router.replace("/home");
+                    this.$router.replace("/home")  
+                }).then(()=>{
+                    this.email = ""
+                    this.password = ""
                 })
                 .catch(err =>{
                     this.error = err.message;

@@ -29,7 +29,7 @@
         <input type="text" v-model="name" placeholder="Name"><br>
         <input type="text" v-model="phoneNo" placeholder="Phone Number"><br>
         <input type="text" v-model="email" placeholder="Email"><br>
-        <input type="text" v-model="password" placeholder="Password"><br>
+        <input type="password" v-model="password" placeholder="Password"><br>
         <button type="submit" @click="submit()">Sign-Up</button>
         </h2>
     </div>
