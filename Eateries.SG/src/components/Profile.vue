@@ -63,9 +63,9 @@
         <label for="name-2">Name</label>
         <input type="text" class="w-input" v-model.lazy="userDetail.newName" required>
         <label>Phone Number</label>
-        <input type="text" class="w-input" v-model.lazy="userDetail.newPhone" required>
+        <input type="text" class="w-input" v-model="userDetail.newPhone" required>
         <label for="email-3">Email Address</label>
-        <input type="text" class="w-input" v-model.lazy="userDetail.newEmail" required>
+        <input type="text" class="w-input" v-model="userDetail.newEmail" required>
         <button class="button" v-on:click.prevent="updateProfile()">Update Records</button>
       </form>
     </div>
@@ -98,6 +98,9 @@ export default {
             database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').get().then(x => {
                 this.profile.pop();
                 this.profile.push(x.data());
+                this.userDetail.newName = x.data().Name;
+                this.userDetail.newPhone = x.data().Phone;
+                this.userDetail.newEmail = x.data().Email;
             })
         },
 
@@ -112,12 +115,36 @@ export default {
           }
         },
 
+        validPhoneNum: function() {
+          //alert(this.userDetail.newPhone.charAt(0))
+          var phoneno = /^[89]\d{7}$/;
+            if (!this.userDetail.newPhone.match(phoneno)) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        },
+        
+        IsvalidEmail: function(){
+            var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return (this.userDetail.newEmail=="")? "" : (re.test(this.userDetail.newEmail)) ? true: false;
+        },
+
         updateProfile: function() {
-          database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').update( {
-            Name: this.userDetail.newName,
-            Phone: this.userDetail.newPhone,
-            Email: this.userDetail.newEmail
-          });
+          if(!this.validPhoneNum()){
+            alert("Invalid phone number given! Please enter a valid phone number.")
+          }
+          else if(!this.IsvalidEmail()){
+            alert("Invalid email address given! Please enter a valid email address")
+          }
+          else{
+            database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').update( {
+              Name: this.userDetail.newName,
+              Phone: this.userDetail.newPhone,
+              Email: this.userDetail.newEmail
+            });
+          }
           this.userDetail.newName = "";
           this.userDetail.newPhone = "";
           this.userDetail.newEmail = "";
