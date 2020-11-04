@@ -54,9 +54,20 @@
 </template>
 
 <script>
+import fb from 'firebase';
 export default {
     name: 'Home',
     components:{
+    },
+    methods:{
+        signOut(){
+                fb.auth().signOut().then(() => {
+                this.$router.replace('/Login')
+            })
+            .catch(err =>{
+                this.error = err.message;
+            })
+        }
     }
 }    
 
