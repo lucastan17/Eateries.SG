@@ -33,7 +33,6 @@
                 <br>
                 <label for="symptoms">Do you have any COVID-19 symptoms that you recently acquired?:</label>
                 <br>
-                <!-- input type="text" class="w-input" v-model.lazy="content.q1"-->
                 <select class="w-input" v-model.lazy="content.q1">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -41,7 +40,6 @@
                 <br>
                 <label for="family">Do you have anyone in the same household having fever, and/or showing the any symptoms of COVID-19?</label>
                 <br>
-                <!-- input type="text" class="w-input" v-model.lazy="content.q2"-->
                 <select class="w-input" v-model.lazy="content.q2">
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
@@ -61,7 +59,7 @@
                 <th>Temperature</th>
                 <th>Response to Question 2</th>
                 <th>Response to Question 3</th>
-                <!--th>Time stamp</th-->
+                <th>Time stamp</th>
             </tr>
         </thead>
         <tbody>
@@ -69,7 +67,7 @@
                 <td>{{entry.temp}}</td>
                 <td>{{entry.q1}}</td>
                 <td>{{entry.q2}}</td>
-                <!--td>{{entry.Time.toDate()}}</td-->
+                <td>{{new Date(entry.time*1000).getDate() + "/" + new Date(entry.time*1000).getMonth() }}</td>
             </tr>
         </tbody>
     </table>
@@ -144,16 +142,21 @@ import database from '../firebase.js'
             saveTemps: function() {
                 this.content.time = Date.now();
                 database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').add(this.content);
-                /*
-                database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').add({
-                    Time: Date.now()
-                });
-                */
                 this.content.temp = "";
                 this.content.q1 = "";
                 this.content.q2 = "";
                 this.content.time = "";
+            },
+
+            covertDate: function(date) {
+                var day = new Date(date.time * 1000).getDate();
+                var month = new Date(date.time * 1000).getMonth();
+                var year = new Date(date.time * 1000).getYear();
+                var combiner = day + "/" + month + "/" + year;
+                return combiner;
             }
+
+
         },
         created() {
             this.loadTemps();
