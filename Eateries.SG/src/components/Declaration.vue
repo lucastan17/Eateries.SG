@@ -33,11 +33,19 @@
                 <br>
                 <label for="symptoms">Do you have any COVID-19 symptoms that you recently acquired?:</label>
                 <br>
-                <input type="text" class="w-input" v-model.lazy="content.q1">
+                <!-- input type="text" class="w-input" v-model.lazy="content.q1"-->
+                <select class="w-input" v-model.lazy="content.q1">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
                 <br>
                 <label for="family">Do you have anyone in the same household having fever, and/or showing the any symptoms of COVID-19?</label>
                 <br>
-                <input type="text" class="w-input" v-model.lazy="content.q2">
+                <!-- input type="text" class="w-input" v-model.lazy="content.q2"-->
+                <select class="w-input" v-model.lazy="content.q2">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
                 <br>
                 <button class="button" v-on:click.prevent="saveTemps">Submit</button>
             </form>
@@ -81,7 +89,8 @@ import database from '../firebase.js'
                 content : {
                     temp : "",
                     q1: "",
-                    q2: ""
+                    q2: "",
+                    time: ""
                 }            
             }
         },
@@ -133,6 +142,7 @@ import database from '../firebase.js'
             },
 
             saveTemps: function() {
+                this.content.time = Date.now();
                 database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').add(this.content);
                 /*
                 database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').add({
@@ -142,6 +152,7 @@ import database from '../firebase.js'
                 this.content.temp = "";
                 this.content.q1 = "";
                 this.content.q2 = "";
+                this.content.time = "";
             }
         },
         created() {
