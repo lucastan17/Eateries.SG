@@ -24,7 +24,7 @@
             </div>
         </div>
     </div>
-    <div>
+    <div v-if="display == true">
         <h2>
         <input type="text" v-model="form.name" placeholder="Name"><br>
         <input type="text" v-model="form.phoneNo" placeholder="Phone Number"><br>
@@ -45,11 +45,13 @@
         data(){
             return{
                 form:{
-                    name:"Enter Name Here",
-                    email:"email here",
-                    password:"password here",
+                    name:"",
+                    email:"",
+                    password:"",
                     phoneNo:"",
-                }
+                    uid: "",
+                },
+                display : true
             }
         },
         methods:{
@@ -57,30 +59,33 @@
                 firebase
                 .auth()
                 .createUserWithEmailAndPassword(this.form.email, this.form.password)
-                .then( res => {
+                .then(res => {
                     res.user.updateProfile({
                         displayName: this.form.name
                     })
-
                     .then(
                         database.collection('Users').doc(res.user.uid)
                         .set({
                             name: this.form.name,
                             email:this.form.email,
                             password: this.form.password,
-                            phoneNumber:this.form.phoneNumber
+                            phoneNumber:this.form.phoneNo
                         })
                         .then(function(){
-                            console.log("Succesfully created!")
-                        })
-                        .catch(err =>{
-                            this.error = err.message;
-                        })
-                    )
-                })
-                .catch(err => {
-                this.error = err.message;
-                });
+                            alert("Succesfully created!")
+                            this.form.uid = res.user.uid
+                        }, err => {this.error = err.message; alert(this.error)})
+                    , err => {this.error = err.message; alert(this.error)})
+                }, err => {this.error = err.message; alert(this.error)});
+            },
+
+            clearInputs: function() {
+                this.form.name = "";
+                this.form.email = "";
+                this.form.password = "";
+                this.form.phoneNo = "";
+                this.display = false;
+                this.display = true;
             }
         }
     }

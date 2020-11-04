@@ -27,7 +27,7 @@
         <h3>Complete before entering the Eatery</h3>
         <div class="">
             <form id="temperature-form">
-                <label for="temp">Current Temperature:</label>
+                <label for="temp">Current Temperature: (Format required: X.XX)</label>
                 <br>
                 <input type="text" class="w-input" v-model.lazy="content.temp">
                 <br>
@@ -45,34 +45,34 @@
                     <option value="No">No</option>
                 </select>
                 <br>
-                <button class="button" v-on:click.prevent="saveTemps">Submit</button>
+                <button class="button" v-on:click.prevent="checkValidity()">Submit</button>
             </form>
         </div>
         <div>
-            <button class="button" v-on:click.prevent="loadTemps()">Load Records</button>
-            <ul id="temperature-list"></ul>
+            <button class="button" id="showTemp" v-on:click.prevent="loadTemps()">Load Declaration Records</button>
         </div>
     </div>
-    <table>
-        <thead><samp></samp>
-            <tr>
-                <th>Temperature</th>
-                <th>Response to Question 2</th>
-                <th>Response to Question 3</th>
-                <th>Time stamp</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="entry in entries" :key = "entry">
-                <td>{{entry.temp}}</td>
-                <td>{{entry.q1}}</td>
-                <td>{{entry.q2}}</td>
-                <td>{{new Date(entry.time*1000).getDate() + "/" + new Date(entry.time*1000).getMonth() }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-
+    <div v-if="this.show === true">
+        <table>
+            <thead><samp></samp>
+                <tr>
+                    <th>Temperature</th>
+                    <th>Response to Question 2</th>
+                    <th>Response to Question 3</th>
+                    <th>Time stamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="entry in entries" :key = "entry">
+                    <td>{{entry.temp + "°C"}}</td>
+                    <td>{{entry.q1}}</td>
+                    <td>{{entry.q2}}</td>
+                    <td>{{new Date(entry.time).getDate() + " " + new Date(entry.time).toLocaleString("en-US", {month: "long"}) + " " +
+                         new Date(entry.time).getHours() + ":" +  new Date(entry.time).getMinutes() }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>  
 </template>
 
@@ -85,15 +85,17 @@ import database from '../firebase.js'
             return {
                 entries: [],
                 content : {
-                    temp : "",
+                    temp: 36.7,
                     q1: "",
                     q2: "",
                     time: ""
-                }            
+                },
+                show: false,           
             }
         },
 
         methods: {
+/*
             renderTemperature: function(doc, tempList) {
                 let li = document.createElement('li');
                 let temp = document.createElement('span');
@@ -120,9 +122,11 @@ import database from '../firebase.js'
 
                 tempList.appendChild(li);
             },
+*/
             //getting data of temperatures from db
+
             loadTemps: function() {
-                const tempList = document.querySelector('#temperature-list');
+/*                const tempList = document.querySelector('#temperature-list');
                 while (tempList.firstChild) {
                     tempList.removeChild(tempList.lastChild);
                 }
@@ -131,12 +135,20 @@ import database from '../firebase.js'
                         this.renderTemperature(doc, tempList);
                     });
                 });
+*/
                 this.entries = [];
-                database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').get().then(snapshot => {
+                database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').orderBy("time").get().then(snapshot => {
                     snapshot.forEach(doc => {
                         this.entries.push(doc.data());
                     });
                 });
+                this.entries = this.entries.reverse();
+                this.show = !this.show;
+                if (this.show) {
+                    document.getElementById("showTemp").innerHTML = "Hide Declaration Records";
+                } else {
+                    document.getElementById("showTemp").innerHTML = "Load Declaration Records";
+                }
             },
 
             saveTemps: function() {
@@ -146,22 +158,34 @@ import database from '../firebase.js'
                 this.content.q1 = "";
                 this.content.q2 = "";
                 this.content.time = "";
+                this.entries = [];
+                database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').get().then(snapshot => {
+                    snapshot.forEach(doc => {
+                        this.entries.push(doc.data());
+                    });
+                });
+                this.entries = this.entries.reverse();                
             },
 
-            covertDate: function(date) {
-                var day = new Date(date.time * 1000).getDate();
-                var month = new Date(date.time * 1000).getMonth();
-                var year = new Date(date.time * 1000).getYear();
-                var combiner = day + "/" + month + "/" + year;
-                return combiner;
+            checkValidity: function() {
+                if (this.content.temp > 40 || this.content.temp < 34) {
+                    alert("Invalid Temperature Added! Please Try Again");
+                } else {
+                    if (this.content.q1 == "" || this.content.q2 == "") {
+                        alert("Invalid Response to Questions 2 or 3. Please Try Again");
+                    } else {
+                        this.saveTemps();
+                        alert("Declaration is Successful!")
+                    }
+                }
             }
 
-
         },
+/*
         created() {
-            this.loadTemps();
+            //this.loadTemps();
         }
-
+*/
     }
 
 
