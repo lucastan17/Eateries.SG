@@ -160,7 +160,7 @@ import fb from 'firebase';
                 this.content.q2 = "";
                 this.content.time = "";
                 this.entries = [];
-                database.collection('Users').doc(firebase.auth().currentUser.uid).collection('temperature').get().then(snapshot => {
+                database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').get().then(snapshot => {
                     snapshot.forEach(doc => {
                         this.entries.push(doc.data());
                     });
