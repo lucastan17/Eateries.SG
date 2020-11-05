@@ -148,10 +148,9 @@ export default {
               email: this.userDetail.newEmail
             });
             if(this.userDetail.newEmail != this.userDetail.oldEmail){
-               this.changeEmail(this.userDetail.oldPass,this.userDetail.newEmail)
-               alert("Email Updated Successfully");
+               this.changeEmail(this.userDetail.myoldPass,this.userDetail.newEmail)
             }
-            fb.auth().currentUser.updateEmail(this.userDetail.newEmail)
+            alert("Successfully updated details!")
           }
           this.userDetail.newName = "";
           this.userDetail.newPhone = "";
@@ -173,7 +172,7 @@ export default {
         },
 
         updatePassword: function() {
-          this.getOldPass();
+          //this.getOldPass();
           console.log(this.userDetail.myoldPass)
           /*this.profile.forEach(user =>
             this.userDetail.myoldPass = user.password
@@ -183,7 +182,7 @@ export default {
               password: this.userDetail.newPass
             })
             /*fb.auth().currentUser.updatePassword(this.userDetail.newPass).then(console.log("Updated pw"))*/
-            this.changePassword(this.userDetail.oldPass,this.userDetail.newPass)
+            this.changePassword(this.userDetail.myoldPass,this.userDetail.newPass)
             alert("Password Updated Successfully");
           } else if(this.userDetail.myoldPass == this.userDetail.newPass) {
             alert("New password cannot be the same as the old password")
