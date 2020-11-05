@@ -24,12 +24,14 @@
         </div>
     </div>
 
+    <h3>Upcoming Bookings</h3>
     <table>
         <thead><samp></samp>
             <tr>
                 <th>Eatery</th>
                 <th>Name</th>
                 <th>Pax</th>
+                <th>Time</th>
             </tr>
         </thead>
         <tbody>
@@ -38,6 +40,27 @@
                 <td>{{booking.Name}}</td>
                 <td>{{booking.Pax}}</td>
                 <td>{{booking.Time.toDate()}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <h3>Expired Bookings</h3>
+    <table>
+        <thead><samp></samp>
+            <tr>
+                <th>Eatery</th>
+                <th>Name</th>
+                <th>Pax</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="expiredbk in expired" :key = "expiredbk">
+                <td>{{expiredbk.Eatery}}</td>
+                <td>{{expiredbk.Name}}</td>
+                <td>{{expiredbk.Pax}}</td>
+                <td>{{expiredbk.Time.toDate()}}</td>
             </tr>
         </tbody>
     </table>
@@ -51,20 +74,30 @@ export default {
     name: 'CurrentBookings',
     data(){
         return{
-            bookings:[]
+            bookings:[],
+            expired:[],
         }
     },  
     methods:{
-        readData(){
-            db.collection("bookings").get().then((querySnapshot) =>{
+        readExpiredBookings(){
+            db.collection("bookings").where('Time','>=', new Date()).get().then((querySnapshot) =>{
             querySnapshot.forEach((doc)=>{
                 this.bookings.push(doc.data());
             })
         })
         },
+
+        readCurrentBookings(){
+            db.collection("bookings").where('Time','<', new Date()).get().then((querySnapshot) =>{
+            querySnapshot.forEach((doc)=>{
+                this.expired.push(doc.data());
+            })
+        })
+        }
     },
     created(){
-        this.readData();
+        this.readExpiredBookings();
+        this.readCurrentBookings();
     }
 }
 
