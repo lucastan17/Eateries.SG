@@ -77,8 +77,8 @@
 </template>
 
 <script>
-import firebase from 'firebase'
 import database from '../firebase.js'
+import fb from 'firebase';
     export default {
         name: 'Declaration',
         
@@ -131,14 +131,14 @@ import database from '../firebase.js'
                 while (tempList.firstChild) {
                     tempList.removeChild(tempList.lastChild);
                 }
-                database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').get().then(snapshot => {
+                database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').get().then(snapshot => {
                     snapshot.docs.forEach(doc => {
                         this.renderTemperature(doc, tempList);
                     });
                 });
 */
                 this.entries = [];
-                database.collection('Users').doc(firebase.auth().currentUser.uid).collection('temperature').orderBy("time").get().then(snapshot => {
+                database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').get().then(snapshot => {
                     snapshot.forEach(doc => {
                         this.entries.push(doc.data());
                     });
@@ -153,8 +153,8 @@ import database from '../firebase.js'
             },
 
             saveTemps: function() {
-                this.content.time = Date.now();
-                database.collection('Users').doc(firebase.auth().currentUser.uid).collection('temperature').add(this.content);
+                alert(fb.auth().currentUser.uid)
+                database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').add(this.content);
                 this.content.temp = "";
                 this.content.q1 = "";
                 this.content.q2 = "";

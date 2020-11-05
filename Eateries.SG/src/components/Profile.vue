@@ -41,7 +41,7 @@
         <table>
           <thead><samp></samp>
               <tr>
-                  <th>Username</th>
+                  <!--<th>Username</th>-->
                   <th>Name</th>
                   <th>Phone Number</th>
                   <th>Email</th>
@@ -49,10 +49,10 @@
           </thead>
           <tbody>      
             <tr v-for="user in profile" :key="user">
-              <td>{{user.Username}}</td>
-              <td>{{user.Name}}</td>
-              <td>{{user.Phone}}</td>
-              <td>{{user.Email}}</td>
+              <!--<td>{{user.Username}}</td>-->
+              <td>{{user.name}}</td>
+              <td>{{user.phoneNumber}}</td>
+              <td>{{user.email}}</td>
             </tr>
           </tbody>
         </table>
@@ -63,9 +63,9 @@
         <label for="name-2">Name</label>
         <input type="text" class="w-input" v-model.lazy="userDetail.newName" required>
         <label>Phone Number</label>
-        <input type="text" class="w-input" v-model.lazy="userDetail.newPhone" required>
+        <input type="text" class="w-input" v-model="userDetail.newPhone" required>
         <label for="email-3">Email Address</label>
-        <input type="text" class="w-input" v-model.lazy="userDetail.newEmail" required>
+        <input type="text" class="w-input" v-model="userDetail.newEmail" required>
         <button class="button" v-on:click.prevent="updateProfile()">Update Records</button>
       </form>
     </div>
@@ -76,6 +76,7 @@
 
 <script>
 import database from '../firebase.js'
+import fb from 'firebase';
 
 export default {
     name: 'Profile',
@@ -95,12 +96,12 @@ export default {
     },  
     methods:{
         loadProfile: function(){
-            database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').get().then(x => {
+            database.collection('Users').doc(fb.auth().currentUser.uid).get().then(x => {
                 this.profile.pop();
                 this.profile.push(x.data());
-                this.userDetail.newName = x.data().Name;
-                this.userDetail.newPhone = x.data().Phone;
-                this.userDetail.newEmail = x.data().Email;
+                this.userDetail.newName = x.data().name;
+                this.userDetail.newPhone = x.data().phoneNumber;
+                this.userDetail.newEmail = x.data().email;
             })
         },
 
@@ -115,12 +116,36 @@ export default {
           }
         },
 
+        validPhoneNum: function() {
+          //alert(this.userDetail.newPhone.charAt(0))
+          var phoneno = /^[89]\d{7}$/;
+            if (!this.userDetail.newPhone.match(phoneno)) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        },
+        
+        IsvalidEmail: function(){
+            var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return (this.userDetail.newEmail=="")? "" : (re.test(this.userDetail.newEmail)) ? true: false;
+        },
+
         updateProfile: function() {
-          database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').update( {
-            Name: this.userDetail.newName,
-            Phone: this.userDetail.newPhone,
-            Email: this.userDetail.newEmail
-          });
+          if(!this.validPhoneNum()){
+            alert("Invalid phone number given! Please enter a valid phone number.")
+          }
+          else if(!this.IsvalidEmail()){
+            alert("Invalid email address given! Please enter a valid email address")
+          }
+          else{
+            database.collection('Users').doc(fb.auth().currentUser.uid).update( {
+              name: this.userDetail.newName,
+              phoneNumber: this.userDetail.newPhone,
+              email: this.userDetail.newEmail
+            });
+          }
           this.userDetail.newName = "";
           this.userDetail.newPhone = "";
           this.userDetail.newEmail = "";
@@ -145,7 +170,7 @@ export default {
             this.userDetail.myoldPass = user.Password
           )
           if(this.userDetail.myoldPass === this.userDetail.oldPass && this.userDetail.myoldPass != this.userDetail.newPass){
-            database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').update( {
+            database.collection('Users').doc(fb.auth().currentUser.uid).update( {
               Password: this.userDetail.newPass
             })
             alert("Password Updated Successfully");
@@ -159,7 +184,7 @@ export default {
         },
 
         getOldPass: function() {
-          database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').get().then(x => {
+          database.collection('Users').doc(fb.auth().currentUser.uid).get().then(x => {
             this.userDetail.myoldPass = x.doc().Password
           })
         }
