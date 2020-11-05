@@ -68,7 +68,7 @@
                     <td>{{entry.q1}}</td>
                     <td>{{entry.q2}}</td>
                     <td>{{new Date(entry.time).getDate() + " " + new Date(entry.time).toLocaleString("en-US", {month: "long"}) + " " +
-                         new Date(entry.time).getHours() + ":" +  new Date(entry.time).getMinutes() }}</td>
+                         new Date(entry.time).getHours() + ":" +  new Date(entry.time).getMinutes()}}</td>
                 </tr>
             </tbody>
         </table>

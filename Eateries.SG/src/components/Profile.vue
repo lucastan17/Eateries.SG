@@ -98,6 +98,9 @@ export default {
             database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').get().then(x => {
                 this.profile.pop();
                 this.profile.push(x.data());
+                this.userDetail.newName = x.data().Name;
+                this.userDetail.newPhone = x.data().Phone;
+                this.userDetail.newEmail = x.data().Email;
             })
         },
 
