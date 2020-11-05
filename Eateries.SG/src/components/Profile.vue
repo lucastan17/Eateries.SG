@@ -30,9 +30,9 @@
     <div>
       <form id="wf-form-Email-Form" name="wf-form-Email-Form" data-name="Email Form">
         <label for="name">Old Password:</label>
-        <input type="text" class="w-input" v-model.lazy="userDetail.oldPass" required>
+        <input type="password" class="w-input" v-model.lazy="userDetail.oldPass" required>
         <label for="email">New Password:</label>
-        <input type="text" class="w-input" v-model="userDetail.newPass" required>
+        <input type="password" class="w-input" v-model="userDetail.newPass" required>
         <button class="button" v-on:click.prevent="updatePassword()">Change my Password</button>        
       </form>
     </div>
@@ -154,7 +154,7 @@ export default {
           }
           this.userDetail.newName = "";
           this.userDetail.newPhone = "";
-          this.userDetail.newEmail = "";
+          //this.userDetail.newEmail = "";
           this.refreshProfile();
           this.refreshProfile();
           this.refreshProfile();
@@ -189,8 +189,9 @@ export default {
           } else {
             alert("Old Password entered incorrectly! Please try again")
           }
-          this.userDetail.oldPass = "";
-          this.userDetail.newPass = "";
+          //this.userDetail.oldPass = "";
+          //this.userDetail.newPass = "";
+          this.loadProfile();
         },
 
         getOldPass: function() {
