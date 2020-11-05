@@ -19,14 +19,19 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>Home</h1>
-                <h5>One small step for your finger, a giant step for your stomach</h5>
+                <p>One small step for your finger, a giant step for your stomach</p>
             </div>
         </div>
     </div>
     <div id="Home-container">
         <h2>Welcome! What would you like to do today?</h2>
+<<<<<<< Updated upstream
         <div class="buttons-flex">
            <!-- <div class="button-cover">
+=======
+        <!-- <div class="buttons-flex">
+           <div class="button-cover">
+>>>>>>> Stashed changes
                 <button class="homebtn" @click="$router.push('profile')"><img src="..\assets\profile.svg" width="150" height="150"><br>Profile</button>
             </div>
             <div class="button-cover">
@@ -44,9 +49,15 @@
                 <button class="homebtn" @click="$router.push('declaration')"><img src="..\assets\sick.svg" width="150" height="150"><br>Declaration</button>
             </div>
             <div class="button-cover">
+<<<<<<< Updated upstream
                 <button class="homebtn" @click="$router.push('logout')"><img src="..\assets\logout.svg" width="150" height="150"><br>Logout</button>
             </div> -->
         </div>
+=======
+                <button class="homebtn" @click="signOut()"><img src="..\assets\logout.svg" width="150" height="150"><br>Logout</button>
+            </div> 
+        </div> --> 
+>>>>>>> Stashed changes
     </div>
     
 
@@ -64,6 +75,7 @@ export default {
 
 <style>
 @import '../assets/basic_style.css';
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@100;200;400&display=swap');
 
 .buttons-flex {
     display: -webkit-flex;

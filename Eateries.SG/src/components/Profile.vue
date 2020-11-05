@@ -33,10 +33,11 @@
         <input type="text" class="w-input" v-model.lazy="userDetail.oldPass" required>
         <label for="email">New Password:</label>
         <input type="text" class="w-input" v-model.lazy="userDetail.newPass" required>
-        <button class="button" v-on:click.prevent="updatePassword()">Change my Password</button>        
+        <button class="button1" v-on:click.prevent="updatePassword()">Change my Password</button>        
       </form>
+      <br>
     </div>
-      <button id="toggler" class="button" v-on:click="toggleShow()">Show your current Particulars</button>
+      <button id="toggler" class="button1" v-on:click="toggleShow()">Show your current Particulars</button>
       <div id="currentProfile" v-if="showProfile == true">
         <table>
           <thead><samp></samp>
@@ -65,8 +66,13 @@
         <label>Phone Number</label>
         <input type="text" class="w-input" v-model.lazy="userDetail.newPhone" required>
         <label for="email-3">Email Address</label>
+<<<<<<< Updated upstream
         <input type="text" class="w-input" v-model.lazy="userDetail.newEmail" required>
         <button class="button" v-on:click.prevent="updateProfile()">Update Records</button>
+=======
+        <input type="text" class="w-input" v-model="userDetail.newEmail" required>
+        <button class="button1" v-on:click.prevent="updateProfile()">Update Records</button>
+>>>>>>> Stashed changes
       </form>
     </div>
   </div>
@@ -171,7 +177,7 @@ export default {
 @import '../assets/basic_style.css';
 
 table {
-  font-family: 'Arial';
+  font-family: 'Lato';
   margin: 25px auto;
   width: 1000px;
   border-collapse: collapse;
@@ -179,8 +185,8 @@ table {
 
 th, td {
   color: #000000;
-  border: 1px solid #b1b2d8;
-  padding: 12px 35px;
+  border: 5px solid #b1b2d8;
+  padding: 35px 30px;
   border-collapse: collapse;
 }
 
@@ -191,4 +197,20 @@ th {
   font-size: 22px;
 }
 
+.button1 {
+  display: flex;
+    min-height: 60px;
+    margin-right: 30px;
+    margin-left: 0px;
+    padding: 5px 30px;
+    align-items: center;
+    border-radius: 20px;
+    background-color: #f0bcbc;
+    font-family: Montserrat, sans-serif;
+    color: #f9f9f9;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    background-clip: border-box;
+}
 </style>
