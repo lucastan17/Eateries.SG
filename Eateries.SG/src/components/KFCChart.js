@@ -40,7 +40,7 @@ export default {
             }
             querySnapShot.forEach(doc => {
                 var y = (doc.data().Time).toDate().getTime() / 1000
-                if (timeNow-y < 24 * 60 * 60) {
+                if (timeNow-y < 23 * 60 * 60) {
                     var hourNow = new Date().getHours()
                     y = (doc.data().Time).toDate().getHours()
                     var diff = Math.abs(hourNow-y)

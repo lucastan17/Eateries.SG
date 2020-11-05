@@ -153,7 +153,6 @@ import fb from 'firebase';
             },
 
             saveTemps: function() {
-                alert(fb.auth().currentUser.uid)
                 database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').add(this.content);
                 this.content.temp = "";
                 this.content.q1 = "";

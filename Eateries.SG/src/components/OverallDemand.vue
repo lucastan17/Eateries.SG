@@ -30,35 +30,54 @@
         <form id="booking-form">
             <label for="Day">Chosen Day</label>
             <br>
-            <input type="date" class="w-input" v-model.lazy="this.date">
+            <input type="date" class="w-input" v-model="this.content.Date">
             <br>
             <label for="symptoms">Chosen Time</label>
             <br>
-            <input type="time" min="10:00" max = "23:00" class="w-input" v-model.lazy="this.time">
+            <input type="time" min="10:00" max = "23:00" class="w-input" v-model="this.content.Time">
             <br>
-            <button class="button">Submit</button>  <!--v-on:click.prevent="checkValidity() -->
+            <button class="button" v-on:click.prevent="addDetails()">Submit</button> 
         </form>
     </div>
 </body>  
 </template>
 
 <script>
-//import database from '../firebase.js'
-//import fb from 'firebase';
+import database from '../firebase.js'
+import fb from 'firebase';
 import kfc from "./KFCChart.js";
 
 export default {
     name: 'Store Transactions',
     data() {
         return {
-            date: "",
-            time: ""
+            content: {
+                Date: new Date(),
+                Time: 0,
+                Items: [],
+                Amount: 0
+            }
         }
     },
     components: {
         kfc: kfc
+    },
+    methods : {
+        addDetails: function() {
+            var dateControl = document.querySelector('input[type="time"]');
+            this.content.Time = dateControl.value;
+            database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
+            database.collection('Eateries').doc('KFC').collection('Transactions').add(this.content);
+            this.content.Date = "";
+            this.content.Time = "";
+            this.content.Items = [];
+            this.conetnt.Amount = 0;
+        }
     }
+
 }
+
+
 </script>
 
 <style>

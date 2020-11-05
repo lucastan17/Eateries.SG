@@ -41,16 +41,36 @@
       <h2>KFC Menu</h2>
       <KFCMenu v-bind:itemsList="itemsList"></KFCMenu>
     </div>
+        <div>
+        <kfc></kfc>
+    </div>
+    <div class="">
+        <form id="booking-form">
+            <label for="Day">Chosen Day</label>
+            <br>
+            <input type="date" class="w-input" v-model="this.content.Date">
+            <br>
+            <label for="symptoms">Chosen Time</label>
+            <br>
+            <input type="time" min="10:00" max = "23:00" class="w-input" v-model="this.content.Time">
+            <br>
+            <button class="button" v-on:click.prevent="addDetails()">Submit</button> 
+        </form>
+    </div>
   </body>
 </template>
 
 <script>
+import database from '../firebase.js'
+import fb from 'firebase';
 import KFCMenu from "../components/KFCMenu.vue";
+import kfc from "./KFCChart.js";
 
 export default {
   name: "KFC",
   components: {
-    'KFCMenu': KFCMenu
+    'KFCMenu': KFCMenu,
+     kfc: kfc
   },
   data() {
     return {
@@ -119,8 +139,26 @@ export default {
           price: 2.95,
         },
       ],
+      content: {
+        Date: new Date(),
+        Time: 0,
+        Items: [],
+        Amount: 0
+      }
     };
   },
+  methods : {
+    addDetails: function() {
+        var dateControl = document.querySelector('input[type="time"]');
+        this.content.Time = dateControl.value;
+        database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
+        database.collection('Eateries').doc('KFC').collection('Transactions').add(this.content);
+        this.content.Date = "";
+        this.content.Time = "";
+        this.content.Items = [];
+        this.conetnt.Amount = 0;
+    }
+  }
 };
 </script>
 
