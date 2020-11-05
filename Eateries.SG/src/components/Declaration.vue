@@ -27,46 +27,52 @@
         <h3>Complete before entering the Eatery</h3>
         <div class="">
             <form id="temperature-form">
-                <label for="temp">Current Temperature:</label>
+                <label for="temp">Current Temperature: (Format required: X.XX)</label>
                 <br>
                 <input type="text" class="w-input" v-model.lazy="content.temp">
                 <br>
                 <label for="symptoms">Do you have any COVID-19 symptoms that you recently acquired?:</label>
                 <br>
-                <input type="text" class="w-input" v-model.lazy="content.q1">
+                <select class="w-input" v-model.lazy="content.q1">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
                 <br>
                 <label for="family">Do you have anyone in the same household having fever, and/or showing the any symptoms of COVID-19?</label>
                 <br>
-                <input type="text" class="w-input" v-model.lazy="content.q2">
+                <select class="w-input" v-model.lazy="content.q2">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
                 <br>
-                <button class="button" v-on:click.prevent="saveTemps">Submit</button>
+                <button class="button" v-on:click.prevent="checkValidity()">Submit</button>
             </form>
         </div>
         <div>
-            <button class="button" v-on:click.prevent="loadTemps()">Load Records</button>
-            <ul id="temperature-list"></ul>
+            <button class="button" id="showTemp" v-on:click.prevent="loadTemps()">Load Declaration Records</button>
         </div>
     </div>
-    <table>
-        <thead><samp></samp>
-            <tr>
-                <th>Temperature</th>
-                <th>Response to Question 2</th>
-                <th>Response to Question 3</th>
-                <!--th>Time stamp</th-->
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="entry in entries" :key = "entry">
-                <td>{{entry.temp}}</td>
-                <td>{{entry.q1}}</td>
-                <td>{{entry.q2}}</td>
-                <!--td>{{entry.Time.toDate()}}</td-->
-            </tr>
-        </tbody>
-    </table>
-
-
+    <div v-if="this.show === true">
+        <table>
+            <thead><samp></samp>
+                <tr>
+                    <th>Temperature</th>
+                    <th>Response to Question 2</th>
+                    <th>Response to Question 3</th>
+                    <th>Time stamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="entry in entries" :key = "entry">
+                    <td>{{entry.temp + "°C"}}</td>
+                    <td>{{entry.q1}}</td>
+                    <td>{{entry.q2}}</td>
+                    <td>{{new Date(entry.time).getDate() + " " + new Date(entry.time).toLocaleString("en-US", {month: "long"}) + " " +
+                         new Date(entry.time).getHours() + ":" +  new Date(entry.time).getMinutes()}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>  
 </template>
 
@@ -80,14 +86,17 @@ import fb from 'firebase';
             return {
                 entries: [],
                 content : {
-                    temp : "",
+                    temp: 36.7,
                     q1: "",
-                    q2: ""
-                }            
+                    q2: "",
+                    time: ""
+                },
+                show: false,           
             }
         },
 
         methods: {
+/*
             renderTemperature: function(doc, tempList) {
                 let li = document.createElement('li');
                 let temp = document.createElement('span');
@@ -114,9 +123,11 @@ import fb from 'firebase';
 
                 tempList.appendChild(li);
             },
+*/
             //getting data of temperatures from db
+
             loadTemps: function() {
-                const tempList = document.querySelector('#temperature-list');
+/*                const tempList = document.querySelector('#temperature-list');
                 while (tempList.firstChild) {
                     tempList.removeChild(tempList.lastChild);
                 }
@@ -125,31 +136,57 @@ import fb from 'firebase';
                         this.renderTemperature(doc, tempList);
                     });
                 });
+*/
                 this.entries = [];
                 database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').get().then(snapshot => {
                     snapshot.forEach(doc => {
                         this.entries.push(doc.data());
                     });
                 });
+                this.entries = this.entries.reverse();
+                this.show = !this.show;
+                if (this.show) {
+                    document.getElementById("showTemp").innerHTML = "Hide Declaration Records";
+                } else {
+                    document.getElementById("showTemp").innerHTML = "Load Declaration Records";
+                }
             },
 
             saveTemps: function() {
                 alert(fb.auth().currentUser.uid)
                 database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').add(this.content);
-                /*
-                database.collection('stuff').doc('gmJX3VpOcpE8MF8cgANo').collection('temperature').add({
-                    Time: Date.now()
-                });
-                */
                 this.content.temp = "";
                 this.content.q1 = "";
                 this.content.q2 = "";
-            }
-        },
-        created() {
-            this.loadTemps();
-        }
+                this.content.time = "";
+                this.entries = [];
+                database.collection('Users').doc(firebase.auth().currentUser.uid).collection('temperature').get().then(snapshot => {
+                    snapshot.forEach(doc => {
+                        this.entries.push(doc.data());
+                    });
+                });
+                this.entries = this.entries.reverse();                
+            },
 
+            checkValidity: function() {
+                if (this.content.temp > 40 || this.content.temp < 34) {
+                    alert("Invalid Temperature Added! Please Try Again");
+                } else {
+                    if (this.content.q1 == "" || this.content.q2 == "") {
+                        alert("Invalid Response to Questions 2 or 3. Please Try Again");
+                    } else {
+                        this.saveTemps();
+                        alert("Declaration is Successful!")
+                    }
+                }
+            }
+
+        },
+/*
+        created() {
+            //this.loadTemps();
+        }
+*/
     }
 
 

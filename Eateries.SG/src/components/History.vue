@@ -67,6 +67,11 @@
                 <!--img src="..\assets\breadyard.jpg" loading="lazy" alt=""-->
             </div>
         </div>
+        <div>
+            <div>
+                <chart7></chart7>
+            </div>
+        </div>
     </div>
 </body>  
 </template>
@@ -78,6 +83,7 @@ import Chart3 from "./Eat6month.js";
 import Chart4 from "./Sales1Month.js";
 import Chart5 from "./Sales3Months.js";
 import Chart6 from "./Sales6Months.js";
+import Chart7 from "./TransactionTotal.js";
 
 export default {
     name: 'History',
@@ -97,7 +103,8 @@ export default {
         chart3: Chart3,
         chart4: Chart4,
         chart5: Chart5,
-        chart6: Chart6
+        chart6: Chart6,
+        chart7: Chart7
     },
     methods: {
         MonthEat: function(x) {
