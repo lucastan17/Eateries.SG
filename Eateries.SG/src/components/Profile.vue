@@ -30,9 +30,9 @@
     <div>
       <form id="wf-form-Email-Form" name="wf-form-Email-Form" data-name="Email Form">
         <label for="name">Old Password:</label>
-        <input type="text" class="w-input" v-model.lazy="userDetail.oldPass" required>
+        <input type="password" class="w-input" v-model.lazy="userDetail.oldPass" required>
         <label for="email">New Password:</label>
-        <input type="text" class="w-input" v-model.lazy="userDetail.newPass" required>
+        <input type="password" class="w-input" v-model="userDetail.newPass" required>
         <button class="button" v-on:click.prevent="updatePassword()">Change my Password</button>        
       </form>
     </div>
@@ -88,6 +88,7 @@ export default {
               newName: "",
               newPhone: "",
               newEmail: "",
+              oldEmail:"",
               oldPass: "",
               myoldPass: "",
               newPass: ""
@@ -102,6 +103,8 @@ export default {
                 this.userDetail.newName = x.data().name;
                 this.userDetail.newPhone = x.data().phoneNumber;
                 this.userDetail.newEmail = x.data().email;
+                this.userDetail.oldEmail = x.data().email;
+                this.userDetail.myoldPass = x.data().password;
             })
         },
 
@@ -117,7 +120,6 @@ export default {
         },
 
         validPhoneNum: function() {
-          //alert(this.userDetail.newPhone.charAt(0))
           var phoneno = /^[89]\d{7}$/;
             if (!this.userDetail.newPhone.match(phoneno)) {
                 return false;
@@ -145,10 +147,14 @@ export default {
               phoneNumber: this.userDetail.newPhone,
               email: this.userDetail.newEmail
             });
+            if(this.userDetail.newEmail != this.userDetail.oldEmail){
+               this.changeEmail(this.userDetail.myoldPass,this.userDetail.newEmail)
+            }
+            alert("Successfully updated details!")
           }
           this.userDetail.newName = "";
           this.userDetail.newPhone = "";
-          this.userDetail.newEmail = "";
+          //this.userDetail.newEmail = "";
           this.refreshProfile();
           this.refreshProfile();
           this.refreshProfile();
@@ -166,27 +172,55 @@ export default {
         },
 
         updatePassword: function() {
-          this.profile.forEach(user =>
-            this.userDetail.myoldPass = user.Password
-          )
-          if(this.userDetail.myoldPass === this.userDetail.oldPass && this.userDetail.myoldPass != this.userDetail.newPass){
+          //this.getOldPass();
+          console.log(this.userDetail.myoldPass)
+          /*this.profile.forEach(user =>
+            this.userDetail.myoldPass = user.password
+          )*/
+          if(this.userDetail.myoldPass == this.userDetail.oldPass && this.userDetail.myoldPass != this.userDetail.newPass){
             database.collection('Users').doc(fb.auth().currentUser.uid).update( {
-              Password: this.userDetail.newPass
+              password: this.userDetail.newPass
             })
+            /*fb.auth().currentUser.updatePassword(this.userDetail.newPass).then(console.log("Updated pw"))*/
+            this.changePassword(this.userDetail.myoldPass,this.userDetail.newPass)
             alert("Password Updated Successfully");
-          } else if(this.userDetail.myoldPass === this.userDetail.newPass) {
+          } else if(this.userDetail.myoldPass == this.userDetail.newPass) {
             alert("New password cannot be the same as the old password")
           } else {
-            alert("Old Password enterd incorrectly! Please try again")
+            alert("Old Password entered incorrectly! Please try again")
           }
-          this.userDetail.oldPass = "";
-          this.userDetail.newPass = "";
+          //this.userDetail.oldPass = "";
+          //this.userDetail.newPass = "";
+          this.loadProfile();
         },
 
         getOldPass: function() {
           database.collection('Users').doc(fb.auth().currentUser.uid).get().then(x => {
-            this.userDetail.myoldPass = x.doc().Password
+            this.userDetail.myoldPass = x.data().password
           })
+        },
+
+        reauthenticate: function(currentPassword){
+          var user = fb.auth().currentUser;
+          var cred = fb.auth.EmailAuthProvider.credential(this.userDetail.oldEmail, currentPassword);
+            return user.reauthenticateWithCredential(cred);
+        },
+
+        changePassword: function(currentPassword, newPassword){
+          this.reauthenticate(currentPassword).then(() => {
+          var user = fb.auth().currentUser;
+          user.updatePassword(newPassword).then(() => {console.log("Password updated!");
+            }).catch((error) => { console.log(error); });
+          }).catch((error) => { console.log(error); });
+        },
+
+        changeEmail: function(currentPassword, newEmail){
+          this.reauthenticate(currentPassword).then(() => {
+          var user = fb.auth().currentUser;
+          user.updateEmail(newEmail).then(() => {
+          console.log("Email updated!");
+          }).catch((error) => { console.log(error); });
+          }).catch((error) => { console.log(error); });
         }
     },
     created(){
