@@ -49,7 +49,7 @@
 
                 <button class="homebtn" @click="$router.push('logout')"><img src="..\assets\logout.svg" width="150" height="150"><br>Logout</button>
             </div> -->
-                <button class="homebtn" @click="signOut()"><img src="..\assets\logout.svg" width="150" height="150"><br>Logout</button>
+               <!-- <button class="homebtn" @click="signOut()"><img src="..\assets\logout.svg" width="150" height="150"><br>Logout</button> -->
             </div> 
 
     </div>

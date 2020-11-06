@@ -66,13 +66,9 @@
         <label>Phone Number</label>
         <input type="text" class="w-input" v-model.lazy="userDetail.newPhone" required>
         <label for="email-3">Email Address</label>
-<<<<<<< Updated upstream
-        <input type="text" class="w-input" v-model.lazy="userDetail.newEmail" required>
-        <button class="button" v-on:click.prevent="updateProfile()">Update Records</button>
-=======
         <input type="text" class="w-input" v-model="userDetail.newEmail" required>
         <button class="button1" v-on:click.prevent="updateProfile()">Update Records</button>
->>>>>>> Stashed changes
+
       </form>
     </div>
   </div>
