@@ -2,7 +2,7 @@
   <div>
     <h4>You currently have:</h4>
     <ul>
-      <li v-for="item in itemsSelected" v-bind:key="item.id">{{item.quantity}} x {{ item.name }} - ${{item.price}}</li>
+      <li v-for="item in uniqueItemsSelected" :key="item.id">{{item.quantity}} x {{ item.name }} - ${{item.price}}</li>
     </ul>
     <h5>The total amount payable is: ${{total.toFixed(2)}} </h5>
     <ul>
@@ -10,9 +10,9 @@
         <h5>{{ item.name }}</h5>
         <img v-bind:src="item.imageURL" />
         <p>${{ item.price }}</p>
-        <button v-on:click="decrease(item)" style="background-color:#f0bcbc">-</button>
-        {{ item.quantity }}
-        <button v-on:click="add(item)" style="background-color:#f0bcbc">+</button>
+          <button v-on:click="decrease(item)" style="background-color:#f0bcbc">-</button>
+          {{ item.quantity }}
+          <button v-on:click="add(item)" style="background-color:#f0bcbc">+</button>
         <!-- <QtyCounter v-bind:item="item" v-on:counter="onCounter"></QtyCounter> -->
       </li>
     </ul>
@@ -33,6 +33,7 @@ export default {
   data() {
     return {
       itemsSelected: [],
+      total: 0,
       itemsList: [
         {
           id: 1,
@@ -130,11 +131,16 @@ export default {
     add: function(item) {
       this.itemsSelected.push(item);
       item.quantity+=1;
+      this.total += item.price;
     },
     decrease: function(item) {
       if(item.quantity > 1){
         item.quantity-=1;
-      }else{
+        this.total -= item.price;
+      }
+      else if(item.quantity == 1) {
+        item.quantity-=1;
+        this.total -= item.price;
         this.remove(item.id);
       }
     },
@@ -145,14 +151,15 @@ export default {
     },
   },
   computed: {
-    total: function () {
+    total: function() {
       return this.itemsSelected.reduce((total, item) => {
         return total + (item.price * item.quantity);
       }, 0);
     },
+    uniqueItemsSelected: function() {
+      return [...new Set(this.itemsSelected)]
+    }
   },
-
-  methods: {},
 };
 </script>
 
