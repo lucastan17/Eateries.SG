@@ -24,6 +24,7 @@
         </div>
     </div>
 
+    <div class="container">
     <h3>Upcoming Bookings</h3>
     <table>
         <thead><samp></samp>
@@ -64,7 +65,7 @@
             </tr>
         </tbody>
     </table>
-
+    </div>
 </body>  
 </template>
 

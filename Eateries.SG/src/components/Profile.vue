@@ -60,7 +60,7 @@
         </table>
       </div>
     <h4 class="heading-4">Update your particulars</h4>
-    <div>
+    <div class="container">
       <form id="email-form" name="email-form" data-name="Email Form" class="form">
         <label for="name-2">Name</label>
         <input type="text" class="w-input" v-model.lazy="userDetail.newName" required>

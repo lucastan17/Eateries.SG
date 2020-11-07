@@ -4,8 +4,10 @@
 <template>
   <div id="app">
     <banner></banner>
+
     <router-view></router-view>
-    <footer></footer>
+
+    <Footer></Footer>
   </div>
 </template>
 
@@ -21,7 +23,7 @@ export default {
     //PartnerEateries,
     //CurrentBookings
     'banner':Banner,
-    'footer':Footer
+    'Footer':Footer
   }
 }
 </script>

@@ -24,6 +24,15 @@
             </div>
         </div>
     </div>
+    <div class="content-section">
+    <div class="container">
+        <div class="w-layout-grid content-grid">
+        <div class="content-block">
+          
+        </div>
+        </div>
+    </div>
+    </div>
 
 </body>
 </template>
