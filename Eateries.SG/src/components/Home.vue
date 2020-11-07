@@ -20,7 +20,7 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>Home</h1>
-                <h5>One small step for your finger, a giant step for your stomach</h5>
+                <p>One small step for your finger, a giant step for your stomach</p>
             </div>
         </div>
     </div>
@@ -76,6 +76,7 @@ export default {
 
 <style>
 @import '../assets/basic_style.css';
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@100;200;400&display=swap');
 
 .buttons-flex {
     display: -webkit-flex;
