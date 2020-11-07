@@ -43,9 +43,9 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="container">
       <h2>Bread Yard Menu</h2>
-      <BreadYardMenu v-bind:itemsList="itemsList"></BreadYardMenu>
+      <BreadYardMenu></BreadYardMenu>
     </div>
   </body>
 </template>

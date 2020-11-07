@@ -2,7 +2,7 @@
 <body>
     <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
         <div class="navigation-container">
-            <div class="navigation-left"><img src="../assets/EateriesSG.png" loading="lazy" width="83" height="auto">
+            <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
             </div>
             <div class="navigation-right">
@@ -40,11 +40,11 @@
             <h5>KFC @ Nex</h5>
             </router-link>
             <p>
-              <ul style="list-style-type: none;">
-                <li>{{kfcDetails.location}}</li>
-                <li>{{kfcDetails.openingHours}}</li>
-                <li>{{kfcDetails.phoneNum}}</li>
-                <li>{{kfcDetails.rating}}</li>
+              <ul v-for="detail in kfcDetails" :key = "detail" style="list-style-type: none;">
+                <li>{{detail.Location}}</li>
+                <li>{{detail.Opening-hours}}</li>
+                <li>{{detail.Phone-number}}</li>
+                <li>{{detail.Rating}}</li>    
               </ul>                   
             </p>
           </div>
@@ -58,11 +58,11 @@
             <h5>Bread Yard @ Fusionopolis</h5>
             </router-link>
             <p>
-              <ul style="list-style-type: none;">
-                <li>{{breadyardDetails.location}}</li>
-                <li>{{breadyardDetails.openingHours}}</li>
-                <li>{{breadyardDetails.phoneNum}}</li>
-                <li>{{breadyardDetails.rating}}</li>
+              <ul v-for="detail in breadyardDetails" :key ="detail" style="list-style-type: none;">
+                <li>{{detail}}</li>
+                <!-- <li>{{detail.OpeningHours}}</li>
+                <li>{{detail.PhoneNumber}}</li>
+                <li>{{detail.Rating}}</li>     -->
               </ul>                   
             </p>
           </div>
@@ -99,9 +99,10 @@ export default {
   name: "PartnerEateries",
   data() {
     return {
-      kfcDetails: {},
-      breadyardDetails: {},
-      sushiteiDetails: {},
+      kfcDetails: [],
+      breadyardDetails: [],
+      sushiteiDetails: [],
+      eateries: [],
       content: {
         location: "",
         openingHours: "",
@@ -112,37 +113,24 @@ export default {
   },
   methods: {
     fetchEatery: function () {
-      database.collection("Eateries").doc('KFC').get().then((snapshot) => {
-          snapshot.docs.forEach((doc) => {
-            this.kfcDetails = {
-              location: doc.data().Location,
-              openingHours: doc.data().Opening-hours,
-              phoneNum: doc.data().Phone-number,
-              rating: doc.data().Rating
-            };
-          });
-        });
+      database.collection("Eateries").doc('KFC').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc)=>{
+          this.kfcDetails.push(doc.data());
+        })
+      });
       database.collection("Eateries").doc('Bread Yard').get().then((snapshot) => {
-          snapshot.docs.forEach((doc) => {
-            this.breadyardDetails = {
-              location: doc.data().Location,
-              openingHours: doc.data().Opening-hours,
-              phoneNum: doc.data().Phone-number,
-              rating: doc.data().Rating
-            };
-          });
-        });
-      database.collection("Eateries").doc('Sushi Tei').get().then((snapshot) => {
-          snapshot.docs.forEach((doc) => {
-            this.sushiteiDetails = {
-              location: doc.data().Location,
-              openingHours: doc.data().Opening-hours,
-              phoneNum: doc.data().Phone-number,
-              rating: doc.data().Rating
-            }
-          });
-        });
-
+        this.breadyardDetails = snapshot.data()
+      });
+      // database.collection("Eateries").doc('Sushi Tei').get().then((snapshot) => {
+      //   this.sushiteiDetails = {
+      //     location: snapshot.data().Location,
+      //     openingHours: snapshot.data().Opening-hours,
+      //     phoneNum: snapshot.data().Phone-number,
+      //     rating: snapshot.data().Rating
+      //   };
+      // });
+      // console.log(this.kfcDetails);
+      console.log(this.breadyardDetails);
     },
   },
   created() {

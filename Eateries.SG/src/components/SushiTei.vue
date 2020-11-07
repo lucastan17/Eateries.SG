@@ -8,12 +8,7 @@
     >
       <div class="navigation-container">
         <div class="navigation-left">
-          <img
-            src="../assets/EateriesSG.png"
-            loading="lazy"
-            width="83"
-            height="auto"
-          />
+          <img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto" />
           <div class="logo-text">EATERIES.SG</div>
         </div>
         <div class="navigation-right">
@@ -43,9 +38,9 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="container">
       <h2>Sushi Tei Menu</h2>
-      <SushiTeiMenu v-bind:itemsList="itemsList"></SushiTeiMenu>
+      <SushiTeiMenu></SushiTeiMenu>
     </div>
   </body>
 </template>

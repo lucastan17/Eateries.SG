@@ -18,6 +18,7 @@
     </ul>
     <button class="button" v-on:click.prevent="checkValidity()">Submit order</button>
   </div>
+  
 </template>
 
 

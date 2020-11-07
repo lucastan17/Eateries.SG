@@ -8,7 +8,7 @@
     >
       <div class="navigation-container">
         <div class="navigation-left">
-          <img src="../assets/EateriesSG.png" loading="lazy" width="83" height="auto"/>
+          <img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto"/>
           <div class="logo-text">EATERIES.SG</div>
         </div>
         <div class="navigation-right">
@@ -35,7 +35,7 @@
         <div>
         <kfc></kfc>
         </div>
-    <div class="">
+    <div class="container">
         <form id="booking-form">
             <label for="Day">Chosen Day</label>
             <br>
@@ -48,9 +48,9 @@
             <button class="button" v-on:click.prevent="addDetails()">Submit</button> 
         </form>
     </div>
-    <div>
+    <div class="container">
       <h2>KFC Menu</h2>
-      <KFCMenu v-bind:itemsList="itemsList"></KFCMenu>
+      <KFCMenu></KFCMenu>
     </div>
   </body>
 </template>
