@@ -1,21 +1,22 @@
 <template>
   <div>
     <h4>You currently have:</h4>
-    <ul>
+    <ul style="list-style-type: none;">
       <li v-for="item in uniqueItemsSelected" :key="item.id">{{item.quantity}} x {{ item.name }} - ${{item.price}}</li>
     </ul>
     <h5>The total amount payable is: ${{total.toFixed(2)}} </h5>
-    <ul>
-      <li v-for="item in itemsList" v-bind:key="item.id">
+    <ul class="menuList">
+      <li v-for="item in itemsList" v-bind:key="item.id" class="menuItem">
         <h5>{{ item.name }}</h5>
         <img v-bind:src="item.imageURL" />
         <p>${{ item.price }}</p>
-          <button v-on:click="decrease(item)" style="background-color:#f0bcbc">-</button>
-          {{ item.quantity }}
-          <button v-on:click="add(item)" style="background-color:#f0bcbc">+</button>
+        <button v-on:click="decrease(item)" style="background-color:#f0bcbc" class="countButton">-</button>
+        {{ item.quantity }}
+        <button v-on:click="add(item)" style="background-color:#f0bcbc" class="countButton">+</button>
         <!-- <QtyCounter v-bind:item="item" v-on:counter="onCounter"></QtyCounter> -->
       </li>
     </ul>
+    <button class="button" v-on:click.prevent="checkValidity()">Submit order</button>
   </div>
 </template>
 
@@ -113,12 +114,13 @@ export default {
         Time: 0,
         Items: [],
         Amount: 0,
+        Eatery: 'KFC',
       },
     };
   },
   components: {
-    QtyCounter: QuantityCounter,
-    basket: Basket,
+    // 'QtyCounter': QuantityCounter,
+    // 'basket': Basket,
   },
   methods: {
     // onCounter: function (item, count) {
@@ -149,6 +151,22 @@ export default {
         return  item.id !== itemID;
       });
     },
+    checkValidity: function() {
+      if (this.itemsSelected.length==0) {
+        alert("Your order is empty! Please select your items.");
+        } else {
+          this.saveOrder();
+          alert("Order has been sent successfully!")
+        }
+      },
+    saveOrder: function() {
+      database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
+      database.collection('Eateries').doc('KFC').collection('Transactions').add(this.content);
+      this.content.Date = new Date();
+      this.content.Time = 0;
+      this.content.Items = [];
+      this.content.Amount = 0;
+    }
   },
   computed: {
     total: function() {
@@ -171,13 +189,13 @@ export default {
   padding: 0 5px;
   box-sizing: border-box;
 }
-ul {
+.menuList {
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
   padding: 0;
 }
-li {
+.menuItem {
   flex-grow: 1;
   flex-basis: 300px;
   text-align: center;
@@ -189,7 +207,7 @@ img {
   width: 150px;
   height: 150px;
 }
-button {
+.countButton {
   box-sizing: border-box;
   border: 0.16em solid rgba(255, 255, 255, 0);
   border-radius: 2em;
@@ -201,7 +219,7 @@ button {
   cursor: pointer;
   background-color: #c38d9e;
 }
-button:hover {
+.countButton:hover {
   border-color: rgba(255, 255, 255, 1);
 }
 </style>

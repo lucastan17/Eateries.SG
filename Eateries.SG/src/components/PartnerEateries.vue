@@ -41,9 +41,10 @@
             </router-link>
             <p>
               <ul style="list-style-type: none;">
-                <li v-for="detail in kfcDetails" :key="detail">
-                  {{detail}}
-                </li>
+                <li>{{kfcDetails.location}}</li>
+                <li>{{kfcDetails.openingHours}}</li>
+                <li>{{kfcDetails.phoneNum}}</li>
+                <li>{{kfcDetails.rating}}</li>
               </ul>                   
             </p>
           </div>
@@ -58,9 +59,10 @@
             </router-link>
             <p>
               <ul style="list-style-type: none;">
-                <li v-for="detail in breadyardDetails" v-bind:key="detail">
-                  {{detail}}
-                </li>
+                <li>{{breadyardDetails.location}}</li>
+                <li>{{breadyardDetails.openingHours}}</li>
+                <li>{{breadyardDetails.phoneNum}}</li>
+                <li>{{breadyardDetails.rating}}</li>
               </ul>                   
             </p>
           </div>
@@ -75,9 +77,10 @@
             </router-link>
             <p>
               <ul style="list-style-type: none;">
-                <li v-for="detail in sushiteiDetails" v-bind:key="detail">
-                  {{detail}}
-                </li>
+                <li>{{sushiteiDetails.location}}</li>
+                <li>{{sushiteiDetails.openingHours}}</li>
+                <li>{{sushiteiDetails.phoneNum}}</li>
+                <li>{{sushiteiDetails.rating}}</li>
               </ul>                   
             </p>
           </div>
@@ -111,17 +114,32 @@ export default {
     fetchEatery: function () {
       database.collection("Eateries").doc('KFC').get().then((snapshot) => {
           snapshot.docs.forEach((doc) => {
-            this.kfcDetails.push(doc.data());
+            this.kfcDetails = {
+              location: doc.data().Location,
+              openingHours: doc.data().Opening-hours,
+              phoneNum: doc.data().Phone-number,
+              rating: doc.data().Rating
+            };
           });
         });
       database.collection("Eateries").doc('Bread Yard').get().then((snapshot) => {
           snapshot.docs.forEach((doc) => {
-            this.breadyardDetails.push(doc.data());
+            this.breadyardDetails = {
+              location: doc.data().Location,
+              openingHours: doc.data().Opening-hours,
+              phoneNum: doc.data().Phone-number,
+              rating: doc.data().Rating
+            };
           });
         });
       database.collection("Eateries").doc('Sushi Tei').get().then((snapshot) => {
           snapshot.docs.forEach((doc) => {
-            this.sushiteiDetails.push(doc.data());
+            this.sushiteiDetails = {
+              location: doc.data().Location,
+              openingHours: doc.data().Opening-hours,
+              phoneNum: doc.data().Phone-number,
+              rating: doc.data().Rating
+            }
           });
         });
 
