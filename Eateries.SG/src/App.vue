@@ -5,6 +5,7 @@
   <div id="app">
     <banner></banner>
     <router-view></router-view>
+    <app-footer></app-footer>
   </div>
 </template>
 
@@ -12,13 +13,15 @@
 //import PartnerEateries from './components/PartnerEateries.vue'
 //import CurrentBookings from './components/CurrentBookings.vue'
 import Banner from './components/Banner.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
     //PartnerEateries,
     //CurrentBookings
-    Banner
+    Banner,
+    'app-footer':Footer
   }
 }
 </script>

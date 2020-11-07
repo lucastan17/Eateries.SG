@@ -12,7 +12,7 @@
                 <router-link class = "link" to="/partnereateries" exact>Partner Eateries</router-link>
                 <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "link" to="/declaration" exact>Declaration</router-link>
-                <button @click ="signOut()">Sign Out</button>
+                <button class="signout" @click ="signOut()">Sign Out</button>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
     </div>
     <div id="Home-container">
         <h2>Welcome! What would you like to do today?</h2>
-        <div class="buttons-flex">
+        <!-- <div class="buttons-flex">
            <div class="button-cover">
                 <button class="homebtn" @click="$router.push('profile')"><img src="..\assets\profile.svg" width="150" height="150"><br>Profile</button>
             </div>
@@ -47,9 +47,9 @@
             <div class="button-cover">
                 <button class="homebtn" @click="signOut()"><img src="..\assets\logout.svg" width="150" height="150"><br>Logout</button>
             </div> 
-        </div>
+        </div> -->
     </div>
-    
+  
 
 </body>  
 </template>
