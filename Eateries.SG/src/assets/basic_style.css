@@ -22,7 +22,7 @@ h2 {
     margin-top: 20px;
     margin-bottom: 20px; 
     color: #C4C5E1;
-    font-size: 40px;
+    font-size: 30px;
     line-height: 1;
     font-weight: 700;
     letter-spacing: -0.03em;
@@ -247,6 +247,14 @@ p {
   grid-column-gap: 16px;
 }
 
+.signout {
+  width: 90px;
+  height: 40px;
+  padding:5px 10px;
+  border-radius: 10px;
+  background-color: #b1b2d8;
+  font-size: 15px;
+}
 
 
 /* .footer-link {

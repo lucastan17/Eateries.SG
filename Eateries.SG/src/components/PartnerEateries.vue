@@ -12,6 +12,7 @@
                 <router-link class = "current" to="/partnereateries" exact>Partner Eateries</router-link>
                 <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "link" to="/declaration" exact>Declaration</router-link>
+                <button class="signout" @click ="signOut()">Sign Out</button>
             </div>
         </div>
     </div>
