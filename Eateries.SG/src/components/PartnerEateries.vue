@@ -39,7 +39,13 @@
             <router-link to="/KFC" exact>
             <h5>KFC @ Nex</h5>
             </router-link>
-            <p>Fast Food <br>Rating: 4/5</p>
+            <p>
+              <ul style="list-style-type: none;">
+                <li v-for="detail in kfcDetails" :key="detail">
+                  {{detail}}
+                </li>
+              </ul>                   
+            </p>
           </div>
         </div>
         <div class="line-column">
@@ -50,7 +56,13 @@
             <router-link to="/BreadYard" exact>
             <h5>Bread Yard @ Fusionopolis</h5>
             </router-link>
-            <p>Western, Café, Brunch<br>Rating: 4.4/5</p>
+            <p>
+              <ul style="list-style-type: none;">
+                <li v-for="detail in breadyardDetails" v-bind:key="detail">
+                  {{detail}}
+                </li>
+              </ul>                   
+            </p>
           </div>
         </div>
         <div class="line-column">
@@ -61,7 +73,13 @@
             <router-link to="/SushiTei" exact>
             <h5>Sushi Tei @ Thomson Plaza</h5>
             </router-link>
-            <p>Japanese, Sushi<br>Rating: 4.7/5</p>
+            <p>
+              <ul style="list-style-type: none;">
+                <li v-for="detail in sushiteiDetails" v-bind:key="detail">
+                  {{detail}}
+                </li>
+              </ul>                   
+            </p>
           </div>
         </div>
       </div>
@@ -71,25 +89,64 @@
 </template>
 
 <script>
+import database from "../firebase.js";
+import fb from "firebase";
+
 export default {
-    name: 'PartnerEateries'
-}
+  name: "PartnerEateries",
+  data() {
+    return {
+      kfcDetails: {},
+      breadyardDetails: {},
+      sushiteiDetails: {},
+      content: {
+        location: "",
+        openingHours: "",
+        phoneNum: "",
+        rating: 0,
+      },
+    };
+  },
+  methods: {
+    fetchEatery: function () {
+      database.collection("Eateries").doc('KFC').get().then((snapshot) => {
+          snapshot.docs.forEach((doc) => {
+            this.kfcDetails.push(doc.data());
+          });
+        });
+      database.collection("Eateries").doc('Bread Yard').get().then((snapshot) => {
+          snapshot.docs.forEach((doc) => {
+            this.breadyardDetails.push(doc.data());
+          });
+        });
+      database.collection("Eateries").doc('Sushi Tei').get().then((snapshot) => {
+          snapshot.docs.forEach((doc) => {
+            this.sushiteiDetails.push(doc.data());
+          });
+        });
+
+    },
+  },
+  created() {
+      this.fetchEatery();
+  },
+};
 </script>
 
 <style>
-@import '../assets/basic_style.css';
+@import "../assets/basic_style.css";
 
 .sort-by-buttons {
-    display: flex;
-    margin-bottom: 40px;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+  display: flex;
+  margin-bottom: 40px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .sort {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    font-size: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 20px;
 }
 
 .content-card {
@@ -101,24 +158,24 @@ export default {
 }
 
 .step-image {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 .content-wrapper {
-    padding-right: 40px;
-    padding-left: 40px;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 
 .line-column {
-    padding-bottom: 0px;
-    flex-direction: column;
+  padding-bottom: 0px;
+  flex-direction: column;
 }
 
 .line {
-    width: 1px;
-    height: 100%;
-    min-height: 100px;
-    border-style: none dashed none none;
+  width: 1px;
+  height: 100%;
+  min-height: 100px;
+  border-style: none dashed none none;
 }
 
 .content-grid {
@@ -128,5 +185,4 @@ export default {
   -ms-grid-rows: auto;
   grid-template-rows: auto;
 }
-
 </style>
