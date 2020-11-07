@@ -20,9 +20,15 @@
           <router-link class="link" to="/" exact>Home</router-link>
           <router-link class="link" to="/profile" exact>Profile</router-link>
           <router-link class="link" to="/history" exact>History</router-link>
-          <router-link class="current" to="/partnereateries" exact>Partner Eateries</router-link>
-          <router-link class="link" to="/currentbookings" exact>Current Bookings</router-link>
-          <router-link class="link" to="/declaration" exact>Declaration</router-link>
+          <router-link class="current" to="/partnereateries" exact
+            >Partner Eateries</router-link
+          >
+          <router-link class="link" to="/currentbookings" exact
+            >Current Bookings</router-link
+          >
+          <router-link class="link" to="/declaration" exact
+            >Declaration</router-link
+          >
         </div>
       </div>
     </div>
@@ -102,25 +108,43 @@ export default {
           name: "Salmon Miso Nabe",
           imageURL:
             "https://scontent.fsin8-2.fna.fbcdn.net/v/t1.0-0/cp0/e15/q65/p320x320/22851776_1562637603802517_7285309164642454890_n.jpg?_nc_cat=107&ccb=2&_nc_sid=8024bb&efg=eyJpIjoibyJ9&_nc_ohc=q-7v7MZ_jWkAX_L1Btz&_nc_ht=scontent.fsin8-2.fna&tp=3&oh=48f488f11e89b7184ccc3108628c727e&oe=5FC4E8A9",
-          price: 1.80,
+          price: 16.00,
         },
         {
           id: "#002",
           name: "Kaisen King Nabe",
           imageURL:
             "https://scontent.fsin8-2.fna.fbcdn.net/v/t1.0-9/24232610_1595028780563399_6867387327556287343_n.jpg?_nc_cat=106&ccb=2&_nc_sid=730e14&_nc_ohc=viOrczXeQ6YAX_8MlZ3&_nc_ht=scontent.fsin8-2.fna&oh=4e6ede5c69927896dd2ddada21757971&oe=5FC2BFCA",
-          price: 12.00,
+          price: 20.00,
         },
         {
           id: "#003",
           name: "Chawanmushi",
           imageURL:
             "https://lh5.ggpht.com/NKp6uw5otzbmaZboKxE4FPvIAyr2h5HePuiqStRYoAlgGJ3a5JKlqGR1AG1RSrQE9J-IRYQ7mUj0xtoh9NUUZC0f=s800",
-          price: 2.95,
+          price: 3.00,
         },
       ],
+      content: {
+        Date: new Date(),
+        Time: 0,
+        Items: [],
+        Amount: 0
+      }
     };
   },
+  methods : {
+    addDetails: function() {
+        var dateControl = document.querySelector('input[type="time"]');
+        this.content.Time = dateControl.value;
+        database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
+        database.collection('Eateries').doc('Sushi Tei').collection('Transactions').add(this.content);
+        this.content.Date = "";
+        this.content.Time = "";
+        this.content.Items = [];
+        this.conetnt.Amount = 0;
+    }
+  }
 };
 </script>
 
