@@ -10,6 +10,9 @@ import History from './components/History.vue'
 import Login from './components/Login.vue'
 import Signup from './components/Signup.vue'
 import Overall from './components/OverallDemand.vue'
+import AboutUs from './components/AboutUs.vue'
+import FAQ from './components/FAQ.vue'
+import ContactUs from './components/ContactUs.vue'
 
 export default[
     {path:'/currentbookings',component:CurrentBookings},
@@ -23,5 +26,8 @@ export default[
     {path:'/History',component:History},
     {path:'/', component:Login},
     {path:'/signup', component:Signup},
-    {path:'/overall', component:Overall}
+    {path:'/overall', component:Overall},
+    {path:'/aboutus', component:AboutUs},
+    {path:'/faq', component:FAQ},
+    {path:'/contactus', component:ContactUs}
 ]
