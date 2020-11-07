@@ -2,7 +2,7 @@
 <body>
     <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
         <div class="navigation-container">
-            <div class="navigation-left"><img src="../assets/EateriesSG.png" loading="lazy" width="83" height="auto">
+            <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
             </div>
             <div class="navigation-right">
@@ -39,7 +39,14 @@
             <router-link to="/KFC" exact>
             <h5>KFC @ Nex</h5>
             </router-link>
-            <p>Fast Food <br>Rating: 4/5</p>
+            <p>
+              <ul v-for="detail in kfcDetails" :key = "detail" style="list-style-type: none;">
+                <li>{{detail.Location}}</li>
+                <li>{{detail.Opening-hours}}</li>
+                <li>{{detail.Phone-number}}</li>
+                <li>{{detail.Rating}}</li>    
+              </ul>                   
+            </p>
           </div>
         </div>
         <div class="line-column">
@@ -50,7 +57,14 @@
             <router-link to="/BreadYard" exact>
             <h5>Bread Yard @ Fusionopolis</h5>
             </router-link>
-            <p>Western, Café, Brunch<br>Rating: 4.4/5</p>
+            <p>
+              <ul v-for="detail in breadyardDetails" :key ="detail" style="list-style-type: none;">
+                <li>{{detail}}</li>
+                <!-- <li>{{detail.OpeningHours}}</li>
+                <li>{{detail.PhoneNumber}}</li>
+                <li>{{detail.Rating}}</li>     -->
+              </ul>                   
+            </p>
           </div>
         </div>
         <div class="line-column">
@@ -61,7 +75,14 @@
             <router-link to="/SushiTei" exact>
             <h5>Sushi Tei @ Thomson Plaza</h5>
             </router-link>
-            <p>Japanese, Sushi<br>Rating: 4.7/5</p>
+            <p>
+              <ul style="list-style-type: none;">
+                <li>{{sushiteiDetails.location}}</li>
+                <li>{{sushiteiDetails.openingHours}}</li>
+                <li>{{sushiteiDetails.phoneNum}}</li>
+                <li>{{sushiteiDetails.rating}}</li>
+              </ul>                   
+            </p>
           </div>
         </div>
       </div>
@@ -71,25 +92,67 @@
 </template>
 
 <script>
+import database from "../firebase.js";
+import fb from "firebase";
+
 export default {
-    name: 'PartnerEateries'
-}
+  name: "PartnerEateries",
+  data() {
+    return {
+      kfcDetails: [],
+      breadyardDetails: [],
+      sushiteiDetails: [],
+      eateries: [],
+      content: {
+        location: "",
+        openingHours: "",
+        phoneNum: "",
+        rating: 0,
+      },
+    };
+  },
+  methods: {
+    fetchEatery: function () {
+      database.collection("Eateries").doc('KFC').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc)=>{
+          this.kfcDetails.push(doc.data());
+        })
+      });
+      database.collection("Eateries").doc('Bread Yard').get().then((snapshot) => {
+        this.breadyardDetails = snapshot.data()
+      });
+      // database.collection("Eateries").doc('Sushi Tei').get().then((snapshot) => {
+      //   this.sushiteiDetails = {
+      //     location: snapshot.data().Location,
+      //     openingHours: snapshot.data().Opening-hours,
+      //     phoneNum: snapshot.data().Phone-number,
+      //     rating: snapshot.data().Rating
+      //   };
+      // });
+      // console.log(this.kfcDetails);
+      console.log(this.breadyardDetails);
+    },
+  },
+  created() {
+      this.fetchEatery();
+  },
+};
 </script>
 
 <style>
-@import '../assets/basic_style.css';
+@import "../assets/basic_style.css";
 
 .sort-by-buttons {
-    display: flex;
-    margin-bottom: 40px;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+  display: flex;
+  margin-bottom: 40px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .sort {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    font-size: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 20px;
 }
 
 .content-card {
@@ -101,24 +164,24 @@ export default {
 }
 
 .step-image {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 .content-wrapper {
-    padding-right: 40px;
-    padding-left: 40px;
+  padding-right: 40px;
+  padding-left: 40px;
 }
 
 .line-column {
-    padding-bottom: 0px;
-    flex-direction: column;
+  padding-bottom: 0px;
+  flex-direction: column;
 }
 
 .line {
-    width: 1px;
-    height: 100%;
-    min-height: 100px;
-    border-style: none dashed none none;
+  width: 1px;
+  height: 100%;
+  min-height: 100px;
+  border-style: none dashed none none;
 }
 
 .content-grid {
@@ -128,5 +191,4 @@ export default {
   -ms-grid-rows: auto;
   grid-template-rows: auto;
 }
-
 </style>

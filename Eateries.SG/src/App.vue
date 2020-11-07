@@ -4,7 +4,10 @@
 <template>
   <div id="app">
     <banner></banner>
+
     <router-view></router-view>
+
+    <Footer></Footer>
   </div>
 </template>
 
@@ -12,13 +15,15 @@
 //import PartnerEateries from './components/PartnerEateries.vue'
 //import CurrentBookings from './components/CurrentBookings.vue'
 import Banner from './components/Banner.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
     //PartnerEateries,
     //CurrentBookings
-    Banner
+    'banner':Banner,
+    'Footer':Footer
   }
 }
 </script>

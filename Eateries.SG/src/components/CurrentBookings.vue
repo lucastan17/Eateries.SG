@@ -2,7 +2,7 @@
 <body>
     <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
         <div class="navigation-container">
-            <div class="navigation-left"><img src="../assets/EateriesSG.png" loading="lazy" width="83" height="auto">
+            <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
             </div>
             <div class="navigation-right">
@@ -24,6 +24,7 @@
         </div>
     </div>
 
+    <div class="container">
     <h3>Upcoming Bookings</h3>
     <table>
         <thead><samp></samp>
@@ -64,7 +65,7 @@
             </tr>
         </tbody>
     </table>
-
+    </div>
 </body>  
 </template>
 

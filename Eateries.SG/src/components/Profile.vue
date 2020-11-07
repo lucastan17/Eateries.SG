@@ -2,7 +2,7 @@
 <body>
     <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
         <div class="navigation-container">
-            <div class="navigation-left"><img src="../assets/EateriesSG.png" loading="lazy" width="83" height="auto">
+            <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
             </div>
             <div class="navigation-right">
@@ -60,7 +60,7 @@
         </table>
       </div>
     <h4 class="heading-4">Update your particulars</h4>
-    <div>
+    <div class="container">
       <form id="email-form" name="email-form" data-name="Email Form" class="form">
         <label for="name-2">Name</label>
         <input type="text" class="w-input" v-model.lazy="userDetail.newName" required>
