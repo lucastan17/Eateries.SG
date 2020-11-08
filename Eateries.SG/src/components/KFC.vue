@@ -39,14 +39,14 @@
     </div>
     <div>
       <h2>KFC Menu</h2>
-      <KFCMenu v-bind:itemsList="itemsList" :AmountTotal="total" :selectionList="content.Items" @updateAmount="total=$event" 
-      @updateSelections="content.Items=$event"></KFCMenu>
+      <Menu v-bind:itemsList="itemsList" :AmountTotal="total" :selectionList="content.Items" @updateAmount="total=$event" 
+      @updateSelections="content.Items=$event"></Menu>
       <p id="totDisplay">Total Amount Payable: $0</p>
       <p @updateAmount="updateAmount"></p>
       <button v-on:click.prevent="refresh()" class="button">Refresh</button>
     </div>
     <div>
-        <kfc></kfc>
+        <demand></demand>
     </div>
     <div class="">
         <form id="booking-form">
@@ -67,14 +67,14 @@
 <script>
 import database from '../firebase.js'
 import fb from 'firebase';
-import KFCMenu from "../components/KFCMenu.vue";
-import kfc from "./KFCChart.js";
+import Menu from "./KFCMenu.vue";
+import demand from "./KFCChart.js";
 
 export default {
   name: "KFC",
   components: {
-    'KFCMenu': KFCMenu,
-     kfc: kfc
+    'Menu': Menu,
+     demand: demand
   },
   data() {
     return {
