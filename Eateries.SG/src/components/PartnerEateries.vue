@@ -26,68 +26,25 @@
     <div class="content-section">
     <div class="sort-by-buttons w-container">
       <div class="sort">Sort by:</div>
-      <a href="#" class="button">Location</a>
-      <a href="#" class="button">Category</a>
-      <a href="#" class="button">Ratings</a>
-      </div>
-    </div>
-    <div class="container">
-      <div class="title-wrap-centre"></div>
-      <div class="layout-grid content-grid">
-        <div class="content-card"><img src="../assets/kfc.jpg" width="270" height="200" alt="" class="step-image">
-          <div class="content-wrapper">
-            <router-link to="/KFC" exact>
-            <h5>KFC @ Nex</h5>
-            </router-link>
-            <p>
-              <ul v-for="detail in kfcDetails" :key = "detail" style="list-style-type: none;">
-                <li>{{detail.Location}}</li>
-                <li>{{detail.Opening-hours}}</li>
-                <li>{{detail.Phone-number}}</li>
-                <li>{{detail.Rating}}</li>    
-              </ul>                   
-            </p>
-          </div>
-        </div>
-        <div class="line-column">
-          <!-- <div class="line"></div> -->
-        </div>
-        <div class="content-card"><img src="../assets/breadyard.jpg" width="270" height="200" alt="" class="step-image">
-          <div class="content-wrapper">
-            <router-link to="/BreadYard" exact>
-            <h5>Bread Yard @ Fusionopolis</h5>
-            </router-link>
-            <p>
-              <ul v-for="detail in breadyardDetails" :key ="detail" style="list-style-type: none;">
-                <li>{{detail}}</li>
-                <!-- <li>{{detail.OpeningHours}}</li>
-                <li>{{detail.PhoneNumber}}</li>
-                <li>{{detail.Rating}}</li>     -->
-              </ul>                   
-            </p>
-          </div>
-        </div>
-        <div class="line-column">
-          <!-- <div class="line"></div> -->
-        </div>
-        <div class="content-card"><img src="../assets/sushitei.jpg" width="270" height="200" alt="" class="step-image">
-          <div class="content-wrapper">
-            <router-link to="/SushiTei" exact>
-            <h5>Sushi Tei @ Thomson Plaza</h5>
-            </router-link>
-            <p>
-              <ul style="list-style-type: none;">
-                <li>{{sushiteiDetails.location}}</li>
-                <li>{{sushiteiDetails.openingHours}}</li>
-                <li>{{sushiteiDetails.phoneNum}}</li>
-                <li>{{sushiteiDetails.rating}}</li>
-              </ul>                   
-            </p>
-          </div>
-        </div>
+      <a href="#" class="button" v-on:click.prevent="alpahbetical()">Alphabetical Order</a>
+      <a href="#" class="button" v-on:click.prevent="rating()">Ratings</a>
       </div>
     </div>
 
+    <div>
+        <tbody>
+            <tr v-for="eatery in eats" :key = "eatery">
+                <td><img :src="getImg(eatery.src)" width="270" height="200" alt="" class="step-image">
+                    <router-link :to=eatery.link exact><h5>{{eatery.Name}}</h5></router-link>
+                    <p><strong>Location:</strong> {{eatery.Location}} </p>
+                    <p><strong>Opening Hours:</strong> {{eatery.OpeningHours}} </p>
+                    <p><strong>Phone Number:</strong> {{eatery.PhoneNumber}} </p>
+                    <p><strong>Rating:</strong> {{eatery.Rating}} / 5.0</p>
+                </td>
+            </tr>
+        </tbody>
+    </div>
+    <br>
 </body>  
 </template>
 
@@ -109,29 +66,54 @@ export default {
         phoneNum: "",
         rating: 0,
       },
+      eats: [],
+      eats2: []
     };
   },
   methods: {
     fetchEatery: function () {
-      database.collection("Eateries").doc('KFC').get().then((querySnapshot) => {
+      database.collection("Eateries").orderBy("PhoneNumber").get().then((querySnapshot) =>{
         querySnapshot.forEach((doc)=>{
-          this.kfcDetails.push(doc.data());
+          this.eats.push(doc.data());
         })
-      });
-      database.collection("Eateries").doc('Bread Yard').get().then((snapshot) => {
-        this.breadyardDetails = snapshot.data()
-      });
-      // database.collection("Eateries").doc('Sushi Tei').get().then((snapshot) => {
-      //   this.sushiteiDetails = {
-      //     location: snapshot.data().Location,
-      //     openingHours: snapshot.data().Opening-hours,
-      //     phoneNum: snapshot.data().Phone-number,
-      //     rating: snapshot.data().Rating
-      //   };
-      // });
-      // console.log(this.kfcDetails);
-      console.log(this.breadyardDetails);
+      })
+      this.eats2 = this.eats.reverse();
     },
+    alpahbetical: function() {
+      this.eats = [];
+      database.collection("Eateries").orderBy("Name").get().then((querySnapshot) =>{
+        querySnapshot.forEach((doc)=>{
+          this.eats.push(doc.data());
+        })
+      })
+    },
+    rating: function() {
+      this.eats = [];
+      var retrieve = database.collection("Eateries").orderBy("Rating").get().then((querySnapshot) =>{
+        querySnapshot.forEach((doc)=>{
+          this.eats.push(doc.data());
+        })
+      })
+/*      while(this.eats.length != 3) {
+        setTimeout(() => {console.log("waiting");}, 2000)
+      }
+*/
+      retrieve.onsuccess = function() {
+        alert(this.eats.length)
+        this.eats.reverse();
+      };
+/*      this.eats2 = [];
+      alert(this.eats.length)
+      for(var i = 0; i < this.eats.length; i++) {
+        this.eats2[i] = this.eats[this.eats.length-1-i];
+      }
+      this.eats = [];
+      this.eats = this.eats2;
+*/
+    },
+    getImg: function(name) {
+      return require('../assets/'+ name + ".jpg")
+    }
   },
   created() {
       this.fetchEatery();
@@ -139,7 +121,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import "../assets/basic_style.css";
 
 .sort-by-buttons {
@@ -190,5 +172,14 @@ export default {
   grid-template-columns: 1fr 0.3fr 1fr 0.3fr 1fr;
   -ms-grid-rows: auto;
   grid-template-rows: auto;
+}
+
+th, td {
+  border: 0px;
+}
+
+tr {
+  float: left;
+  width: 30%;
 }
 </style>
