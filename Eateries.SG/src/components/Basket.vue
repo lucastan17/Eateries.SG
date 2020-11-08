@@ -8,7 +8,7 @@
     </div>
     <div id="quantity">
       <ul>
-        <li v-for="quantity in quantityList" :key="quantity.index">x {{quantity}}</li>
+        <li v-for="(quantity, index) in quantityList" :key="index">x {{quantity}}</li>
       </ul>
     </div>
     <h5>Please make your selection below: </h5>
