@@ -160,7 +160,6 @@ export default {
         var dateControl = document.querySelector('input[type="date"]');
         this.content.Date = dateControl.value;
         this.content.Amount = this.total;
-//        alert(this.content.Date);
         database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
         database.collection('Eateries').doc('KFC').collection('Transactions').add(this.content);
         this.content.Date = "";

@@ -67,8 +67,8 @@ export default {
     addDetails: function() {
         var dateControl = document.querySelector('input[type="time"]');
         this.content.Time = dateControl.value;
-        database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
-        database.collection('Eateries').doc('Sushi Tei').collection('Transactions').add(this.content);
+       // database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
+       // database.collection('Eateries').doc('Sushi Tei').collection('Transactions').add(this.content);
         this.content.Date = "";
         this.content.Time = "";
         this.content.Items = [];

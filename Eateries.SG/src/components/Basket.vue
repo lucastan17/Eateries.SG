@@ -1,10 +1,17 @@
 <template>
   <div>
     <h4>You currently have:</h4>
-    <ul>
-      <li v-for="item in itemsSelected" :key="item.name">{{item.name}}</li>
-    </ul>
-    <h5>The total amount payable is: ${{total}} </h5>
+    <div id="item">
+      <ul>
+        <li v-for="item in itemsSelected" :key="item">{{item}}</li>
+      </ul>
+    </div>
+    <div id="quantity">
+      <ul>
+        <li v-for="quantity in quantityList" :key="quantity.index">x {{quantity}}</li>
+      </ul>
+    </div>
+    <h5>Please make your selection below: </h5>
   </div>
 </template>
 
@@ -14,6 +21,14 @@ export default {
     itemsSelected: {
       type: Array,
     },
+    quantityList : {
+      type: Array,
+    }
+  },
+  data() {
+    return {
+      quantity : []
+    }
   },
   computed: {
     total() {
@@ -24,5 +39,15 @@ export default {
 </script>
 
 <style scoped>
+#item {
+  float: left;
+  width: 50%;
+  text-align: right;
+}
+#quantity {
+  float: right;
+  width: 50%;
+  text-align: left;
+}
 
 </style>

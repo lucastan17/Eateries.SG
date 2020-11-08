@@ -1,4 +1,4 @@
-import { Bar  } from 'vue-chartjs'
+import { Bar } from 'vue-chartjs'
 import database from '../firebase.js'
 
 export default {
@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     fetchItems: function () {
-        database.collection('Eateries').doc('KFC').collection('Transactions').get().then(querySnapShot => {
+        database.collection('Eateries').doc('Bread Yard').collection('Transactions').get().then(querySnapShot => {
             var timeNow = Date.now()/1000
             for (var i = 0; i < 24; i++) {
                 this.datacollection.datasets[0].backgroundColor.push('#'+Math.floor(Math.random()*16777215).toString(16).padStart(6, '0'))

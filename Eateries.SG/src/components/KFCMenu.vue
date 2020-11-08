@@ -1,6 +1,6 @@
 <template>
   <div>
-    <basket v-bind:itemsSelected="itemsSelected"></basket>
+    <basket v-bind:itemsSelected="itemsSelected" v-bind:quantityList="quantityList"></basket>
     <ul>
       <li v-for="item in itemsList" v-bind:key="item.name">
         <h5>{{item.name}}</h5>
@@ -119,5 +119,16 @@ button {
 }
 button:hover {
   border-color: rgba(255, 255, 255, 1);
+}
+
+#item {
+  float: left;
+  width: 50%;
+  text-align: right;
+}
+#quantity {
+  float: right;
+  width: 50%;
+  text-align: left;
 }
 </style>
