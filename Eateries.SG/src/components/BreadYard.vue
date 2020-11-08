@@ -52,6 +52,8 @@
 
 <script>
 import BreadYardMenu from "../components/BreadYardMenu.vue";
+import database from '../firebase.js'
+import fb from 'firebase';
 
 export default {
   name: "BreadYard",
