@@ -22,8 +22,8 @@
 
 
 <script>
-import QuantityCounter from "../components/QuantityCounter.vue";
-import Basket from "../components/Basket.vue";
+//import QuantityCounter from "../components/QuantityCounter.vue";
+//import Basket from "../components/Basket.vue";
 
 export default {
   // props: {
@@ -160,8 +160,8 @@ export default {
         }
     },
     saveOrder: function() {
-      database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
-      database.collection('Eateries').doc('KFC').collection('Transactions').add(this.content);
+   //   database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
+    //  database.collection('Eateries').doc('KFC').collection('Transactions').add(this.content);
       this.content.Date = new Date();
       this.content.Time = 0;
       this.content.Items = [];
@@ -169,7 +169,7 @@ export default {
     }
   },
   computed: {
-    total: function() {
+    totals: function() {
       return this.itemsSelected.reduce((total, item) => {
         return total + (item.price * item.quantity);
       }, 0);

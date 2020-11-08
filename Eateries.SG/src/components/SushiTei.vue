@@ -8,22 +8,21 @@
     >
       <div class="navigation-container">
         <div class="navigation-left">
-          <img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto" />
+          <img
+            src="../assets/EateriesSG.png"
+            loading="lazy"
+            width="83"
+            height="auto"
+          />
           <div class="logo-text">EATERIES.SG</div>
         </div>
         <div class="navigation-right">
           <router-link class="link" to="/" exact>Home</router-link>
           <router-link class="link" to="/profile" exact>Profile</router-link>
           <router-link class="link" to="/history" exact>History</router-link>
-          <router-link class="current" to="/partnereateries" exact
-            >Partner Eateries</router-link
-          >
-          <router-link class="link" to="/currentbookings" exact
-            >Current Bookings</router-link
-          >
-          <router-link class="link" to="/declaration" exact
-            >Declaration</router-link
-          >
+          <router-link class="current" to="/partnereateries" exact>Partner Eateries</router-link>
+          <router-link class="link" to="/currentbookings" exact>Current Bookings</router-link>
+          <router-link class="link" to="/declaration" exact>Declaration</router-link>
         </div>
       </div>
     </div>
@@ -38,41 +37,155 @@
         </div>
       </div>
     </div>
-    <div class="container">
+    <div>
       <h2>Sushi Tei Menu</h2>
-      <SushiTeiMenu></SushiTeiMenu>
+      <Menu v-bind:itemsList="itemsList" :AmountTotal="total" :selectionList="content.Items" @updateAmount="total=$event" 
+      @updateSelections="content.Items=$event"></Menu>
+      <p id="totDisplay">Total Amount Payable: $0</p>
+      <p @updateAmount="updateAmount"></p>
+      <button v-on:click.prevent="refresh()" class="button">Refresh</button>
+    </div>
+    <div>
+        <demand></demand>
+    </div>
+    <div class="">
+        <form id="booking-form">
+            <label for="Day">Chosen Day</label>
+            <br>
+            <input type="date" class="w-input" v-model="this.content.Date">
+            <br>
+            <label for="symptoms">Chosen Time</label>
+            <br>
+            <input type="time" min="10:00" max = "23:00" class="w-input" v-model="this.content.Time">
+            <br>
+            <button class="button" v-on:click.prevent="addDetails()">Submit</button> 
+        </form>
     </div>
   </body>
 </template>
 
 <script>
-import SushiTeiMenu from "../components/SushiTeiMenu.vue";
+import database from '../firebase.js'
+import fb from 'firebase';
+import menu from "./Menu.vue";
+import demand from "./SushiTei.js";
 
 export default {
-  name: "SushiTei",
+  name: "Sushi Tei",
   components: {
-    'SushiTeiMenu': SushiTeiMenu
+    'Menu': menu,
+     demand: demand
   },
   data() {
     return {
+      total : 0,
+      itemsList: [
+        {
+          id: 1,
+          name: "Yakitori Don",
+          imageURL:
+            "https://www.sushitei.co.id/admin/images/menu/Yakitoro-Don.jpg",
+          price: 12.00,
+          quantity: 0,
+        },
+        {
+          id: 2,
+          name: "Salmon Mentai Sushi",
+          imageURL:
+            "https://www.sushitei.co.id/admin/images/menu/Salmon-Mentai.jpg",
+          price: 3.00,
+          quantity: 0,
+        },
+        {
+          id: 3,
+          name: "Ebi Mentai Mayo Sushi",
+          imageURL:
+            "https://www.sushitei.co.id/admin/images/menu/Ebi-Mentai-Mayo-Sushi.jpg",
+          price: 3.00,
+          quantity: 0,
+        },
+        {
+          id: 4,
+          name: "Crispy Cheese Roll Sushi",
+          imageURL:
+            "https://www.sushitei.co.id/admin/images/menu/Crispy-Cheese-Roll.jpg",
+          price: 3.00,
+          quantity: 0,
+        },
+        {
+          id: 5,
+          name: "Salmon Don",
+          imageURL:
+            "https://www.sushitei.co.id/admin/images/menu/Salmon-Don.jpg",
+          price: 14.00,
+          quantity: 0,
+        },
+        {
+          id: 6,
+          name: "Dragon Roll Sushi",
+          imageURL:
+            "https://static.wixstatic.com/media/9fc90b_d5caa5106976483f86fb7a5ca5373643~mv2_d_1654_1236_s_2.jpg/v1/fill/w_232,h_232,usm_1.20_1.00_0.01/file.jpg",
+          price: 10.00,
+          quantity: 0,
+        },
+        {
+          id: 7,
+          name: "Salmon Miso Nabe",
+          imageURL:
+            "https://scontent.fsin8-2.fna.fbcdn.net/v/t1.0-0/cp0/e15/q65/p320x320/22851776_1562637603802517_7285309164642454890_n.jpg?_nc_cat=107&ccb=2&_nc_sid=8024bb&efg=eyJpIjoibyJ9&_nc_ohc=q-7v7MZ_jWkAX_L1Btz&_nc_ht=scontent.fsin8-2.fna&tp=3&oh=48f488f11e89b7184ccc3108628c727e&oe=5FC4E8A9",
+          price: 16.00,
+          quantity: 0,
+        },
+        {
+          id: 8,
+          name: "Kaisen King Nabe",
+          imageURL:
+            "https://scontent.fsin8-2.fna.fbcdn.net/v/t1.0-9/24232610_1595028780563399_6867387327556287343_n.jpg?_nc_cat=106&ccb=2&_nc_sid=730e14&_nc_ohc=viOrczXeQ6YAX_8MlZ3&_nc_ht=scontent.fsin8-2.fna&oh=4e6ede5c69927896dd2ddada21757971&oe=5FC2BFCA",
+          price: 20.00,
+          quantity: 0,
+        },
+        {
+          id: 9,
+          name: "Chawanmushi",
+          imageURL:
+            "https://lh5.ggpht.com/NKp6uw5otzbmaZboKxE4FPvIAyr2h5HePuiqStRYoAlgGJ3a5JKlqGR1AG1RSrQE9J-IRYQ7mUj0xtoh9NUUZC0f=s800",
+          price: 3.00,
+          quantity: 0,
+        },
+      ],
       content: {
-        Date: new Date(),
+        Date: '',
         Time: 0,
         Items: [],
-        Amount: 0
+        Amount: 0,
+        Eatery: "Sushi Tei"
       }
     };
   },
   methods : {
     addDetails: function() {
-        var dateControl = document.querySelector('input[type="time"]');
-        this.content.Time = dateControl.value;
+        var timeControl = document.querySelector('input[type="time"]');
+        this.content.Time = timeControl.value;
+        var dateControl = document.querySelector('input[type="date"]');
+        this.content.Date = dateControl.value;
+        this.content.Amount = this.total;
         database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
         database.collection('Eateries').doc('Sushi Tei').collection('Transactions').add(this.content);
         this.content.Date = "";
         this.content.Time = "";
         this.content.Items = [];
         this.conetnt.Amount = 0;
+        this.total = 0;
+    },
+    updateAmount: function(amt) {
+      this.total = amt;
+      this.refresh();
+    },
+    updateSelections: function(lst) {
+      this.content.Items = lst;
+    },
+    refresh: function() {
+      document.getElementById("totDisplay").innerHTML = "Total Amount Payable: $" + this.total;
     }
   }
 };
