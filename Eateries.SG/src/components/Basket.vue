@@ -2,7 +2,7 @@
   <div>
     <h4>You currently have:</h4>
     <ul>
-      <li v-for="item in itemsSelected" :key="item.name">{{ item.name }} - ${{item.price}}</li>
+      <li v-for="item in itemsSelected" :key="item.name">{{item.name}}</li>
     </ul>
     <h5>The total amount payable is: ${{total}} </h5>
   </div>

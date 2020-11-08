@@ -8,7 +8,12 @@
     >
       <div class="navigation-container">
         <div class="navigation-left">
-          <img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto"/>
+          <img
+            src="../assets/EateriesSG.png"
+            loading="lazy"
+            width="83"
+            height="auto"
+          />
           <div class="logo-text">EATERIES.SG</div>
         </div>
         <div class="navigation-right">
@@ -32,10 +37,18 @@
         </div>
       </div>
     </div>
-        <div>
+    <div>
+      <h2>KFC Menu</h2>
+      <KFCMenu v-bind:itemsList="itemsList" :AmountTotal="total" :selectionList="content.Items" @updateAmount="total=$event" 
+      @updateSelections="content.Items=$event"></KFCMenu>
+      <p id="totDisplay">Total Amount Payable: $0</p>
+      <p @updateAmount="updateAmount"></p>
+      <button v-on:click.prevent="refresh()" class="button">Refresh</button>
+    </div>
+    <div>
         <kfc></kfc>
-        </div>
-    <div class="container">
+    </div>
+    <div class="">
         <form id="booking-form">
             <label for="Day">Chosen Day</label>
             <br>
@@ -47,10 +60,6 @@
             <br>
             <button class="button" v-on:click.prevent="addDetails()">Submit</button> 
         </form>
-    </div>
-    <div class="container">
-      <h2>KFC Menu</h2>
-      <KFCMenu></KFCMenu>
     </div>
   </body>
 </template>
@@ -69,24 +78,106 @@ export default {
   },
   data() {
     return {
+      total : 0,
+      itemsList: [
+        {
+          id: "#000",
+          name: "Popcorn Chicken",
+          imageURL:
+            "https://imageresizer.static9.net.au/H0-EojH18a5tt7gHiNAJ9Ijb2hI=/320x0/https%3A%2F%2Fprod.static9.net.au%2Ffs%2F778a806d-30cf-4eef-9ad9-8df47a56ac81",
+          price: 3.80,
+        },
+        {
+          id: "#025",
+          name: "Zinger Burger",
+          imageURL:
+            "https://cdn.greatdeals.com.sg/wp-content/uploads/2019/04/30165256/kfc-zinger-burger-628x427.jpg.webp",
+          price: 4.50,
+        },
+        {
+          id: "#067",
+          name: "BBQ Bandito Pockett",
+          imageURL:
+            "https://cdn.singpromos.com/wp-content/uploads/2018/05/BBQ-Nachos-Pockett-Bandito.jpg",
+          price: 4.90,
+        },
+        {
+          id: "#077",
+          name: "Cheesy Turkey Bacon Bandito Pockett",
+          imageURL:
+            "https://cdn.singpromos.com/wp-content/uploads/2018/05/Cheesy-Turkey-Bacon-Pockett-Bandito.jpg",
+          price: 4.90,
+        },
+        {
+          id: "#099",
+          name: "Chessy Poppers",
+          imageURL:
+            "https://cdn.singpromos.com/wp-content/uploads/2018/05/Cheese-Poppers.jpg",
+          price: 2.00,
+        },
+        {
+          id: "#200",
+          name: "Strawberry Kiwi Sjora",
+          imageURL:
+            "https://cdn.singpromos.com/wp-content/uploads/2018/05/Strawberry-Kiwi-SJORA.jpg",
+          price: 2.00,
+        },
+        {
+          id: "#001",
+          name: "Mashed Potato",
+          imageURL:
+            "https://assets.change.org/photos/6/bi/ix/JzBIIXiToVCWUQW-800x450-noPad.jpg?1513277933",
+          price: 1.80,
+        },
+        {
+          id: "#002",
+          name: "Coleslaw",
+          imageURL:
+            "https://qph.fs.quoracdn.net/main-qimg-d617742ea38a65c1dc13ec43b4d9ec62",
+          price: 1.80,
+        },
+        {
+          id: "#003",
+          name: "Cheese Fries",
+          imageURL:
+            "https://www.kfc.com.sg//Content/OnlineOrderingImages/Menu/Items/Sides_CheeseFries_1.jpg",
+          price: 2.95,
+        },
+      ],
       content: {
-        Date: new Date(),
+        Date: '',
         Time: 0,
         Items: [],
-        Amount: 0
+        Amount: 0,
+        Eatery: "KFC"
       }
     };
   },
   methods : {
     addDetails: function() {
-        var dateControl = document.querySelector('input[type="time"]');
-        this.content.Time = dateControl.value;
+        var timeControl = document.querySelector('input[type="time"]');
+        this.content.Time = timeControl.value;
+        var dateControl = document.querySelector('input[type="date"]');
+        this.content.Date = dateControl.value;
+        this.content.Amount = this.total;
+//        alert(this.content.Date);
         database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
         database.collection('Eateries').doc('KFC').collection('Transactions').add(this.content);
         this.content.Date = "";
         this.content.Time = "";
         this.content.Items = [];
-        this.content.Amount = 0;
+        this.conetnt.Amount = 0;
+        this.total = 0;
+    },
+    updateAmount: function(amt) {
+      this.total = amt;
+      this.refresh();
+    },
+    updateSelections: function(lst) {
+      this.content.Items = lst;
+    },
+    refresh: function() {
+      document.getElementById("totDisplay").innerHTML = "Total Amount Payable: $" + this.total;
     }
   }
 };
