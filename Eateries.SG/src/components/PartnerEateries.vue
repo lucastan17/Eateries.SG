@@ -89,7 +89,7 @@ export default {
     },
     rating: function() {
       this.eats = [];
-      var retrieve = database.collection("Eateries").orderBy("Rating").get().then((querySnapshot) =>{
+      var retrieve = database.collection("Eateries").orderBy("Rating","desc").get().then((querySnapshot) =>{
         querySnapshot.forEach((doc)=>{
           this.eats.push(doc.data());
         })

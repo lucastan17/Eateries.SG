@@ -27,7 +27,7 @@
     <div>
       <h4>Change your password</h4>
     </div>
-    <div>
+    <div class ="container">
       <form id="wf-form-Email-Form" name="wf-form-Email-Form" data-name="Email Form">
         <label for="name">Old Password:</label>
         <input type="password" class="w-input" v-model.lazy="userDetail.oldPass" required>
@@ -37,8 +37,9 @@
         <button class="button1" v-on:click.prevent="updatePassword()">Change my Password</button>        
       </form>
       <br>
-    </div>
       <button id="toggler" class="button1" v-on:click="toggleShow()">Show your current Particulars</button>
+    </div>
+      <!--<button id="toggler" class="button1" v-on:click="toggleShow()">Show your current Particulars</button>-->
       <div id="currentProfile" v-if="showProfile == true">
         <table>
           <thead><samp></samp>

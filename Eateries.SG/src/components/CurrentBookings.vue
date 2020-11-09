@@ -18,14 +18,14 @@
     <div id="Header" class="header">
         <div id="container-flex">
             <div class="head-content">
-                <h1>Current Bookings</h1>
+                <h1>Current Bookingsss</h1>
                 <p>Testing! Current Bookings displayed here</p>
             </div>
         </div>
     </div>
 
     <div class="container">
-    <h3>Upcoming Bookings</h3>
+    <h3>Upcoming Bookingss</h3>
     <table>
         <thead><samp></samp>
             <tr>
@@ -38,9 +38,9 @@
         <tbody>
             <tr v-for="booking in bookings" :key = "booking">
                 <td>{{booking.Eatery}}</td>
-                <td>{{booking.Name}}</td>
-                <td>{{booking.Pax}}</td>
-                <td>{{booking.Time.toDate()}}</td>
+                <td>{{this.name}}</td>
+                <td>{{booking.Amount}}</td>
+                <td>{{booking.Date}},{{expiredbk.Time}}</td>
             </tr>
         </tbody>
     </table>
@@ -59,9 +59,9 @@
         <tbody>
             <tr v-for="expiredbk in expired" :key = "expiredbk">
                 <td>{{expiredbk.Eatery}}</td>
-                <td>{{expiredbk.Name}}</td>
-                <td>{{expiredbk.Pax}}</td>
-                <td>{{expiredbk.Time.toDate()}}</td>
+                <td>{{this.name}}</td>
+                <td>{{expiredbk.Amount}}</td>
+                <td>{{expiredbk.Date}},{{expiredbk.Time}}</td>
             </tr>
         </tbody>
     </table>
@@ -71,15 +71,36 @@
 
 <script>
 import db from '../firebase.js'
+import fb from 'firebase'
 export default {
     name: 'CurrentBookings',
     data(){
         return{
             bookings:[],
             expired:[],
+            name:"",
         }
     },  
     methods:{
+        readAllData(){
+            db.collection("Users").doc(fb.auth().currentUser.uid).get().then((doc) =>{
+                this.name = doc.data().name
+                console.log(this.name)
+            })
+            /*db.collection("Users").doc(fb.auth().currentUser.uid).collection("Transactions").get().then((querySnapshot)=>{
+                querySnapshot.forEach((doc)=>{
+                    if(doc.data().Date <= new Date().getDate()){
+                        this.expired.push(doc.data())
+                    } else {
+                        if(doc.data().Time < new Date().getTime()){
+                            this.bookings.push(doc.data())
+                        } else {
+                            this.expired.push(doc.data())
+                        }
+                    }
+                })
+            })*/
+        },
         readExpiredBookings(){
             db.collection("bookings").where('Time','>=', new Date()).get().then((querySnapshot) =>{
             querySnapshot.forEach((doc)=>{
@@ -97,8 +118,9 @@ export default {
         }
     },
     created(){
-        this.readExpiredBookings();
-        this.readCurrentBookings();
+        //this.readExpiredBookings();
+        //this.readCurrentBookings();
+        this.readAllData();
     }
 }
 
