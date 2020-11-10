@@ -58,6 +58,8 @@
             <br>
             <input type="time" min="10:00" max = "23:00" class="w-input" v-model="this.content.Time">
             <br>
+            <input type="text" class="w-input" v-model="this.content.Pax">
+            <br>
             <button class="button" v-on:click.prevent="addDetails()">Submit</button> 
         </form>
     </div>
@@ -158,7 +160,8 @@ export default {
         Time: 0,
         Items: [],
         Amount: 0,
-        Eatery: "Bread Yard"
+        Eatery: "Bread Yard",
+        Pax: 0
       }
     };
   },

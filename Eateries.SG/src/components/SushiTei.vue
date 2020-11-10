@@ -52,11 +52,21 @@
         <form id="booking-form">
             <label for="Day">Chosen Day</label>
             <br>
-            <input type="date" class="w-input" v-model="this.content.Date">
+            <input type="date" class="w-input" v-model.lazy="this.content.Date">
             <br>
             <label for="symptoms">Chosen Time</label>
             <br>
-            <input type="time" min="10:00" max = "23:00" class="w-input" v-model="this.content.Time">
+            <input type="time" min="10:00" max = "23:00" class="w-input" v-model.lazy="this.content.Time">
+            <br>
+            <label for="Pax">Number of Pax visiting</label>
+            <br>
+            <select class="w-input" v-model.lazy="content.Pax">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
             <br>
             <button class="button" v-on:click.prevent="addDetails()">Submit</button> 
         </form>
@@ -158,7 +168,8 @@ export default {
         Time: 0,
         Items: [],
         Amount: 0,
-        Eatery: "Sushi Tei"
+        Eatery: "Sushi Tei",
+        Pax: ''
       }
     };
   },

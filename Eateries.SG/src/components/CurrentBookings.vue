@@ -18,7 +18,7 @@
     <div id="Header" class="header">
         <div id="container-flex">
             <div class="head-content">
-                <h1>Current Bookingsss</h1>
+                <h1>Current Bookings</h1>
                 <p>Testing! Current Bookings displayed here</p>
             </div>
         </div>
@@ -108,7 +108,6 @@ export default {
             })
         })
         },
-
         readCurrentBookings(){
             db.collection("bookings").where('Time','<', new Date()).get().then((querySnapshot) =>{
             querySnapshot.forEach((doc)=>{
