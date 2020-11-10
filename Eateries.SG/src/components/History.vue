@@ -12,6 +12,7 @@
                 <router-link class = "link" to="/partnereateries" exact>Partner Eateries</router-link>
                 <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "link" to="/declaration" exact>Declaration</router-link>
+                <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button>
             </div>
         </div>
     </div>
@@ -23,7 +24,7 @@
             </div>
         </div>
     </div>
-    <div class="content-section">
+    <div class="container">
         <div>
             <p>Display a chart of your choice by clicking on any of the following buttons</p>
         </div>
@@ -84,7 +85,7 @@ import Chart4 from "./Sales1Month.js";
 import Chart5 from "./Sales3Months.js";
 import Chart6 from "./Sales6Months.js";
 import Chart7 from "./TransactionTotal.js";
-
+import fb from 'firebase';
 export default {
     name: 'History',
     data() {
@@ -107,6 +108,15 @@ export default {
         chart7: Chart7
     },
     methods: {
+        signOut(){
+                fb.auth().signOut().then(() => {
+                this.$router.replace('/')
+            })
+            .catch(err =>{
+                this.error = err.message;
+            })
+        },
+
         MonthEat: function(x) {
             if (x == 1){
                 this.display1 = true
@@ -145,5 +155,15 @@ export default {
 <style>
 @import '../assets/basic_style.css';
 
+.SObutton {
+    margin-left:10px;
+    background-color:whitesmoke;
+    font-size: 18px;
+    border-radius: 12px;
+    border: 2px solid #990000;
+    width: 120px;
+    font-family: sans-serif;
+    padding-right: 15px;
+}
 
 </style>

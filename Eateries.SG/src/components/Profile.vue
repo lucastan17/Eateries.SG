@@ -12,6 +12,7 @@
                 <router-link class = "link" to="/partnereateries" exact>Partner Eateries</router-link>
                 <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "link" to="/declaration" exact>Declaration</router-link>
+                <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button>
             </div>
         </div>
     </div>
@@ -33,7 +34,7 @@
         <input type="password" class="w-input" v-model.lazy="userDetail.oldPass" required>
         <label for="email">New Password:</label>
 
-        <input type="text" class="w-input" v-model.lazy="userDetail.newPass" required>
+        <input type="password" class="w-input" v-model.lazy="userDetail.newPass" required>
         <button class="button1" v-on:click.prevent="updatePassword()">Change my Password</button>        
       </form>
       <br>
@@ -100,6 +101,15 @@ export default {
         }
     },  
     methods:{
+        signOut(){
+                fb.auth().signOut().then(() => {
+                this.$router.replace('/')
+            })
+            .catch(err =>{
+                this.error = err.message;
+            })
+        },
+        
         loadProfile: function(){
             database.collection('Users').doc(fb.auth().currentUser.uid).get().then(x => {
                 this.profile.pop();
@@ -176,11 +186,8 @@ export default {
         },
 
         updatePassword: function() {
-          //this.getOldPass();
+          this.getOldPass();
           console.log(this.userDetail.myoldPass)
-          /*this.profile.forEach(user =>
-            this.userDetail.myoldPass = user.password
-          )*/
           if(this.userDetail.myoldPass == this.userDetail.oldPass && this.userDetail.myoldPass != this.userDetail.newPass){
             database.collection('Users').doc(fb.auth().currentUser.uid).update( {
               password: this.userDetail.newPass
@@ -193,11 +200,10 @@ export default {
           } else {
             alert("Old Password entered incorrectly! Please try again")
           }
-          //this.userDetail.oldPass = "";
-          //this.userDetail.newPass = "";
+          this.userDetail.oldPass = "";
+          this.userDetail.newPass = "";
           this.loadProfile();
         },
-
         getOldPass: function() {
           database.collection('Users').doc(fb.auth().currentUser.uid).get().then(x => {
             this.userDetail.myoldPass = x.data().password
@@ -272,5 +278,16 @@ th {
     font-weight: 500;
     text-align: center;
     background-clip: border-box;
+}
+
+.SObutton {
+    margin-left:10px;
+    background-color:whitesmoke;
+    font-size: 18px;
+    border-radius: 12px;
+    border: 2px solid #990000;
+    width: 120px;
+    font-family: sans-serif;
+    padding-right: 15px;
 }
 </style>

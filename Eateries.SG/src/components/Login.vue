@@ -25,15 +25,21 @@
         </div>
     </div>
     <div>
-        <h2></h2>
-        <input type="text" v-model="email" placeholder="Email"><br>
-        <input type="password" v-model="password" placeholder="Password"><br>
-        <button @click ="login()" >Log-In</button>
+        <h2>Welcome to Eateries.SG!</h2>
+        <h4>Sign in with your email and password</h4>
+        <br>
+        <div class ="content-section">
+            <h5><a style ="padding:20px;">Email:</a> <input type="text" v-model="email" placeholder="Email"></h5>
+            <h5><a>Password:</a> <input type="password" v-model="password" placeholder="Password"></h5>
+            <br>
+            <button @click ="login()" >Log-In</button>
         <!--
             <p>No account? Sign up for an account!</p>
         -->
         <p></p>
-        <router-link class = "link" to="/signup" exact>No account? Click here to Sign Up!</router-link>
+            <router-link class = "link" to="/signup" exact>No account? Click here to Sign Up!</router-link>
+        </div>
+        <br><br><br><br>
     </div>
     
 

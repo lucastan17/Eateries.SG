@@ -12,6 +12,7 @@
                 <router-link class = "current" to="/partnereateries" exact>Partner Eateries</router-link>
                 <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "link" to="/declaration" exact>Declaration</router-link>
+                <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button>
             </div>
         </div>
     </div>
@@ -24,14 +25,14 @@
         </div>
     </div>
     <div class="content-section">
-    <div class="sort-by-buttons w-container">
+    <div class="sort-by-buttons">
       <div class="sort">Sort by:</div>
       <a href="#" class="button" v-on:click.prevent="alpahbetical()">Alphabetical Order</a>
       <a href="#" class="button" v-on:click.prevent="rating()">Ratings</a>
       </div>
     </div>
 
-    <div>
+    <div class="container1">
         <tbody>
             <tr v-for="eatery in eats" :key = "eatery">
                 <td><img :src="getImg(eatery.src)" width="270" height="200" alt="" class="step-image">
@@ -50,7 +51,7 @@
 
 <script>
 import database from "../firebase.js";
-//import fb from "firebase";
+import fb from "firebase";
 
 export default {
   name: "PartnerEateries",
@@ -67,6 +68,15 @@ export default {
     };
   },
   methods: {
+    signOut(){
+      fb.auth().signOut().then(() => {
+        this.$router.replace('/')
+      })
+      .catch(err =>{
+        this.error = err.message;
+      })
+    },
+
     fetchEatery: function () {
       database.collection("Eateries").orderBy("PhoneNumber").get().then((querySnapshot) =>{
         querySnapshot.forEach((doc)=>{
@@ -106,7 +116,9 @@ export default {
 
 .sort-by-buttons {
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  padding-left: 100px;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
@@ -161,5 +173,25 @@ th, td {
 tr {
   float: left;
   width: 30%;
+}
+
+.container1 {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 30px;
+}
+
+.SObutton {
+    margin-left:10px;
+    background-color:whitesmoke;
+    font-size: 18px;
+    border-radius: 12px;
+    border: 2px solid #990000;
+    width: 120px;
+    font-family: sans-serif;
+    padding-right: 15px;
 }
 </style>
