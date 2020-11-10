@@ -25,9 +25,9 @@
     </div>
     <div id='dec'>
         <h3>Complete before entering the Eatery</h3>
-        <div class="">
+        <div class="container">
             <form id="temperature-form">
-                <label for="temp">Current Temperature: (Format required: X.XX)</label>
+                <label for="temp">Current Temperature: (Format required: XX.X)</label>
                 <br>
                 <input type="text" class="w-input" v-model.lazy="content.temp">
                 <br>
@@ -47,9 +47,9 @@
                 <br>
                 <button class="button" v-on:click.prevent="checkValidity()">Submit</button>
             </form>
-        </div>
-        <div>
-            <button class="button" id="showTemp" v-on:click.prevent="loadTemps()">Load Declaration Records</button>
+            <div>
+                <button class="button" id="showTemp" v-on:click.prevent="loadTemps()">Load Declaration Records</button>
+            </div>
         </div>
     </div>
     <div v-if="this.show === true">
