@@ -32,6 +32,10 @@
     <div class="container">
         <div class="w-layout-grid content-grid">
         <div class="content-block">
+            <div class="navigation-left">
+                <img src="..\assets\FAQ.svg" loading="lazy" width="80" alt="" />
+              <div class="logo-text"><h2> Questions about our web app? Check out some of our Frequently Asked Questions!</h2></div>
+            </div>
           <p>Still have questions for us?</p>
           <a @click="toContact()" onmouseover="color='blue'"><u>Contact Us</u></a>
         </div>
