@@ -77,7 +77,7 @@ export default {
           this.eats.push(doc.data());
         })
       })
-      this.eats2 = this.eats.reverse();
+ //     this.eats2 = this.eats.reverse();
     },
     alpahbetical: function() {
       this.eats = [];
@@ -89,27 +89,11 @@ export default {
     },
     rating: function() {
       this.eats = [];
-      var retrieve = database.collection("Eateries").orderBy("Rating","desc").get().then((querySnapshot) =>{
+      database.collection("Eateries").orderBy("Rating","desc").get().then((querySnapshot) =>{
         querySnapshot.forEach((doc)=>{
           this.eats.push(doc.data());
         })
       })
-/*      while(this.eats.length != 3) {
-        setTimeout(() => {console.log("waiting");}, 2000)
-      }
-*/
-      retrieve.onsuccess = function() {
-        alert(this.eats.length)
-        this.eats.reverse();
-      };
-/*      this.eats2 = [];
-      alert(this.eats.length)
-      for(var i = 0; i < this.eats.length; i++) {
-        this.eats2[i] = this.eats[this.eats.length-1-i];
-      }
-      this.eats = [];
-      this.eats = this.eats2;
-*/
     },
     getImg: function(name) {
       return require('../assets/'+ name + ".jpg")
