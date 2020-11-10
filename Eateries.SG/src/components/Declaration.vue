@@ -12,6 +12,7 @@
                 <router-link class = "link" to="/partnereateries" exact>Partner Eateries</router-link>
                 <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "current" to="/declaration" exact>Declaration</router-link>
+                <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button>
             </div>
         </div>
     </div>
@@ -96,6 +97,14 @@ import fb from 'firebase';
         },
 
         methods: {
+            signOut(){
+                fb.auth().signOut().then(() => {
+                    this.$router.replace('/')
+                })
+                .catch(err =>{
+                    this.error = err.message;
+                })
+            },
             loadTemps: function() {
                 this.entries = [];
                 database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').orderBy("time", "desc").get().then(snapshot => {
@@ -196,5 +205,15 @@ button{
     border-radius: 22;
 }
 */
+.SObutton {
+    margin-left:10px;
+    background-color:whitesmoke;
+    font-size: 18px;
+    border-radius: 12px;
+    border: 2px solid #990000;
+    width: 120px;
+    font-family: sans-serif;
+    padding-right: 15px;
+}
 
 </style>    
