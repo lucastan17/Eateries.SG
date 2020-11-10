@@ -1,6 +1,7 @@
 import { HorizontalBar  } from 'vue-chartjs'
 import database from '../firebase.js'
 import fb from 'firebase'
+
 export default {
   extends: HorizontalBar,
   data: function () {

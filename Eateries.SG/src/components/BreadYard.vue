@@ -185,7 +185,7 @@ export default {
         var timeNow = Date.now()/1000
         var chosentime = this.content.Time.split(":");
         var bookingtime = (Date.parse(this.content.Date)/1000) + chosentime[0] * 60 * 60 + chosentime[1] * 60;
-        if (bookingtime - timeNow > 0 && this.content.Amount != 0) { //booking date is in the future
+        if ( this.content.Amount != 0) { //booking date is in the future   bookingtime - timeNow > 0 &&
           database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
           database.collection('Eateries').doc('Bread Yard').collection('Transactions').add(this.content);
           this.content.Date = "";
