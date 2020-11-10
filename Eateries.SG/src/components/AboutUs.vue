@@ -58,9 +58,8 @@
                     this.error = err.message;
                 })
             },
-            
+
             signedIn(){
-                console.log(fb.auth().currentUser)
                 return fb.auth().currentUser != null
             }
         }
