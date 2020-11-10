@@ -180,13 +180,27 @@ export default {
         var dateControl = document.querySelector('input[type="date"]');
         this.content.Date = dateControl.value;
         this.content.Amount = this.total;
-        database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
-        database.collection('Eateries').doc('Sushi Tei').collection('Transactions').add(this.content);
-        this.content.Date = "";
-        this.content.Time = "";
-        this.content.Items = [];
-        this.conetnt.Amount = 0;
-        this.total = 0;
+        
+        //checking if date booked is in the future
+        var timeNow = Date.now()/1000
+        var chosentime = this.content.Time.split(":");
+        var bookingtime = (Date.parse(this.content.Date)/1000) + chosentime[0] * 60 * 60 + chosentime[1] * 60;
+        if (bookingtime - timeNow > 0 && this.content.Amount != 0) { //booking date is in the future
+          database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
+          database.collection('Eateries').doc('Sushi Tei').collection('Transactions').add(this.content);
+          this.content.Date = "";
+          this.content.Time = "";
+          this.content.Items = [];
+          this.content.Amount = 0;
+          this.total = 0;
+          this.content.Pax = '';
+          alert("You have successfully placed an order!")
+        } else if (this.content.Amount == 0) {
+          alert("You have not selected any items on the menu. Please try again!")
+        } else if (bookingtime - timeNow < 0){
+          alert("You have indicated an booking date and/or time in the past. Please try again!")
+        }
+
     },
     updateAmount: function(amt) {
       this.total = amt;

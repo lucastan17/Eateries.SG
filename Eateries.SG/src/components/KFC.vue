@@ -176,7 +176,6 @@ export default {
         var timeNow = Date.now()/1000
         var chosentime = this.content.Time.split(":");
         var bookingtime = (Date.parse(this.content.Date)/1000) + chosentime[0] * 60 * 60 + chosentime[1] * 60;
-//        this.content.Pax = this.content.Pax.value; 
         if (bookingtime - timeNow > 0 && this.content.Amount != 0) { //booking date is in the future
           database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
           database.collection('Eateries').doc('KFC').collection('Transactions').add(this.content);
@@ -185,7 +184,7 @@ export default {
           this.content.Items = [];
           this.content.Amount = 0;
           this.total = 0;
-          this.content.Pax = 0;
+          this.content.Pax = '';
           alert("You have successfully placed an order!")
         } else if (this.content.Amount == 0) {
           alert("You have not selected any items on the menu. Please try again!")
