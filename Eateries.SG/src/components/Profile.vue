@@ -33,7 +33,7 @@
         <input type="password" class="w-input" v-model.lazy="userDetail.oldPass" required>
         <label for="email">New Password:</label>
 
-        <input type="text" class="w-input" v-model.lazy="userDetail.newPass" required>
+        <input type="password" class="w-input" v-model.lazy="userDetail.newPass" required>
         <button class="button1" v-on:click.prevent="updatePassword()">Change my Password</button>        
       </form>
       <br>
@@ -176,11 +176,8 @@ export default {
         },
 
         updatePassword: function() {
-          //this.getOldPass();
+          this.getOldPass();
           console.log(this.userDetail.myoldPass)
-          /*this.profile.forEach(user =>
-            this.userDetail.myoldPass = user.password
-          )*/
           if(this.userDetail.myoldPass == this.userDetail.oldPass && this.userDetail.myoldPass != this.userDetail.newPass){
             database.collection('Users').doc(fb.auth().currentUser.uid).update( {
               password: this.userDetail.newPass
@@ -193,11 +190,10 @@ export default {
           } else {
             alert("Old Password entered incorrectly! Please try again")
           }
-          //this.userDetail.oldPass = "";
-          //this.userDetail.newPass = "";
+          this.userDetail.oldPass = "";
+          this.userDetail.newPass = "";
           this.loadProfile();
         },
-
         getOldPass: function() {
           database.collection('Users').doc(fb.auth().currentUser.uid).get().then(x => {
             this.userDetail.myoldPass = x.data().password
