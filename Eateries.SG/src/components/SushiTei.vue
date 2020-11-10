@@ -180,7 +180,6 @@ export default {
         var dateControl = document.querySelector('input[type="date"]');
         this.content.Date = dateControl.value;
         this.content.Amount = this.total;
-        
         //checking if date booked is in the future
         var timeNow = Date.now()/1000
         var chosentime = this.content.Time.split(":");

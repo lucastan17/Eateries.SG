@@ -25,25 +25,26 @@
     </div>
 
     <div class="container">
-    <h3>Upcoming Bookingss</h3>
-    <table>
+    <h3>Upcoming Bookings</h3>
+    <table v-if="this.show === true">
         <thead><samp></samp>
             <tr>
                 <th>Eatery</th>
                 <th>Name</th>
                 <th>Pax</th>
-                <th>Time</th>
+                <th>Date & Time</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="booking in bookings" :key = "booking">
                 <td>{{booking.Eatery}}</td>
-                <td>{{this.name}}</td>
                 <td>{{booking.Amount}}</td>
-                <td>{{booking.Date}},{{expiredbk.Time}}</td>
+                <td>{{booking.Pax}}</td>
+                <td>{{booking.Date}} @ {{booking.Time}}</td>
             </tr>
         </tbody>
     </table>
+    <button class="button" id="showBooking" v-on:click.prevent="toggle()">Retrieve Booking Records</button>
     <br>
     <br>
     <h3>Expired Bookings</h3>
@@ -65,6 +66,7 @@
             </tr>
         </tbody>
     </table>
+    <button class="button" id="showBooking" v-on:click.prevent="toggle2()">Retrieve Past Records</button>
     </div>
 </body>  
 </template>
@@ -79,47 +81,56 @@ export default {
             bookings:[],
             expired:[],
             name:"",
+            show: false
         }
     },  
     methods:{
         readAllData(){
             db.collection("Users").doc(fb.auth().currentUser.uid).get().then((doc) =>{
-                this.name = doc.data().name
-                console.log(this.name)
+                this.name = doc.data().name;
             })
-            /*db.collection("Users").doc(fb.auth().currentUser.uid).collection("Transactions").get().then((querySnapshot)=>{
-                querySnapshot.forEach((doc)=>{
-                    if(doc.data().Date <= new Date().getDate()){
-                        this.expired.push(doc.data())
-                    } else {
-                        if(doc.data().Time < new Date().getTime()){
-                            this.bookings.push(doc.data())
-                        } else {
-                            this.expired.push(doc.data())
-                        }
-                    }
-                })
-            })*/
-        },
-        readExpiredBookings(){
-            db.collection("bookings").where('Time','>=', new Date()).get().then((querySnapshot) =>{
-            querySnapshot.forEach((doc)=>{
-                this.bookings.push(doc.data());
-            })
-        })
         },
         readCurrentBookings(){
-            db.collection("bookings").where('Time','<', new Date()).get().then((querySnapshot) =>{
+            db.collection("Users").doc(fb.auth().currentUser.uid).collection("Transactions").get().then((querySnapshot) =>{
+            var timeNow = Date.now()/1000;
             querySnapshot.forEach((doc)=>{
-                this.expired.push(doc.data());
+                var chosentime = doc.data().Time.split(":");
+                var bookingtime = (Date.parse(doc.data().Date)/1000) + chosentime[0] * 60 * 60 + chosentime[1] * 60;                
+                if(bookingtime > timeNow) {
+                    this.bookings.push(doc.data());
+                }
             })
         })
+        },
+        readExpiredBookings(){
+            db.collection("Users").doc(fb.auth().currentUser.uid).collection("Transactions").get().then((querySnapshot) =>{
+            var timeNow = Date.now()/1000;
+            querySnapshot.forEach((doc)=>{
+                var chosentime = doc.data().Time.split(":");
+                var bookingtime = (Date.parse(doc.data().Date)/1000) + chosentime[0] * 60 * 60 + chosentime[1] * 60;                
+                if(bookingtime < timeNow) {
+                    this.expired.push(doc.data());
+                }
+            })
+        })
+        },
+        toggle() {
+            this.bookings = [];
+            this.readCurrentBookings();
+            this.show = !this.show;
+            if (this.show) {
+                document.getElementById("showBooking").innerHTML = "Retrieve Booking Records";
+            } else {
+                document.getElementById("showBooking").innerHTML = "Hide Booking Records";
+            }
         }
     },
     created(){
-        //this.readExpiredBookings();
-        //this.readCurrentBookings();
+/*
         this.readAllData();
+        this.readExpiredBookings();
+        this.readCurrentBookings();
+*/
     }
 }
 

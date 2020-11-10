@@ -56,9 +56,6 @@ export default {
   name: "PartnerEateries",
   data() {
     return {
-      kfcDetails: [],
-      breadyardDetails: [],
-      sushiteiDetails: [],
       eateries: [],
       content: {
         location: "",
@@ -66,8 +63,7 @@ export default {
         phoneNum: "",
         rating: 0,
       },
-      eats: [],
-      eats2: []
+      eats: []
     };
   },
   methods: {
