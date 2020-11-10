@@ -54,7 +54,7 @@
             <br>
             <input type="date" class="w-input" v-model.lazy="this.content.Date">
             <br>
-            <label for="symptoms">Chosen Time</label>
+            <label for="time">Chosen Time</label>
             <br>
             <input type="time" min="10:00" max = "23:00" class="w-input" v-model.lazy="this.content.Time">
             <br>
