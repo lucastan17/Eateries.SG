@@ -38,7 +38,7 @@
         <tbody>
             <tr v-for="booking in bookings" :key = "booking">
                 <td>{{booking.Eatery}}</td>
-                <td>${{booking.Amount}}</td>
+                <td>${{booking.Amount.toFixed(2)}}</td>
                 <td>{{booking.Pax}}</td>
                 <td>{{booking.Date}} @ {{booking.Time}}</td>
             </tr>

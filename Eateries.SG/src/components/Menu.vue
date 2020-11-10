@@ -87,21 +87,24 @@ export default {
         var ind = this.itemsSelected.indexOf(item.name);
         this.quantityList[ind] = count;
       }
-      
       this.totalAmount();
-      */
+      
       var count = this.itemsSelected.length
       for (var i = 0; i < count; i++){
-        var it = this.itemsSelected[i]
+        var it = this.itemsSelected[i];
         this.tempItem.foodItem = it.name;
-        alert(i);
         this.tempItem.quantity = it.quantity;
         this.selectionList2.push(this.tempItem);
+        this.tempItem.foodItem = '';
+        this.tempItem.quantity = 0;
       }
+
+      */
       this.AmountTotal = this.total;
-      this.selectionList = this.selectionList2;
+      this.selectionList = this.itemsSelected;
       this.$emit('updateAmount', this.AmountTotal);
       this.$emit('updateSelections', this.selectionList);
+      alert("Menu items selected have been confirmed!")
     },
     totalAmount: function() {
       this.Amount = 0;
