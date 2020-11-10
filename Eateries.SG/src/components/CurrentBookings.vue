@@ -38,7 +38,7 @@
         <tbody>
             <tr v-for="booking in bookings" :key = "booking">
                 <td>{{booking.Eatery}}</td>
-                <td>{{booking.Amount}}</td>
+                <td>${{booking.Amount.toFixed(2)}}</td>
                 <td>{{booking.Pax}}</td>
                 <td>{{booking.Date}} @ {{booking.Time}}</td>
             </tr>
@@ -60,7 +60,7 @@
         <tbody>
             <tr v-for="expiredbk in expired" :key = "expiredbk">
                 <td>{{expiredbk.Eatery}}</td>
-                <td>{{expiredbk.Amount}}</td>
+                <td>${{expiredbk.Amount.toFixed(2)}}</td>
                 <td>{{expiredbk.Pax}}</td>
                 <td>{{expiredbk.Date}} @ {{expiredbk.Time}}</td>
             </tr>
@@ -127,9 +127,7 @@ export default {
             }
         },
         toggle2() {
-            if (this.expiredbk == []) {
-                this.readExpiredBookings();
-            }
+            this.readExpiredBookings();
             this.show2 = !this.show2;
             if (this.show) {
                 document.getElementById("showPast").innerHTML = "Hide Past Records";

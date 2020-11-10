@@ -41,9 +41,8 @@
       <h2>KFC Menu</h2>
       <Menu v-bind:itemsList="itemsList" :AmountTotal="total" :selectionList="content.Items" @updateAmount="total=$event" 
       @updateSelections="content.Items=$event"></Menu>
-      <p id="totDisplay">Total Amount Payable: $0</p>
-      <p @updateAmount="updateAmount"></p>
-      <button v-on:click.prevent="refresh()" class="button">Refresh</button>
+      <!--p id="totDisplay">Total Amount Payable: $0</p>
+      <button v-on:click.prevent="refresh()" class="button">Refresh</button-->
     </div>
     <div>
         <demand></demand>
@@ -56,7 +55,7 @@
             <br>
             <label for="Time">Chosen Time</label>
             <br>
-            <input type="time" min="10:00" max = "23:00" class="w-input" v-model.lazy="content.Time">
+            <input type="time" min="08:00" max = "23:00" class="w-input" v-model.lazy="content.Time">
             <br>
             <label for="Pax">Number of Pax visiting</label>
             <br>
@@ -77,7 +76,7 @@
 <script>
 import database from '../firebase.js'
 import fb from 'firebase';
-import Menu from "./KFCMenu.vue";
+import Menu from "./Menu.vue";
 import demand from "./KFCChart.js";
 
 export default {
@@ -91,67 +90,76 @@ export default {
       total : 0,
       itemsList: [
         {
-          id: "#000",
+          id: 1,
           name: "Popcorn Chicken",
           imageURL:
             "https://imageresizer.static9.net.au/H0-EojH18a5tt7gHiNAJ9Ijb2hI=/320x0/https%3A%2F%2Fprod.static9.net.au%2Ffs%2F778a806d-30cf-4eef-9ad9-8df47a56ac81",
           price: 3.80,
+          quantity: 0,
         },
         {
-          id: "#025",
+          id: 2,
           name: "Zinger Burger",
           imageURL:
             "https://cdn.greatdeals.com.sg/wp-content/uploads/2019/04/30165256/kfc-zinger-burger-628x427.jpg.webp",
           price: 4.50,
+          quantity: 0,
         },
         {
-          id: "#067",
+          id: 3,
           name: "BBQ Bandito Pockett",
           imageURL:
             "https://cdn.singpromos.com/wp-content/uploads/2018/05/BBQ-Nachos-Pockett-Bandito.jpg",
           price: 4.90,
+          quantity: 0,
         },
         {
-          id: "#077",
+          id: 4,
           name: "Cheesy Turkey Bacon Bandito Pockett",
           imageURL:
             "https://cdn.singpromos.com/wp-content/uploads/2018/05/Cheesy-Turkey-Bacon-Pockett-Bandito.jpg",
           price: 4.90,
+          quantity: 0,
         },
         {
-          id: "#099",
+          id: 5,
           name: "Chessy Poppers",
           imageURL:
             "https://cdn.singpromos.com/wp-content/uploads/2018/05/Cheese-Poppers.jpg",
           price: 2.00,
+          quantity: 0,
         },
         {
-          id: "#200",
+          id: 6,
           name: "Strawberry Kiwi Sjora",
           imageURL:
             "https://cdn.singpromos.com/wp-content/uploads/2018/05/Strawberry-Kiwi-SJORA.jpg",
           price: 2.00,
+          quantity: 0,
         },
         {
-          id: "#001",
+          id: 7,
           name: "Mashed Potato",
           imageURL:
             "https://assets.change.org/photos/6/bi/ix/JzBIIXiToVCWUQW-800x450-noPad.jpg?1513277933",
           price: 1.80,
+          quantity: 0,
         },
         {
-          id: "#002",
+          id: 8,
           name: "Coleslaw",
           imageURL:
             "https://qph.fs.quoracdn.net/main-qimg-d617742ea38a65c1dc13ec43b4d9ec62",
           price: 1.80,
+          quantity: 0,
         },
         {
-          id: "#003",
+          id: 9,
           name: "Cheese Fries",
           imageURL:
             "https://www.kfc.com.sg//Content/OnlineOrderingImages/Menu/Items/Sides_CheeseFries_1.jpg",
           price: 2.95,
+          quantity: 0,
         },
       ],
       content: {
@@ -200,7 +208,7 @@ export default {
       this.content.Items = lst;
     },
     refresh: function() {
-      document.getElementById("totDisplay").innerHTML = "Total Amount Payable: $" + this.total;
+      document.getElementById("totDisplay").innerHTML = "Total Amount Payable: $" + this.total.toFixed(2);
     }
   }
 };
