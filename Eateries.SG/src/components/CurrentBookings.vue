@@ -92,7 +92,7 @@ export default {
             })
         },
         readCurrentBookings(){
-            db.collection("Users").doc(fb.auth().currentUser.uid).collection("Transactions").get().then((querySnapshot) =>{
+            db.collection("Users").doc(fb.auth().currentUser.uid).collection("Transactions").orderBy("Date").get().then((querySnapshot) =>{
             var timeNow = Date.now()/1000;
             querySnapshot.forEach((doc)=>{
                 var chosentime = doc.data().Time.split(":");
@@ -104,7 +104,7 @@ export default {
         })
         },
         readExpiredBookings(){
-            db.collection("Users").doc(fb.auth().currentUser.uid).collection("Transactions").get().then((querySnapshot) =>{
+            db.collection("Users").doc(fb.auth().currentUser.uid).collection("Transactions").orderBy("Date", "desc").get().then((querySnapshot) =>{
             var timeNow = Date.now()/1000;
             querySnapshot.forEach((doc)=>{
                 var chosentime = doc.data().Time.split(":");

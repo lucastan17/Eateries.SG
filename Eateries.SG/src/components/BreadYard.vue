@@ -52,11 +52,11 @@
         <form id="booking-form">
             <label for="Day">Chosen Day</label>
             <br>
-            <input type="date" class="w-input" v-model="this.content.Date">
+            <input type="date" class="w-input" v-model.lazy="this.content.Date">
             <br>
             <label for="time">Chosen Time</label>
             <br>
-            <input type="time" min="10:00" max = "23:00" class="w-input" v-model="this.content.Time">
+            <input type="time" min="10:00" max = "23:00" class="w-input" v-model.lazy="this.content.Time">
             <br>
             <label for="Pax">Number of Pax visiting</label>
             <br>
