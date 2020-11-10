@@ -52,11 +52,21 @@
         <form id="booking-form">
             <label for="Day">Chosen Day</label>
             <br>
-            <input type="date" class="w-input" v-model="this.content.Date">
+            <input type="date" class="w-input" v-model.lazy="this.content.Date">
             <br>
-            <label for="symptoms">Chosen Time</label>
+            <label for="time">Chosen Time</label>
             <br>
-            <input type="time" min="10:00" max = "23:00" class="w-input" v-model="this.content.Time">
+            <input type="time" min="10:00" max = "23:00" class="w-input" v-model.lazy="this.content.Time">
+            <br>
+            <label for="Pax">Number of Pax visiting</label>
+            <br>
+            <select class="w-input" v-model.lazy="content.Pax">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
             <br>
             <button class="button" v-on:click.prevent="addDetails()">Submit</button> 
         </form>
@@ -158,7 +168,8 @@ export default {
         Time: 0,
         Items: [],
         Amount: 0,
-        Eatery: "Sushi Tei"
+        Eatery: "Sushi Tei",
+        Pax: ''
       }
     };
   },
@@ -169,13 +180,26 @@ export default {
         var dateControl = document.querySelector('input[type="date"]');
         this.content.Date = dateControl.value;
         this.content.Amount = this.total;
-        database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
-        database.collection('Eateries').doc('Sushi Tei').collection('Transactions').add(this.content);
-        this.content.Date = "";
-        this.content.Time = "";
-        this.content.Items = [];
-        this.conetnt.Amount = 0;
-        this.total = 0;
+        //checking if date booked is in the future
+        var timeNow = Date.now()/1000
+        var chosentime = this.content.Time.split(":");
+        var bookingtime = (Date.parse(this.content.Date)/1000) + chosentime[0] * 60 * 60 + chosentime[1] * 60;
+        if (this.content.Amount != 0) { //booking date is in the future  bookingtime - timeNow > 0 && 
+          database.collection('Users').doc(fb.auth().currentUser.uid).collection('Transactions').add(this.content);
+          database.collection('Eateries').doc('Sushi Tei').collection('Transactions').add(this.content);
+          this.content.Date = "";
+          this.content.Time = "";
+          this.content.Items = [];
+          this.content.Amount = 0;
+          this.total = 0;
+          this.content.Pax = '';
+          alert("You have successfully placed an order!")
+        } else if (this.content.Amount == 0) {
+          alert("You have not selected any items on the menu. Please try again!")
+        } else if (bookingtime - timeNow < 0){
+          alert("You have indicated an booking date and/or time in the past. Please try again!")
+        }
+
     },
     updateAmount: function(amt) {
       this.total = amt;

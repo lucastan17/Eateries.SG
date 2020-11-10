@@ -49,7 +49,7 @@ export default {
                       diff += 24;
                     }
                     let x = this.datacollection.labels.indexOf(diff)
-                    this.datacollection.datasets[0].data[x] += 1;
+                    this.datacollection.datasets[0].data[x] += parseInt(doc.data().Pax);
                 }
             })
             this.renderChart(this.datacollection, this.options)

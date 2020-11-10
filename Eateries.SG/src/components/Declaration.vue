@@ -96,47 +96,7 @@ import fb from 'firebase';
         },
 
         methods: {
-/*
-            renderTemperature: function(doc, tempList) {
-                let li = document.createElement('li');
-                let temp = document.createElement('span');
-                let q1 = document.createElement('span');
-                let q2 = document.createElement('span');
-                let space = document.createTextNode("   ");
-
-                li.setAttribute('data-id', doc.id);
-                temp.textContent = doc.data().temp;
-                q1.textContent = doc.data().q1;
-                q2.textContent = doc.data().q2;
-
-                li.appendChild(temp);
-                let counter = 0;
-                while (counter < 1000 ) {
-                    let space = document.createTextNode(" ");
-                    li.appendChild(space);
-                    counter++;
-                }
-                li.appendChild(space);
-                li.appendChild(q1);
-                li.appendChild(space);
-                li.appendChild(q2);
-
-                tempList.appendChild(li);
-            },
-*/
-            //getting data of temperatures from db
-
             loadTemps: function() {
-/*                const tempList = document.querySelector('#temperature-list');
-                while (tempList.firstChild) {
-                    tempList.removeChild(tempList.lastChild);
-                }
-                database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').get().then(snapshot => {
-                    snapshot.docs.forEach(doc => {
-                        this.renderTemperature(doc, tempList);
-                    });
-                });
-*/
                 this.entries = [];
                 database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').get().then(snapshot => {
                     snapshot.forEach(doc => {
