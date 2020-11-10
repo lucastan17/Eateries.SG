@@ -56,7 +56,7 @@
             <br>
             <label for="Time">Chosen Time</label>
             <br>
-            <input type="time" min="10:00" max = "23:00" class="w-input" v-model.lazy="content.Time">
+            <input type="time" min="08:00" max = "23:00" class="w-input" v-model.lazy="content.Time">
             <br>
             <label for="Pax">Number of Pax visiting</label>
             <br>

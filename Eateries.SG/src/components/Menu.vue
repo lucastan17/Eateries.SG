@@ -24,7 +24,7 @@
         <button v-on:click="add(item)" style="background-color:#f0bcbc" class="countButton">+</button>
       </li>
     </ul>
-    <button v-on:click.prevent="onCounter()" class="button">Confirm selection</button>
+    <button v-on:click.prevent="onCounter()" class="button">Confirm Menu Selection</button>
 
   </div>
 </template>
@@ -43,16 +43,21 @@ export default {
       type: Number
     },
     selectionList: {
-      typre: Array
+      type: Array
     }
   },
   data() {
     return {
       itemsSelected: [],
+      selectionList2: [],
       priceList: [],
       quantityList: [],
       Amount: 0,
-      total: 0
+      total: 0,
+      tempItem: {
+        foodItem: '',
+        quantity: 0
+      }
     };
   },
   components: {
@@ -68,7 +73,8 @@ export default {
         event.srcElement.innerHTML = "Show Price";
       }
     },
-    onCounter: function (item, count) {
+    onCounter: function () {
+      /*
       if (count > 0 && this.itemsSelected.indexOf(item.name) == -1) {
         this.itemsSelected.push(item.name);
         this.priceList.push(item.price);
@@ -81,9 +87,19 @@ export default {
         var ind = this.itemsSelected.indexOf(item.name);
         this.quantityList[ind] = count;
       }
+      
       this.totalAmount();
+      */
+      var count = this.itemsSelected.length
+      for (var i = 0; i < count; i++){
+        var it = this.itemsSelected[i]
+        this.tempItem.foodItem = it.name;
+        alert(i);
+        this.tempItem.quantity = it.quantity;
+        this.selectionList2.push(this.tempItem);
+      }
       this.AmountTotal = this.total;
-      this.selectionList = this.itemsSelected;
+      this.selectionList = this.selectionList2;
       this.$emit('updateAmount', this.AmountTotal);
       this.$emit('updateSelections', this.selectionList);
     },
@@ -94,7 +110,9 @@ export default {
       }
     },
     add: function(item) {
-      this.itemsSelected.push(item);
+      if (this.itemsSelected.indexOf(item) == -1){
+        this.itemsSelected.push(item);
+      }
       item.quantity+=1;
       this.total += item.price;
     },
