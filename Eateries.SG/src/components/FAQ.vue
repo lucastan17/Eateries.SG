@@ -18,7 +18,7 @@
                 <router-link class ="current" to="/" exact>Log-In</router-link>
                 <router-link class = "link" to="/signup" exact>Sign-Up</router-link>
             </div>
-            
+
         </div>
     </div>
     <div id="Header" class="header">
@@ -32,7 +32,8 @@
     <div class="container">
         <div class="w-layout-grid content-grid">
         <div class="content-block">
-          
+          <p>Still have questions for us?</p>
+          <a @click="toContact()" onmouseover="color='blue'"><u>Contact Us</u></a>
         </div>
         </div>
     </div>
@@ -56,6 +57,10 @@
             
             signedIn(){
                 return fb.auth().currentUser != null
+            },
+            
+            toContact(){
+                return this.$router.replace('/contactus')
             }
         }
     }   
@@ -73,5 +78,16 @@
     width: 120px;
     font-family: sans-serif;
     padding-right: 15px;
+}
+a {
+    margin-bottom: 10px; 
+    color: #000000;
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    font-family: Inter, sans-serif;
+}
+a:hover{
+    color:blue;
 }
 </style>
