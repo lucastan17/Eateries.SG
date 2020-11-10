@@ -181,6 +181,7 @@ tr {
   max-width: 1400px;
   margin-right: auto;
   margin-left: auto;
+  padding-left:120px;
   padding-bottom: 30px;
 }
 
