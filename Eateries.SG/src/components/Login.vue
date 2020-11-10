@@ -29,7 +29,7 @@
         <h4>Sign in with your email and password</h4>
         <br>
         <div class ="content-section">
-            <h5><a style ="padding:20px;">Email:</a> <input type="text" v-model="email" placeholder="Email"></h5>
+            <h5><a style ="padding:20px;">Email:</a> <input type="text" v-model="email" placeholder="Email"></h5><p></p>
             <h5><a>Password:</a> <input type="password" v-model="password" placeholder="Password"></h5>
             <br>
             <button @click ="login()" >Log-In</button>
