@@ -101,6 +101,7 @@ export default {
 #Home-container {
     margin: auto;
     width: 60%;
+    padding-bottom: 40px;
 }
 
 </style>

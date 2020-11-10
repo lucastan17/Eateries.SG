@@ -24,14 +24,14 @@
         </div>
     </div>
     <div class="content-section">
-    <div class="sort-by-buttons w-container">
+    <div class="sort-by-buttons">
       <div class="sort">Sort by:</div>
       <a href="#" class="button" v-on:click.prevent="alpahbetical()">Alphabetical Order</a>
       <a href="#" class="button" v-on:click.prevent="rating()">Ratings</a>
       </div>
     </div>
 
-    <div>
+    <div class="container1">
         <tbody>
             <tr v-for="eatery in eats" :key = "eatery">
                 <td><img :src="getImg(eatery.src)" width="270" height="200" alt="" class="step-image">
@@ -106,7 +106,9 @@ export default {
 
 .sort-by-buttons {
   display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  padding-left: 100px;
   justify-content: flex-start;
   flex-wrap: wrap;
 }
@@ -161,5 +163,14 @@ th, td {
 tr {
   float: left;
   width: 30%;
+}
+
+.container1 {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 30px;
 }
 </style>

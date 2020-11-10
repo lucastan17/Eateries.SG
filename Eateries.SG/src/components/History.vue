@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    <div class="content-section">
+    <div class="container">
         <div>
             <p>Display a chart of your choice by clicking on any of the following buttons</p>
         </div>
