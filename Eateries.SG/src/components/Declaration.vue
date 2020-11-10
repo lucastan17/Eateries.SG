@@ -98,7 +98,7 @@ import fb from 'firebase';
         methods: {
             loadTemps: function() {
                 this.entries = [];
-                database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').get().then(snapshot => {
+                database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').orderBy("time", "desc").get().then(snapshot => {
                     snapshot.forEach(doc => {
                         this.entries.push(doc.data());
                     });
@@ -113,18 +113,19 @@ import fb from 'firebase';
             },
 
             saveTemps: function() {
+                this.content.time = new Date().getTime();
                 database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').add(this.content);
-                this.content.temp = "";
+                this.content.temp = 36.7;
                 this.content.q1 = "";
                 this.content.q2 = "";
                 this.content.time = "";
                 this.entries = [];
-                database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').get().then(snapshot => {
+                database.collection('Users').doc(fb.auth().currentUser.uid).collection('temperature').orderBy("time", "desc").get().then(snapshot => {
                     snapshot.forEach(doc => {
                         this.entries.push(doc.data());
                     });
                 });
-                this.entries = this.entries.reverse();                
+                //this.entries = this.entries.reverse();                
             },
 
             checkValidity: function() {
