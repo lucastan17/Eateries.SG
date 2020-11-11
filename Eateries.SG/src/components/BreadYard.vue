@@ -48,7 +48,7 @@
     <div>
         <demand></demand>
     </div>
-    <div class="">
+    <div class="container">
         <form id="booking-form">
             <label for="Day">Chosen Day</label>
             <br>
