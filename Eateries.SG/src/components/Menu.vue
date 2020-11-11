@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <!-- <basket v-bind:itemsSelected="itemsSelected" v-bind:quantityList="quantityList"></basket> -->
     <!-- <ul>
       <li v-for="item in itemsList" v-bind:key="item.name">

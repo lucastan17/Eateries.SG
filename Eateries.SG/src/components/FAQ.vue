@@ -34,10 +34,32 @@
         <div class="content-block">
             <div class="navigation-left">
                 <img src="..\assets\FAQ.svg" loading="lazy" width="80" alt="" />
-              <div class="logo-text"><h2> Questions about our web app? Check out some of our Frequently Asked Questions!</h2></div>
+              <div class="logo-text"><h2> Got questions about our web app? Check out some of our Frequently Asked Questions!</h2></div>
             </div>
-          <p>Still have questions for us?</p>
-          <a @click="toContact()" onmouseover="color='blue'"><u>Contact Us</u></a>
+            <ul style="list-style-type:none">
+                <p style="font-weight: bold">1. How do I get started?</p> 
+                <li>You can sign up <a @click="toSignup()" onmouseover="color='blue'"><u>here</u></a> with your name, phone number, email and password.</li>
+                <p style="font-weight: bold">2. How do I make a reservation?</p> 
+                <li>a. Go to our Partner Eateries page and pick your preferred eatery. <br> b. Select the items you want to order, number of pax, date and the time you want to visit the restaurant. <br> c. You will receive a confirmation of your booking.</li>
+                <p style="font-weight: bold">3. How do I change my password or other personal particulars?</p> 
+                <li>After logging in, you can change your password and other personal particulars such as your name, phone number and email on the <b>Profile</b> page.</li>
+                <p style="font-weight: bold">4. How long will my booking be held in the event I am late?</p> 
+                <li>Your booking will be held for 15 minutes. If you fail to show up or contact the eatery before the 15 minutes are up, your booking will be cancelled.</li>
+                <p style="font-weight: bold">5. What do I have to do before turning up for my booking?</p> 
+                <li>Since additional measures are taken for COVID-19, you have to fill up your temperature and answer the questions on our Declaration page. If you are not dining alone, the rest of your group have to follow the usual procedure of checking in using SafeEntry.</li>
+                <p style="font-weight: bold">6. Do I need to provide my credit card details?</p> 
+                <li>No, the booking does not require upfront payment. You can pay normally at the restaurant after dining there.</li>
+                <p style="font-weight: bold">7. When are our orders sent to the kitchen for preparation?</p> 
+                <li>Your orders are released to the kitchen to be prepared after you have checked in to the restaurant for your dining reservation.</li>
+                <p style="font-weight: bold">8. Where can I view my current and past bookings?</p> 
+                <li>You can view your past and upcoming bookings on the <b>Current Bookings</b> page.</li>
+                <p style="font-weight: bold">9. Where can I view my spendings and eateries visited?</p> 
+                <li>You can view the eateries where you dined at and the amount spent over the past 1, 3 or 6 month(s) on the <b>History</b> page.</li>
+                <p style="font-weight: bold">10. Can I use a foreign phone number?</p> 
+                <li>Yes, you can use a foreign phone number by including the correct country code in front of phone number.</li>
+            </ul> 
+            <p>Still have questions for us?</p>
+            <a @click="toContact()" onmouseover="color='blue'"><u>Contact Us</u></a>
         </div>
         </div>
     </div>
@@ -65,6 +87,9 @@
             
             toContact(){
                 return this.$router.replace('/contactus')
+            },
+            toSignup(){
+                return this.$router.replace('/signup')
             }
         }
     }   
