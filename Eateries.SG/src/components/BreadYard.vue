@@ -45,7 +45,7 @@
       <!--p @updateAmount="updateAmount"></p>
       <button v-on:click.prevent="refresh()" class="button">Refresh</button-->
     </div>
-    <div>
+    <div class="container">
         <demand></demand>
     </div>
     <div class="container">

@@ -96,7 +96,7 @@
     
 </script>
 
-<style>
+<style scoped>
 @import "../assets/basic_style.css";
 .SObutton {
     margin-left:10px;
@@ -118,5 +118,8 @@ a {
 }
 a:hover{
     color:blue;
+}
+li {
+    font-size: 16px;
 }
 </style>
