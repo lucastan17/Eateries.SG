@@ -41,25 +41,17 @@
       <h2>Bread Yard Menu</h2>
       <Menu v-bind:itemsList="itemsList" :AmountTotal="total" :selectionList="content.Items" @updateAmount="total=$event" 
       @updateSelections="content.Items=$event"></Menu>
-      <p id="totDisplay">Total Amount Payable: $0</p>
-      <!--p @updateAmount="updateAmount"></p>
-      <button v-on:click.prevent="refresh()" class="button">Refresh</button-->
+      <!-- <p id="totDisplay">Total Amount Payable: $0</p>
+      <p @updateAmount="updateAmount"></p>
+      <button v-on:click.prevent="refresh()" class="button">Refresh</button> -->
     </div>
     <div class="container">
         <demand></demand>
     </div>
     <div class="container">
         <form id="booking-form">
-            <label for="Day">Chosen Day</label>
-            <br>
-            <input type="date" class="w-input" v-model.lazy="this.content.Date">
-            <br>
-            <label for="time">Chosen Time</label>
-            <br>
-            <input type="time" min="10:00" max = "23:00" class="w-input" v-model.lazy="this.content.Time">
-            <br>
-            <label for="Pax">Number of Pax visiting</label>
-            <br>
+          <label for="Pax">Number of Pax visiting</label>
+          <br>
             <select class="w-input" v-model.lazy="content.Pax">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -67,8 +59,16 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
-            <br>
-            <button class="button" v-on:click.prevent="addDetails()">Submit</button> 
+          <br>
+          <label for="Day">Chosen Day</label>
+          <br>
+          <input type="date" class="w-input" v-model.lazy="this.content.Date">
+          <br>
+          <label for="time">Chosen Time</label>
+          <br>
+          <input type="time" min="10:00" max = "23:00" class="w-input" v-model.lazy="this.content.Time">
+          <br>
+          <button class="button" v-on:click.prevent="addDetails()">Submit</button> 
         </form>
     </div>
   </body>
