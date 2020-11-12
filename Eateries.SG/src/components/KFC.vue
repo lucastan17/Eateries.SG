@@ -49,14 +49,6 @@
     </div>
     <div class="">
         <form id="booking-form">
-            <label for="Day">Chosen Day</label>
-            <br>
-            <input type="date" class="w-input" v-model.lazy="content.Date">
-            <br>
-            <label for="Time">Chosen Time</label>
-            <br>
-            <input type="time" min="08:00" max = "23:00" class="w-input" v-model.lazy="content.Time">
-            <br>
             <label for="Pax">Number of Pax visiting</label>
             <br>
             <select class="w-input" v-model.lazy="content.Pax">
@@ -66,6 +58,14 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
+            <br>
+            <label for="Day">Chosen Day</label>
+            <br>
+            <input type="date" class="w-input" v-model.lazy="content.Date">
+            <br>
+            <label for="Time">Chosen Time</label>
+            <br>
+            <input type="time" min="08:00" max = "23:00" class="w-input" v-model.lazy="content.Time">
             <br>
             <button class="button" v-on:click.prevent="addDetails()">Submit</button> 
         </form>
