@@ -2,9 +2,9 @@
 <body>
     <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
         <div class="navigation-container">
-            <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
+            <!-- <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
-            </div>
+            </div> -->
             <div class="navigation-right">
                 <router-link class = "link" to="/home" exact>Home</router-link>
                 <router-link class = "link" to="/profile" exact>Profile</router-link>
@@ -12,7 +12,7 @@
                 <router-link class = "link" to="/partnereateries" exact>Partner Eateries</router-link>
                 <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "link" to="/declaration" exact>Declaration</router-link>
-                <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button>
+                <!-- <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button> -->
             </div>
         </div>
     </div>
@@ -31,8 +31,8 @@
         <div class="sort-by-buttons w-container">
             <p>Plots of the past eateries visited</p>
             <div>
-                <button class="button" v-on:click="MonthEat(1)">Last 1 Month</button>
-                <button class="button" v-on:click="MonthEat(3)">Last 3 Months</button>
+                <button class="button" v-on:click="MonthEat(1)">Last 1 Month</button><br>
+                <button class="button" v-on:click="MonthEat(3)">Last 3 Months</button><br>
                 <button class="button" v-on:click="MonthEat(6)">Last 6 months</button>
             </div>
             <div>
@@ -51,8 +51,8 @@
         <div class="sort-by-buttons w-container">
             <p>Plots of the past transactions (in SG$)</p>
             <div>
-                <button class="button" v-on:click="MonthSales(1)">Last 1 Month</button>
-                <button class="button" v-on:click="MonthSales(3)">Last 3 Months</button>
+                <button class="button" v-on:click="MonthSales(1)">Last 1 Month</button><br>
+                <button class="button" v-on:click="MonthSales(3)">Last 3 Months</button><br>
                 <button class="button" v-on:click="MonthSales(6)">Last 6 months</button>
             </div>
             <div>

@@ -2,9 +2,9 @@
 <body>
     <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
         <div class="navigation-container">
-            <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
+           <!--  <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
-            </div>
+            </div> -->
             <div class="navigation-right">
                 <router-link class = "current" to="/home" exact>Home</router-link>
                 <router-link class = "link" to="/profile" exact>Profile</router-link>
@@ -12,7 +12,7 @@
                 <router-link class = "link" to="/partnereateries" exact>Partner Eateries</router-link>
                 <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "link" to="/declaration" exact>Declaration</router-link>
-                <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button>
+                <!-- <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button>-->
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
     </div>
     <div id="Home-container">
         <h2>Welcome! What would you like to do today?</h2>
-        <div class="buttons-flex">
+       <!--  <div class="buttons-flex">
            <div class="button-cover">
                 <button class="homebtn" @click="$router.push('profile')"><img src="..\assets\profile.svg" width="150" height="150"><br>Profile</button>
             </div>
@@ -47,7 +47,7 @@
             <div class="button-cover">
                 <button class="homebtn" @click="signOut()"><img src="..\assets\logout.svg" width="150" height="150"><br>Logout</button>
             </div> 
-        </div>
+        </div> -->
     </div>
     
 
