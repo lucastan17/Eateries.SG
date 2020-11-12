@@ -2,9 +2,9 @@
 <body>
     <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
         <div class="navigation-container">
-            <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
+            <!-- <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
-            </div>
+            </div> -->
             <div class="navigation-right">
                 <router-link class = "link" to="/home" exact>Home</router-link>
                 <router-link class = "current"  to="/profile" exact>Profile</router-link>
@@ -12,7 +12,7 @@
                 <router-link class = "link" to="/partnereateries" exact>Partner Eateries</router-link>
                 <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "link" to="/declaration" exact>Declaration</router-link>
-                <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button>
+                <!-- <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button> -->
             </div>
         </div>
     </div>
@@ -34,7 +34,7 @@
         <input type="password" class="w-input" v-model.lazy="userDetail.oldPass" required>
         <label for="email">New Password:</label>
 
-        <input type="password" class="w-input" v-model.lazy="userDetail.newPass" required>
+        <input type="password" class="w-input" v-model.lazy="userDetail.newPass" required><br>
         <button class="button1" v-on:click.prevent="updatePassword()">Change my Password</button>        
       </form>
       <br>
@@ -70,6 +70,7 @@
         <input type="text" class="w-input" v-model="userDetail.newPhone" required>
         <label for="email-3">Email Address</label>
         <input type="text" class="w-input" v-model="userDetail.newEmail" required>
+        <br>
         <button class="button1" v-on:click.prevent="updateProfile()">Update Records</button>
 
       </form>

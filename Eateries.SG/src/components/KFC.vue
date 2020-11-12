@@ -37,17 +37,17 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="content-section">
       <h2>KFC Menu</h2>
       <Menu v-bind:itemsList="itemsList" :AmountTotal="total" :selectionList="content.Items" @updateAmount="total=$event" 
       @updateSelections="content.Items=$event"></Menu>
       <!--p id="totDisplay">Total Amount Payable: $0</p>
       <button v-on:click.prevent="refresh()" class="button">Refresh</button-->
     </div>
-    <div>
+    <div class="container">
         <demand></demand>
     </div>
-    <div class="">
+    <div class="container">
         <form id="booking-form">
             <label for="Pax">Number of Pax visiting</label>
             <br>

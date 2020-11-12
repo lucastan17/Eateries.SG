@@ -7,9 +7,9 @@
     </div> -->
     <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
         <div class="navigation-container">
-            <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
+            <!-- <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
-            </div>
+            </div> -->
             <div class="navigation-right">
                 <router-link class ="current" to="/" exact>Log-In</router-link>
                 <router-link class = "link" to="/signup" exact>Sign-Up</router-link>
@@ -32,7 +32,7 @@
             <h5><a style ="padding:20px;">Email:</a> <input type="text" v-model="email" placeholder="Email"></h5><p></p>
             <h5><a>Password:</a> <input type="password" v-model="password" placeholder="Password"></h5>
             <br>
-            <button @click ="login()" >Log-In</button>
+            <button @click ="login()" id="loginButton">Log-In</button>
         <!--
             <p>No account? Sign up for an account!</p>
         -->
@@ -77,5 +77,16 @@
 
 <style>
 @import '../assets/basic_style.css';
+
+#loginButton {
+    margin-left:10px;
+    background-color:whitesmoke;
+    font-size: 16px;
+    border-radius: 12px;
+    border: 2px solid #990000;
+    width: 120px;
+    font-family: sans-serif;
+    padding-right: 15px;
+}
 
 </style>

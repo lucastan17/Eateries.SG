@@ -41,14 +41,14 @@
       <h2>Bread Yard Menu</h2>
       <Menu v-bind:itemsList="itemsList" :AmountTotal="total" :selectionList="content.Items" @updateAmount="total=$event" 
       @updateSelections="content.Items=$event"></Menu>
-      <p id="totDisplay">Total Amount Payable: $0</p>
-      <!--p @updateAmount="updateAmount"></p>
-      <button v-on:click.prevent="refresh()" class="button">Refresh</button-->
+      <!-- <p id="totDisplay">Total Amount Payable: $0</p>
+      <p @updateAmount="updateAmount"></p>
+      <button v-on:click.prevent="refresh()" class="button">Refresh</button> -->
     </div>
-    <div>
+    <div class="container">
         <demand></demand>
     </div>
-    <div class="">
+    <div class="container">
         <form id="booking-form">
             <label for="Pax">Number of Pax visiting</label>
             <br>
