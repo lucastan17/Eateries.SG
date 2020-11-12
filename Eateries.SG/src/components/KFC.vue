@@ -194,6 +194,7 @@ export default {
           this.total = 0;
           this.content.Pax = '';
           alert("You have successfully placed an order!")
+          this.$router.replace('/currentbookings')
         } else if (this.content.Amount == 0) {
           alert("You have not selected any items on the menu. Please try again!")
         } else if (bookingtime - timeNow < 0){
