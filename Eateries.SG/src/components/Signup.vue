@@ -30,7 +30,7 @@
         <input type="text" v-model="phoneNo" placeholder="Phone Number"><br>
         <input type="text" v-model="email" placeholder="Email"><br>
         <input type="password" v-model="password" placeholder="Password"><br>
-        <button type="submit" @click="submit()">Sign-Up</button>
+        <button type="submit" @click="submit()" id="signupButton">Sign-Up</button>
         </h2>
     </div>
     
@@ -83,5 +83,16 @@
 
 <style>
 @import '../assets/basic_style.css';
+
+#signupButton {
+    margin-left:10px;
+    background-color:whitesmoke;
+    font-size: 16px;
+    border-radius: 12px;
+    border: 2px solid #990000;
+    width: 120px;
+    font-family: sans-serif;
+    padding-right: 15px;
+}
 
 </style>

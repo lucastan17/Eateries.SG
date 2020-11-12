@@ -32,7 +32,7 @@
             <h5><a style ="padding:20px;">Email:</a> <input type="text" v-model="email" placeholder="Email"></h5><p></p>
             <h5><a>Password:</a> <input type="password" v-model="password" placeholder="Password"></h5>
             <br>
-            <button @click ="login()" >Log-In</button>
+            <button @click ="login()" id="loginButton">Log-In</button>
         <!--
             <p>No account? Sign up for an account!</p>
         -->
@@ -77,5 +77,16 @@
 
 <style>
 @import '../assets/basic_style.css';
+
+#loginButton {
+    margin-left:10px;
+    background-color:whitesmoke;
+    font-size: 16px;
+    border-radius: 12px;
+    border: 2px solid #990000;
+    width: 120px;
+    font-family: sans-serif;
+    padding-right: 15px;
+}
 
 </style>
