@@ -125,7 +125,7 @@ export default {
         })
         },
         toggle() {
-            if (this.bookings.length == []) {
+            if (this.bookings == 0) {
                 this.readCurrentBookings();
             }
             this.show = !this.show;
@@ -136,7 +136,9 @@ export default {
             }
         },
         toggle2() {
-            this.readExpiredBookings();
+            if (this.expired.length == 0) {
+                this.readExpiredBookings();
+            }
             this.show2 = !this.show2;
             if (this.show) {
                 document.getElementById("showPast").innerHTML = "Hide Past Records";
