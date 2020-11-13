@@ -2,9 +2,9 @@
 <body>
     <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
         <div class="navigation-container">
-            <!-- <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
+            <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
-            </div> -->
+            </div>
             <div class="navigation-right">
                 <router-link class = "link" to="/home" exact>Home</router-link>
                 <router-link class = "link" to="/profile" exact>Profile</router-link>
@@ -12,7 +12,7 @@
                 <router-link class = "link" to="/partnereateries" exact>Partner Eateries</router-link>
                 <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "link" to="/declaration" exact>Declaration</router-link>
-                <!-- <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button> -->
+                <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button>
             </div>
         </div>
     </div>
@@ -20,39 +20,41 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>History</h1>
-                <p>Travel back in time!</p>
+                <h4>Travel back in time!</h4>
             </div>
         </div>
     </div>
     <div class="container">
         <div>
-            <p>Display a chart of your choice by clicking on any of the following buttons</p>
+            <h2>Display a chart of your choice by clicking on any of the following buttons</h2><br>
         </div>
         <div class="sort-by-buttons w-container">
-            <p>Plots of the past eateries visited</p>
+            <h4>1. View Visualisations of the past eateries visited</h4>
             <div>
-                <button class="button" v-on:click="MonthEat(1)">Last 1 Month</button><br>
-                <button class="button" v-on:click="MonthEat(3)">Last 3 Months</button><br>
-                <button class="button" v-on:click="MonthEat(6)">Last 6 months</button>
+                <div class = "buttoncol">
+                    <button class="button" v-on:click="MonthEat(1)">Last 1 Month</button>
+                    <button class="button" v-on:click="MonthEat(3)">Last 3 Months</button>
+                    <button class="button" v-on:click="MonthEat(6)">Last 6 months</button>
+                </div>
+                <div class = "graphcol">
+                    <div v-if="display1 == true">
+                        <chart1></chart1>
+                    </div>
+                    <div v-if="display2 == true">
+                        <chart2></chart2>
+                    </div>
+                    <div v-if="display3 == true">
+                        <chart3></chart3>
+                    </div>
+                    <!--img src="..\assets\breadyard.jpg" loading="lazy" alt=""-->
+                </div>
             </div>
-            <div>
-                <div v-if="display1 == true">
-                    <chart1></chart1>
-                </div>
-                <div v-if="display2 == true">
-                    <chart2></chart2>
-                </div>
-                <div v-if="display3 == true">
-                    <chart3></chart3>
-                </div>
-                <!--img src="..\assets\breadyard.jpg" loading="lazy" alt=""-->
-            </div>
-        </div>
+        </div><br><br><br><br><br><br>
         <div class="sort-by-buttons w-container">
-            <p>Plots of the past transactions (in SG$)</p>
+            <h4>2. View Visualisations of the past transactions (in SG$)</h4>
             <div>
-                <button class="button" v-on:click="MonthSales(1)">Last 1 Month</button><br>
-                <button class="button" v-on:click="MonthSales(3)">Last 3 Months</button><br>
+                <button class="button" v-on:click="MonthSales(1)">Last 1 Month</button>
+                <button class="button" v-on:click="MonthSales(3)">Last 3 Months</button>
                 <button class="button" v-on:click="MonthSales(6)">Last 6 months</button>
             </div>
             <div>
@@ -66,10 +68,11 @@
                     <chart6></chart6>
                 </div>
                 <!--img src="..\assets\breadyard.jpg" loading="lazy" alt=""-->
-            </div>
+            </div><br><br><br><br><br><br>
         </div>
         <div>
             <div>
+                <h4>3. View Visualisations of the total amount spent in the last 6 months (in SG$)</h4>
                 <chart7></chart7>
             </div>
         </div>

@@ -2,9 +2,9 @@
 <body>
     <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
         <div class="navigation-container">
-            <!-- <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
+            <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
-            </div> -->
+            </div>
             <div class="navigation-right" v-if="signedIn()">
                 <router-link class = "link" to="/home" exact>Home</router-link>
                 <router-link class = "link" to="/profile" exact>Profile</router-link>
@@ -12,7 +12,7 @@
                 <router-link class = "link" to="/partnereateries" exact>Partner Eateries</router-link>
                 <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "link" to="/declaration" exact>Declaration</router-link>
-                <!-- <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button> -->
+                <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button>
             </div>
             <div class="navigation-right" v-else>
                 <router-link class ="current" to="/" exact>Log-In</router-link>
@@ -33,7 +33,7 @@
         <div class="w-layout-grid content-grid">
         <div class="content-block">
             <div class="navigation-left">
-                <!-- <img src="..\assets\FAQ.svg" loading="lazy" width="80" alt="" /> -->
+                <img src="..\assets\FAQ.svg" loading="lazy" width="80" alt="" />
               <div class="logo-text"><h2> Got questions about our web app? Check out some of our Frequently Asked Questions!</h2></div>
             </div>
             <ul style="list-style-type:none">
@@ -57,9 +57,10 @@
                 <li>You can view the eateries where you dined at and the amount spent over the past 1, 3 or 6 month(s) on the <b>History</b> page.</li>
                 <p style="font-weight: bold">10. Can I use a foreign phone number?</p> 
                 <li>Yes, you can use a foreign phone number by including the correct country code in front of phone number.</li>
+                <br><br><br><br>
+                <p>Still have questions for us?</p>
+                <a @click="toContact()" onmouseover="color='blue'"><u>Contact Us</u></a>
             </ul> 
-            <p>Still have questions for us?</p>
-            <a @click="toContact()" onmouseover="color='blue'"><u>Contact Us</u></a>
         </div>
         </div>
     </div>

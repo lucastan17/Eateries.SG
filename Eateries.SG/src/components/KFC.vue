@@ -30,16 +30,16 @@
       <div id="container-flex">
         <div class="head-content">
           <h1>Partner Eateries</h1>
-          <p>
+          <h4>
             Treat your taste buds and satisfy your cravings with our wide
             selection of partner eateries!
-          </p>
+          </h4>
         </div>
       </div>
     </div>
     <div class="content-section">
       <h2>KFC Menu</h2>
-      <Menu v-bind:itemsList="itemsList" :AmountTotal="total" :selectionList="content.Items" @updateAmount="total=$event" 
+      <Menu v-bind:itemsList="itemsList2" :AmountTotal="total" :selectionList="content.Items" @updateAmount="total=$event" 
       @updateSelections="content.Items=$event"></Menu>
       <!--p id="totDisplay">Total Amount Payable: $0</p>
       <button v-on:click.prevent="refresh()" class="button">Refresh</button-->
@@ -88,7 +88,8 @@ export default {
   data() {
     return {
       total : 0,
-      itemsList: [
+      itemsList2: [],
+/*      itemsList: [
         {
           id: 1,
           name: "Popcorn Chicken",
@@ -162,6 +163,7 @@ export default {
           quantity: 0,
         },
       ],
+*/
       content: {
         Date: '',
         Time: 0,
@@ -210,7 +212,17 @@ export default {
     },
     refresh: function() {
       document.getElementById("totDisplay").innerHTML = "Total Amount Payable: $" + this.total.toFixed(2);
+    },
+    populateList: function() {
+      database.collection('Eateries').doc('KFC').collection('Menu').get().then(snapshot => {
+          snapshot.forEach(doc => {
+            this.itemsList2.push(doc.data());
+          });
+      });
     }
+  },
+  created() {
+    this.populateList();
   }
 };
 </script>

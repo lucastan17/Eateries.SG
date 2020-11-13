@@ -2,9 +2,9 @@
 <body>
     <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
         <div class="navigation-container">
-            <!-- <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
+            <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
-            </div> -->
+            </div>
             <div class="navigation-right">
                 <router-link class = "link" to="/home" exact>Home</router-link>
                 <router-link class = "link" to="/profile" exact>Profile</router-link>
@@ -12,7 +12,7 @@
                 <router-link class = "current" to="/partnereateries" exact>Partner Eateries</router-link>
                 <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "link" to="/declaration" exact>Declaration</router-link>
-                <!-- <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button> -->
+                <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button>
             </div>
         </div>
     </div>
@@ -20,16 +20,17 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>Partner Eateries</h1>
-                <p>Treat your taste buds and satisfy your cravings with our wide selection of partner eateries!</p>
+                <h4>Treat your taste buds and satisfy your cravings with our wide selection of partner eateries!</h4>
             </div>
         </div>
     </div>
     <div class="content-section">
     <div class="sort-by-buttons">
-      <div class="sort">Sort by:</div>
+      <div class="sort"><strong>Sort by:</strong></div>
       <a href="#" class="button" v-on:click.prevent="alpahbetical()">Alphabetical Order</a>
       <a href="#" class="button" v-on:click.prevent="rating()">Ratings</a>
       </div>
+      <h4>Click on the name of your preferred eatery</h4>
     </div>
 
     <div class="container1">

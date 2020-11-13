@@ -2,9 +2,9 @@
 <body>
     <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
         <div class="navigation-container">
-            <!-- <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
+            <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
-            </div> -->
+            </div>
             <div class="navigation-right" v-if="signedIn()">
                 <router-link class = "link" to="/home" exact>Home</router-link>
                 <router-link class = "link" to="/profile" exact>Profile</router-link>
@@ -12,7 +12,7 @@
                 <router-link class = "link" to="/partnereateries" exact>Partner Eateries</router-link>
                 <router-link class = "link" to="/currentbookings" exact>Current Bookings</router-link>
                 <router-link class = "link" to="/declaration" exact>Declaration</router-link>
-                <!-- <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button> -->
+                <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button>
             </div>
             <div class="navigation-right" v-else>
                 <router-link class ="current" to="/" exact>Log-In</router-link>
@@ -35,10 +35,12 @@
           <h4>Our Mission</h4>
           <p>Here at Eateries.SG, we aim to bring you closer to your favourite eateries! Our mission is to make dining at eateries a more enjoyable experience and support our local eateries!</p> 
           <p>In this time of COVID-19, restaurants have been hit the hardest due to restrictions implemented in light of the pandemic. Join us in  your favourite eateries to continue delivering quality food and service!</p>
+          <br><br>
+          <img src="../assets/sg_food.png" alt="">
         </div>
-        <div class="image-blsupportingock"><img src="../assets/sg_food.png" alt="">
-            <!--<router-link to="/partnereateries" tag="button" class="button">Check out our partner eateries now!</router-link>-->
-        </div>
+        <!--div class="image-blsupportingock"><img src="../assets/sg_food.png" alt="">
+            <router-link to="/partnereateries" tag="button" class="button">Check out our partner eateries now!</router-link>>
+        </div-->
         </div>
     </div>
     </div>
