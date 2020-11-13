@@ -35,10 +35,12 @@
           <h4>Our Mission</h4>
           <p>Here at Eateries.SG, we aim to bring you closer to your favourite eateries! Our mission is to make dining at eateries a more enjoyable experience and support our local eateries!</p> 
           <p>In this time of COVID-19, restaurants have been hit the hardest due to restrictions implemented in light of the pandemic. Join us in  your favourite eateries to continue delivering quality food and service!</p>
+          <br><br>
+          <img src="../assets/sg_food.png" alt="">
         </div>
-        <div class="image-blsupportingock"><img src="../assets/sg_food.png" alt="">
-            <!--<router-link to="/partnereateries" tag="button" class="button">Check out our partner eateries now!</router-link>-->
-        </div>
+        <!--div class="image-blsupportingock"><img src="../assets/sg_food.png" alt="">
+            <router-link to="/partnereateries" tag="button" class="button">Check out our partner eateries now!</router-link>>
+        </div-->
         </div>
     </div>
     </div>

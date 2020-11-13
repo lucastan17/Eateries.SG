@@ -57,9 +57,10 @@
                 <li>You can view the eateries where you dined at and the amount spent over the past 1, 3 or 6 month(s) on the <b>History</b> page.</li>
                 <p style="font-weight: bold">10. Can I use a foreign phone number?</p> 
                 <li>Yes, you can use a foreign phone number by including the correct country code in front of phone number.</li>
+                <br><br><br><br>
+                <p>Still have questions for us?</p>
+                <a @click="toContact()" onmouseover="color='blue'"><u>Contact Us</u></a>
             </ul> 
-            <p>Still have questions for us?</p>
-            <a @click="toContact()" onmouseover="color='blue'"><u>Contact Us</u></a>
         </div>
         </div>
     </div>

@@ -30,10 +30,10 @@
       <div id="container-flex">
         <div class="head-content">
           <h1>Partner Eateries</h1>
-          <p>
+          <h4>
             Treat your taste buds and satisfy your cravings with our wide
             selection of partner eateries!
-          </p>
+          </h4>
         </div>
       </div>
     </div>

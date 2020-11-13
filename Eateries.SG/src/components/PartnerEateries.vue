@@ -20,16 +20,17 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>Partner Eateries</h1>
-                <p>Treat your taste buds and satisfy your cravings with our wide selection of partner eateries!</p>
+                <h4>Treat your taste buds and satisfy your cravings with our wide selection of partner eateries!</h4>
             </div>
         </div>
     </div>
     <div class="content-section">
     <div class="sort-by-buttons">
-      <div class="sort">Sort by:</div>
+      <div class="sort"><strong>Sort by:</strong></div>
       <a href="#" class="button" v-on:click.prevent="alpahbetical()">Alphabetical Order</a>
       <a href="#" class="button" v-on:click.prevent="rating()">Ratings</a>
       </div>
+      <h4>Click on the name of your preferred eatery</h4>
     </div>
 
     <div class="container1">
