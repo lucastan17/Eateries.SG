@@ -39,7 +39,7 @@
     </div>
     <div>
       <h2>Bread Yard Menu</h2>
-      <Menu v-bind:itemsList="itemsList" :AmountTotal="total" :selectionList="content.Items" @updateAmount="total=$event" 
+      <Menu v-bind:itemsList="itemsList2" :AmountTotal="total" :selectionList="content.Items" @updateAmount="total=$event" 
       @updateSelections="content.Items=$event"></Menu>
       <!-- <p id="totDisplay">Total Amount Payable: $0</p>
       <p @updateAmount="updateAmount"></p>
@@ -89,6 +89,8 @@ export default {
   data() {
     return {
       total : 0,
+      itemsList2: [],
+/*
       itemsList: [
         {
           id: 1,
@@ -163,6 +165,7 @@ export default {
           quantity: 0,
         },
       ],
+*/
       content: {
         Date: '',
         Time: 0,
@@ -211,7 +214,17 @@ export default {
     },
     refresh: function() {
       document.getElementById("totDisplay").innerHTML = "Total Amount Payable: $" + this.total;
+    },
+    populateList: function() {
+      database.collection('Eateries').doc('Bread Yard').collection('Menu').get().then(snapshot => {
+          snapshot.forEach(doc => {
+            this.itemsList2.push(doc.data());
+          });
+      });
     }
+  },
+  created() {
+    this.populateList();
   }
 };
 </script>

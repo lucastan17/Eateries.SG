@@ -88,8 +88,8 @@ export default {
   data() {
     return {
       total : 0,
-      itemslist2: [],
-      itemsList: [
+      itemsList2: [],
+/*      itemsList: [
         {
           id: 1,
           name: "Popcorn Chicken",
@@ -163,6 +163,7 @@ export default {
           quantity: 0,
         },
       ],
+*/
       content: {
         Date: '',
         Time: 0,
