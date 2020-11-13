@@ -20,18 +20,20 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>Sign-Up</h1>
-                <p>Create a new account here!</p>
+                <h4>Create a new account here!</h4>
             </div>
         </div>
     </div>
     <div>
-        <h2>
-        <input type="text" v-model="name" placeholder="Name"><br>
-        <input type="text" v-model="phoneNo" placeholder="Phone Number"><br>
-        <input type="text" v-model="email" placeholder="Email"><br>
-        <input type="password" v-model="password" placeholder="Password"><br>
-        <button type="submit" @click="submit()" id="signupButton">Sign-Up</button>
-        </h2>
+        <h2>Are you excited to create your brand new account?</h2>
+        <h4>Fill in the 4 fields below to get started!</h4><br><br>
+    </div>
+    <div>
+        <h5><a style ="padding:75px;">Name:</a><input type="text" v-model="name" placeholder="Enter Name Here"></h5>
+        <h5><a style ="padding:25px;">Phone Number:</a><input type="text" v-model="phoneNo" placeholder="Enter Phone Number Here"></h5>
+        <h5><a style ="padding:77px;">Email:</a><input type="text" v-model="email" placeholder="Enter Email Here"></h5>
+        <h5><a style ="padding:55px;">Password:</a><input type="password" v-model="password" placeholder="Enter Password Here"></h5><br>
+        <button type="submit" @click="submit()" id="signupButton">Sign-Up</button><br><br>
     </div>
     
 
@@ -44,8 +46,8 @@
     export default {
         data(){
             return{
-                name:"Enter Name Here",
-                email:"email here",
+                name:"",
+                email:"",
                 password:"",
                 phoneNo:"",
             }

@@ -20,7 +20,7 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>Log-In</h1>
-                <p>Log-In Here, or sign-up if you are a new user!</p>
+                <h4>Log-In Here, or sign-up if you are a new user!</h4>
             </div>
         </div>
     </div>
@@ -29,8 +29,8 @@
         <h4>Sign in with your email and password</h4>
         <br>
         <div class ="content-section">
-            <h5><a style ="padding:20px;">Email:</a> <input type="text" v-model="email" placeholder="Email"></h5><p></p>
-            <h5><a>Password:</a> <input type="password" v-model="password" placeholder="Password"></h5>
+            <h5><a style ="padding:25px;">Email:</a> <input type="text" v-model="email" placeholder="Enter your email here"></h5><p></p>
+            <h5><a style ="padding:5px;">Password:</a> <input type="password" v-model="password" placeholder="Enter you password here"></h5>
             <br>
             <button @click ="login()" id="loginButton">Log-In</button>
         <!--
@@ -69,6 +69,7 @@
                 })
                 .catch(err =>{
                     this.error = err.message;
+                    alert(this.error);
                 })
             }    
         }
