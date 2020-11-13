@@ -6,7 +6,7 @@
           <div class="footer-column">
             <p>Bringing you closer to your favourite restaurants, both new and old.</p>
             <div class="navigation-left">
-              <!-- <img src="..\assets\EateriesSG.svg" loading="lazy" width="83" alt="" /> -->
+              <img src="..\assets\EateriesSG.svg" loading="lazy" width="83" alt="" />
               <div class="logo-text">EATERIES.SG</div>
             </div>
           </div>
