@@ -20,7 +20,7 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>Log-In</h1>
-                <p>Log-In Here, or sign-up if you are a new user!</p>
+                <h4>Log-In Here, or sign-up if you are a new user!</h4>
             </div>
         </div>
     </div>

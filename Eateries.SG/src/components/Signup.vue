@@ -20,7 +20,7 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>Sign-Up</h1>
-                <p>Create a new account here!</p>
+                <h4>Create a new account here!</h4>
             </div>
         </div>
     </div>

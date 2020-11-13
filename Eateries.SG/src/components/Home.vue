@@ -20,7 +20,7 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>Home</h1>
-                <p>One small step for your finger, a giant step for your stomach</p>
+                <h4>One small step for your finger, a giant leap for your stomach</h4>
             </div>
         </div>
     </div>
