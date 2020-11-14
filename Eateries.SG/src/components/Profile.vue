@@ -20,7 +20,7 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>Profile</h1>
-                <p>Update your personal particulars</p>
+                <h4>Update your personal particulars</h4>
             </div>
         </div>
     </div>
