@@ -38,7 +38,7 @@
             </div>
             <ul style="list-style-type:none">
                 <p style="font-weight: bold">1. How do I get started?</p> 
-                <li>You can sign up <a @click="toSignup()" onmouseover="color='blue'"><u>here</u></a> with your name, phone number, email and password.</li>
+                <li>You can sign up <a1 @click="toSignup()" onmouseover="color='blue'"><u>here</u></a1> with your name, phone number, email and password.</li>
                 <p style="font-weight: bold">2. How do I make a reservation?</p> 
                 <li>a. Go to our Partner Eateries page and pick your preferred eatery. <br> b. Select the items you want to order, number of pax, date and the time you want to visit the restaurant. <br> c. You will receive a confirmation of your booking.</li>
                 <p style="font-weight: bold">3. How do I change my password or other personal particulars?</p> 
@@ -59,7 +59,7 @@
                 <li>Yes, you can use a foreign phone number by including the correct country code in front of phone number.</li>
                 <br><br><br><br>
                 <p>Still have questions for us?</p>
-                <a @click="toContact()" onmouseover="color='blue'"><u>Contact Us</u></a>
+                <a1 @click="toContact()" onmouseover="color='blue'"><u>Contact Us</u></a1>
             </ul> 
         </div>
         </div>
@@ -109,7 +109,7 @@
     font-family: sans-serif;
     padding-right: 15px;
 }
-a {
+a1 {
     margin-bottom: 10px; 
     color: #000000;
     font-size: 20px;
@@ -117,7 +117,7 @@ a {
     letter-spacing: -0.02em;
     font-family: Inter, sans-serif;
 }
-a:hover{
+a1:hover{
     color:blue;
 }
 li {

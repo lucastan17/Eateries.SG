@@ -23,6 +23,7 @@
           <router-link class="current" to="/partnereateries" exact>Partner Eateries</router-link>
           <router-link class="link" to="/currentbookings" exact>Current Bookings</router-link>
           <router-link class="link" to="/declaration" exact>Declaration</router-link>
+          <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button>
         </div>
       </div>
     </div>
@@ -177,6 +178,14 @@ export default {
     };
   },
   methods : {
+    signOut(){
+                fb.auth().signOut().then(() => {
+                this.$router.replace('/')
+            })
+            .catch(err =>{
+                this.error = err.message;
+            })
+        },
     addDetails: function() {
         var timeControl = document.querySelector('input[type="time"]');
         this.content.Time = timeControl.value;
@@ -231,4 +240,14 @@ export default {
 
 <style>
 @import "../assets/basic_style.css";
+.SObutton {
+    margin-left:10px;
+    background-color:whitesmoke;
+    font-size: 18px;
+    border-radius: 12px;
+    border: 2px solid #990000;
+    width: 120px;
+    font-family: sans-serif;
+    padding-right: 15px;
+}
 </style>
