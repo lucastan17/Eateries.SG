@@ -125,7 +125,7 @@ export default {
         },
         {
           id: 5,
-          name: "Chessy Poppers",
+          name: "Cheesy Poppers",
           imageURL:
             "https://cdn.singpromos.com/wp-content/uploads/2018/05/Cheese-Poppers.jpg",
           price: 2.00,

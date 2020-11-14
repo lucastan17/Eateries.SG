@@ -304,3 +304,12 @@ p {
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
+
+.buttonList {
+    display: flex;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    padding-left: 100px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
