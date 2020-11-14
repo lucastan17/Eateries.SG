@@ -32,6 +32,7 @@
             <h4>View Visualisations of the past eateries visited</h4>
             <div>
                 <div class="buttonList">
+                    <div class="sort-font"><strong>Over the past:</strong></div>
                     <button class="button" v-on:click="MonthEat(1)">Last 1 Month</button>
                     <button class="button" v-on:click="MonthEat(3)">Last 3 Months</button>
                     <button class="button" v-on:click="MonthEat(6)">Last 6 months</button>
@@ -53,6 +54,7 @@
         <div class="container">
             <h4>View Visualisations of the past transactions (in SG$)</h4>
             <div class="buttonList">
+                <div class="sort-font"><strong>Over the past:</strong></div>
                 <button class="button" v-on:click="MonthSales(1)">Last 1 Month</button>
                 <button class="button" v-on:click="MonthSales(3)">Last 3 Months</button>
                 <button class="button" v-on:click="MonthSales(6)">Last 6 months</button>
@@ -157,6 +159,12 @@ export default {
 
 <style>
 @import '../assets/basic_style.css';
+
+.sort-font {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 20px;
+}
 
 .SObutton {
     margin-left:10px;
