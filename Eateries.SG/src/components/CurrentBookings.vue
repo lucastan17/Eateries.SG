@@ -20,7 +20,7 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>Current Bookings</h1>
-                <h4>Testing! Current Bookings displayed here</h4>
+                <h4>Let's check out what you're up to</h4>
             </div>
         </div>
     </div>
