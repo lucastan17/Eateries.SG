@@ -25,8 +25,8 @@
         </div>
     </div>
     <div class="content-section">
-    <div class="sort-by-buttons">
-      <div class="sort"><strong>Sort by:</strong></div>
+    <div class="buttonList">
+      <div class="sort-font"><strong>Sort by:</strong></div>
       <a href="#" class="button" v-on:click.prevent="alpahbetical()">Alphabetical Order</a>
       <a href="#" class="button" v-on:click.prevent="rating()">Ratings</a>
       </div>
@@ -115,16 +115,7 @@ export default {
 <style scoped>
 @import "../assets/basic_style.css";
 
-.sort-by-buttons {
-  display: flex;
-  margin-bottom: 30px;
-  margin-top: 20px;
-  padding-left: 100px;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
-.sort {
+.sort-font {
   padding-top: 20px;
   padding-bottom: 20px;
   font-size: 20px;

@@ -28,10 +28,10 @@
         <div>
             <h2>Display a chart of your choice by clicking on any of the following buttons</h2><br>
         </div>
-        <div class="sort-by-buttons w-container">
-            <h4>1. View Visualisations of the past eateries visited</h4>
+        <div class="container">
+            <h4>View Visualisations of the past eateries visited</h4>
             <div>
-                <div class = "buttoncol">
+                <div class="buttonList">
                     <button class="button" v-on:click="MonthEat(1)">Last 1 Month</button>
                     <button class="button" v-on:click="MonthEat(3)">Last 3 Months</button>
                     <button class="button" v-on:click="MonthEat(6)">Last 6 months</button>
@@ -50,9 +50,9 @@
                 </div>
             </div>
         </div><br><br><br><br><br><br>
-        <div class="sort-by-buttons w-container">
-            <h4>2. View Visualisations of the past transactions (in SG$)</h4>
-            <div>
+        <div class="container">
+            <h4>View Visualisations of the past transactions (in SG$)</h4>
+            <div class="buttonList">
                 <button class="button" v-on:click="MonthSales(1)">Last 1 Month</button>
                 <button class="button" v-on:click="MonthSales(3)">Last 3 Months</button>
                 <button class="button" v-on:click="MonthSales(6)">Last 6 months</button>
@@ -71,8 +71,8 @@
             </div><br><br><br><br><br><br>
         </div>
         <div>
-            <div>
-                <h4>3. View Visualisations of the total amount spent in the last 6 months (in SG$)</h4>
+            <div class="container">
+                <h4>View Visualisations of the total amount spent in the last 6 months (in SG$)</h4>
                 <chart7></chart7>
             </div>
         </div>
