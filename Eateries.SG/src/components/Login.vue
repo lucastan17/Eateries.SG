@@ -11,16 +11,16 @@
                 <div class="logo-text">EATERIES.SG</div>
             </div>
             <div class="navigation-right">
-                <router-link class ="current" to="/" exact>Log-In</router-link>
-                <router-link class = "link" to="/signup" exact>Sign-Up</router-link>
+                <router-link class ="current" to="/" exact>Login</router-link>
+                <router-link class = "link" to="/signup" exact>Sign up</router-link>
             </div>
         </div>
     </div>
     <div id="Header" class="header">
         <div id="container-flex">
             <div class="head-content">
-                <h1>Log-In</h1>
-                <h4>Log-In here, or sign-up if you are a new user!</h4>
+                <h1>Login</h1>
+                <h4>Login below, or sign up if you are a new user!</h4>
             </div>
         </div>
     </div>
@@ -32,12 +32,12 @@
             <h5><a style ="padding:25px;">Email:</a> <input type="text" v-model="email" placeholder="Enter your email here"></h5><p></p>
             <h5><a style ="padding:5px;">Password:</a> <input type="password" v-model="password" placeholder="Enter your password here"></h5>
             <br>
-            <button @click ="login()" id="loginButton">Log-In</button>
+            <button @click ="login()" id="loginButton">Login</button>
         <!--
             <p>No account? Sign up for an account!</p>
         -->
         <p></p>
-            <router-link class = "link" to="/signup" exact>No account? Click here to Sign-Up!</router-link>
+            <router-link class = "link" to="/signup" exact>No account? Click here to Sign Up!</router-link>
         </div>
         <br><br><br><br>
     </div>

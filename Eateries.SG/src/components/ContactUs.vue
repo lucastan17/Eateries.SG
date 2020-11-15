@@ -15,8 +15,8 @@
                 <button class="SObutton" @click ="signOut()"><img src="..\assets\logout.svg" style="width:24px; height:22px; float:left">Logout</button>
             </div>
             <div class="navigation-right" v-else>
-                <router-link class ="current" to="/" exact>Log-In</router-link>
-                <router-link class = "link" to="/signup" exact>Sign-Up</router-link>
+                <router-link class ="current" to="/" exact>Login</router-link>
+                <router-link class = "link" to="/signup" exact>Sign up</router-link>
             </div>
         </div>
     </div>
