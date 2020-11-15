@@ -20,7 +20,7 @@
         <div id="container-flex">
             <div class="head-content">
                 <h1>Log-In</h1>
-                <h4>Log-In Here, or sign-up if you are a new user!</h4>
+                <h4>Log-In here, or sign-up if you are a new user!</h4>
             </div>
         </div>
     </div>
@@ -30,14 +30,14 @@
         <br>
         <div class ="content-section">
             <h5><a style ="padding:25px;">Email:</a> <input type="text" v-model="email" placeholder="Enter your email here"></h5><p></p>
-            <h5><a style ="padding:5px;">Password:</a> <input type="password" v-model="password" placeholder="Enter you password here"></h5>
+            <h5><a style ="padding:5px;">Password:</a> <input type="password" v-model="password" placeholder="Enter your password here"></h5>
             <br>
             <button @click ="login()" id="loginButton">Log-In</button>
         <!--
             <p>No account? Sign up for an account!</p>
         -->
         <p></p>
-            <router-link class = "link" to="/signup" exact>No account? Click here to Sign Up!</router-link>
+            <router-link class = "link" to="/signup" exact>No account? Click here to Sign-Up!</router-link>
         </div>
         <br><br><br><br>
     </div>
