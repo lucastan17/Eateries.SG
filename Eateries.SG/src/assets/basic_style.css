@@ -29,12 +29,13 @@ h2 {
 }
 
 h3 {
+    font-family: Inter;
     margin-top: 20px;
     margin-bottom: 10px; 
     color: #191b22;
     font-size: 40px;
     line-height: 1;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 h4 {
@@ -172,14 +173,21 @@ p {
     margin-left: 20px;
     padding: 5px 30px;
     align-items: center;
-    border-radius: 20px;
     background-color: #f0bcbc;
-    font-family: Montserrat, sans-serif;
     color: #f9f9f9;
     font-size: 18px;
     font-weight: 500;
+    box-sizing: border-box;
+    border: 0.16em solid rgba(0, 0, 0, 0.35);
+    border-radius: 2em;
+    font-family: "Roboto", sans-serif;
+    text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
     text-align: center;
-    background-clip: border-box;
+    cursor: pointer;
+}
+
+.button:hover {
+    border-color: rgba(255, 255, 255, 1);
 }
 
 .header {
@@ -221,6 +229,7 @@ p {
   margin-right: auto;
   margin-left: auto;
   padding-bottom: 40px;
+  padding-top: 20px;
 }
 
 .title-wrap-centre {

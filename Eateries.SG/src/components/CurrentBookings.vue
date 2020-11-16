@@ -45,9 +45,11 @@
             </tr>
         </tbody>
     </table>
-    <button class="button" id="showBooking" v-on:click.prevent="toggle()">Retrieve Booking Records</button>
-    <br>
-    <br>
+    <div class="center">
+        <button class="button" id="showBooking" v-on:click.prevent="toggle()">Retrieve Booking Records</button>
+    </div>
+    </div>
+    <div class="container">
     <h3>Expired Bookings</h3>
     <table v-if="this.show2 === true">
         <thead><samp></samp>
@@ -67,7 +69,9 @@
             </tr>
         </tbody>
     </table>
-    <button class="button" id="showPast" v-on:click.prevent="toggle2()">Retrieve Past Records</button>
+    <div class="center">
+        <button class="button" id="showPast" v-on:click.prevent="toggle2()">Retrieve Past Records</button>
+    </div>
     </div>
 </body>  
 </template>
@@ -170,4 +174,11 @@ export default {
     font-family: sans-serif;
     padding-right: 15px;
 }
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 </style>
