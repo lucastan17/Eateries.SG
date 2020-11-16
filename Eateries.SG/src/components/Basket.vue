@@ -1,4 +1,4 @@
-<template>
+<!--template>
   <div>
     <h4>You currently have:</h4>
     <div id="item">

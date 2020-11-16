@@ -1,6 +1,6 @@
 <template>
 <body>
-    <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
+    <div id="Navigation">
         <div class="navigation-container">
             <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
@@ -134,7 +134,6 @@ import fb from 'firebase';
                         this.entries.push(doc.data());
                     });
                 });
-                //this.entries = this.entries.reverse();                
             },
 
             checkValidity: function() {
@@ -151,11 +150,6 @@ import fb from 'firebase';
             }
 
         },
-/*
-        created() {
-            //this.loadTemps();
-        }
-*/
     }
 
 
@@ -192,19 +186,7 @@ label {
 #dec {
     margin: 30px;
 }
-/*
-button{
-    display: inline-block;
-    padding: 9px 15px;
-    background-color: #3898EC;
-    color: white;
-    border: 0;
-    line-height: inherit;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 22;
-}
-*/
+
 .SObutton {
     margin-left:10px;
     background-color:whitesmoke;

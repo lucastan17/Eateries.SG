@@ -1,11 +1,6 @@
 <template>
 <body>
-    <!-- <div id="Banner" class="banner">
-        <div class="banner-wrap">
-            <div class="notice-text">Check out our promotions and don't forget to invite yourfriends for more perks!</div>
-        </div>
-    </div> -->
-    <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
+    <div id="Navigation">
         <div class="navigation-container">
             <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
@@ -33,9 +28,6 @@
             <h5><a style ="padding:5px;">Password:</a> <input type="password" v-model="password" placeholder="Enter your password here"></h5>
             <br>
             <button @click ="login()" id="loginButton">Log-In</button>
-        <!--
-            <p>No account? Sign up for an account!</p>
-        -->
         <p></p>
             <router-link class = "link" to="/signup" exact>No account? Click here to Sign-Up!</router-link>
         </div>
