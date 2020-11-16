@@ -120,33 +120,8 @@ export default {
   font-size: 20px;
 }
 
-.content-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
 .step-image {
   margin-bottom: 24px;
-}
-
-.content-wrapper {
-  padding-right: 40px;
-  padding-left: 40px;
-}
-
-.line-column {
-  padding-bottom: 0px;
-  flex-direction: column;
-}
-
-.line {
-  width: 1px;
-  height: 100%;
-  min-height: 100px;
-  border-style: none dashed none none;
 }
 
 th, td {
