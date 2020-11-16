@@ -13,7 +13,6 @@
         <button v-on:click="decrease(item)" style="background-color:#f0bcbc" class="countButton">-</button>
         {{ item.quantity }}
         <button v-on:click="add(item)" style="background-color:#f0bcbc" class="countButton">+</button>
-        <!-- <QtyCounter v-bind:item="item" v-on:counter="onCounter"></QtyCounter> -->
       </li>
     </ul>
     <button class="button" v-on:click.prevent="checkValidity()">Submit order</button>
@@ -22,15 +21,8 @@
 
 
 <script>
-//import QuantityCounter from "../components/QuantityCounter.vue";
-//import Basket from "../components/Basket.vue";
 
 export default {
-  // props: {
-  //   itemsList: {
-  //     type: Array,
-  //   },
-  // },
   data() {
     return {
       itemsSelected: [],
