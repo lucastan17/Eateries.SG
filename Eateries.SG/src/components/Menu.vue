@@ -1,14 +1,5 @@
 <template>
   <div class="container">
-    <!-- <basket v-bind:itemsSelected="itemsSelected" v-bind:quantityList="quantityList"></basket> -->
-    <!-- <ul>
-      <li v-for="item in itemsList" v-bind:key="item.name">
-        <h5>{{item.name}}</h5>
-        <img v-bind:src="item.imageURL" />
-        <p>${{item.price}}</p>
-        <QtyCounter v-bind:item="item" v-on:counter="onCounter"></QtyCounter>
-      </li>
-    </ul> -->
     <h4>You currently have:</h4>
     <ul style="list-style-type: none;">
       <li v-for="item in uniqueItemsSelected" v-bind:key="item.name">{{item.quantity}} x {{ item.name }} - ${{item.price}}</li>
@@ -31,8 +22,6 @@
 
 
 <script>
-// import QuantityCounter from "../components/QuantityCounter.vue";
-// import Basket from "../components/Basket.vue";
 
 export default {
   props: {
@@ -61,8 +50,6 @@ export default {
     };
   },
   components: {
-    // 'QtyCounter':QuantityCounter,
-    // 'basket':Basket,
   },
   methods: {
     togglePrice: function (item) {
@@ -74,32 +61,6 @@ export default {
       }
     },
     onCounter: function () {
-      /*
-      if (count > 0 && this.itemsSelected.indexOf(item.name) == -1) {
-        this.itemsSelected.push(item.name);
-        this.priceList.push(item.price);
-        this.quantityList.push(count);
-      } else if (count == 0 && this.itemsSelected.indexOf(item.name) != -1) {
-        this.itemsSelected.splice(this.itemsSelected.indexOf(item.name), 1);
-        this.priceList.splice(this.itemsSelected.indexOf(item.name), 1);
-        this.quantityList.splice(this.itemsSelected.indexOf(item.name), 1);
-      } else if (count > 0) { //update the quantity array
-        var ind = this.itemsSelected.indexOf(item.name);
-        this.quantityList[ind] = count;
-      }
-      this.totalAmount();
-      
-      var count = this.itemsSelected.length
-      for (var i = 0; i < count; i++){
-        var it = this.itemsSelected[i];
-        this.tempItem.foodItem = it.name;
-        this.tempItem.quantity = it.quantity;
-        this.selectionList2.push(this.tempItem);
-        this.tempItem.foodItem = '';
-        this.tempItem.quantity = 0;
-      }
-
-      */
       this.AmountTotal = this.total;
       this.selectionList = this.itemsSelected;
       this.$emit('updateAmount', this.AmountTotal);

@@ -1,6 +1,6 @@
 <template>
 <body>
-    <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
+    <div id="Navigation">
         <div class="navigation-container">
             <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
@@ -29,8 +29,7 @@
     </div>
     <div class="content-section">
     <div class="container">
-        <div class="w-layout-grid content-grid">
-        <div class="content-block">
+        <div class="message">
           <h2>Get closer to your favourite eateries</h2>
           <h4>Our Mission</h4>
           <p>Here at Eateries.SG, we aim to bring you closer to your favourite eateries! Our mission is to make dining at eateries a more enjoyable experience and support our local eateries!</p> 
@@ -38,11 +37,7 @@
           <br><br>
           <img src="../assets/sg_food.png" alt="">
         </div>
-        <!--div class="image-blsupportingock"><img src="../assets/sg_food.png" alt="">
-            <router-link to="/partnereateries" tag="button" class="button">Check out our partner eateries now!</router-link>>
-        </div-->
         </div>
-    </div>
     </div>
 
 </body>
@@ -77,7 +72,7 @@
   grid-template-rows: auto;
 }
 
-.content-block {
+.message {
   display: flex;
   flex-direction: column;
   justify-content: center;

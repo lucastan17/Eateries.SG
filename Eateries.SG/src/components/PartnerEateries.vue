@@ -1,6 +1,6 @@
 <template>
 <body>
-    <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
+    <div id="Navigation">
         <div class="navigation-container">
             <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
@@ -84,7 +84,6 @@ export default {
           this.eats.push(doc.data());
         })
       })
- //     this.eats2 = this.eats.reverse();
     },
     alpahbetical: function() {
       this.eats = [];
@@ -121,41 +120,8 @@ export default {
   font-size: 20px;
 }
 
-.content-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
 .step-image {
   margin-bottom: 24px;
-}
-
-.content-wrapper {
-  padding-right: 40px;
-  padding-left: 40px;
-}
-
-.line-column {
-  padding-bottom: 0px;
-  flex-direction: column;
-}
-
-.line {
-  width: 1px;
-  height: 100%;
-  min-height: 100px;
-  border-style: none dashed none none;
-}
-
-.content-grid {
-  grid-column-gap: 0px;
-  -ms-grid-columns: 1fr 0.3fr 1fr 0.3fr 1fr;
-  grid-template-columns: 1fr 0.3fr 1fr 0.3fr 1fr;
-  -ms-grid-rows: auto;
-  grid-template-rows: auto;
 }
 
 th, td {
