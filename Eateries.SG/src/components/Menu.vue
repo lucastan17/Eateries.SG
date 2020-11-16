@@ -19,9 +19,9 @@
         <h5>{{ item.name }}</h5>
         <img v-bind:src="item.imageURL" />
         <p>${{ item.price }}</p>
-        <button v-on:click="decrease(item)" style="background-color:#f0bcbc" class="countButton">-</button>
+        <button v-on:click="decrease(item)" style="background-color:#f0bcbc;border-radius: 2em;" class="countButton">-</button>
         {{ item.quantity }}
-        <button v-on:click="add(item)" style="background-color:#f0bcbc" class="countButton">+</button>
+        <button v-on:click="add(item)" style="background-color:#f0bcbc;border-radius: 2em;" class="countButton">+</button>
       </li>
     </ul>
     <button v-on:click.prevent="onCounter()" class="button">Confirm Menu Selection</button>
@@ -176,22 +176,6 @@ img {
   width: 150px;
   height: 150px;
 }
-button {
-  box-sizing: border-box;
-  border: 0.16em solid rgba(255, 255, 255, 0);
-  border-radius: 2em;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  color: #ffffff;
-  text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
-  text-align: center;
-  cursor: pointer;
-  background-color: #c38d9e;
-}
-button:hover {
-  border-color: rgba(255, 255, 255, 1);
-}
-
 #item {
   float: left;
   width: 50%;
@@ -202,4 +186,9 @@ button:hover {
   width: 50%;
   text-align: left;
 }
+.countButton {
+  background-color:#f0bcbc;
+  border-radius: 2em;
+}
+
 </style>

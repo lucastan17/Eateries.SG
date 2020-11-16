@@ -48,12 +48,13 @@
                 <br>
                 <button class="button" v-on:click.prevent="checkValidity()">Submit</button>
             </form>
-            <div>
+            <div class="buttonPadding">
                 <button class="button" id="showTemp" v-on:click.prevent="loadTemps()">Load Declaration Records</button>
             </div>
         </div>
     </div>
     <div v-if="this.show === true">
+        <h3>Past declaration records</h3>
         <table>
             <thead><samp></samp>
                 <tr>
@@ -214,6 +215,10 @@ button{
     width: 120px;
     font-family: sans-serif;
     padding-right: 15px;
+}
+
+.buttonPadding {
+    padding-top: 20px;
 }
 
 </style>    
