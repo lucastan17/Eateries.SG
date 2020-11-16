@@ -1,6 +1,6 @@
 <template>
 <body>
-    <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
+    <div id="Navigation">
         <div class="navigation-container">
             <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
@@ -29,7 +29,7 @@
       <h4>Change your password</h4>
     </div>
     <div class ="container">
-      <form id="wf-form-Email-Form" name="wf-form-Email-Form" data-name="Email Form">
+      <form id="Password-form">
         <label for="name">Old Password:</label>
         <input type="password" class="w-input" v-model.lazy="userDetail.oldPass" required>
         <label for="email">New Password:</label>
@@ -40,12 +40,10 @@
       <br>
       <button id="toggler" class="button1" v-on:click="toggleShow()">Show your current Particulars</button>
     </div>
-      <!--<button id="toggler" class="button1" v-on:click="toggleShow()">Show your current Particulars</button>-->
       <div id="currentProfile" v-if="showProfile == true">
         <table>
           <thead><samp></samp>
               <tr>
-                  <!--<th>Username</th>-->
                   <th>Name</th>
                   <th>Phone Number</th>
                   <th>Email</th>
@@ -53,7 +51,6 @@
           </thead>
           <tbody>      
             <tr v-for="user in profile" :key="user">
-              <!--<td>{{user.Username}}</td>-->
               <td>{{user.name}}</td>
               <td>{{user.phoneNumber}}</td>
               <td>{{user.email}}</td>
@@ -63,7 +60,7 @@
       </div>
     <h4 class="heading-4">Update your particulars</h4>
     <div class="container">
-      <form id="email-form" name="email-form" data-name="Email Form" class="form">
+      <form id="email-form" class="form">
         <label for="name-2">Name</label>
         <input type="text" class="w-input" v-model.lazy="userDetail.newName" required>
         <label>Phone Number</label>
@@ -168,7 +165,6 @@ export default {
           }
           this.userDetail.newName = "";
           this.userDetail.newPhone = "";
-          //this.userDetail.newEmail = "";
           this.refreshProfile();
           this.refreshProfile();
           this.refreshProfile();
@@ -192,7 +188,6 @@ export default {
             database.collection('Users').doc(fb.auth().currentUser.uid).update( {
               password: this.userDetail.newPass
             })
-            /*fb.auth().currentUser.updatePassword(this.userDetail.newPass).then(console.log("Updated pw"))*/
             this.changePassword(this.userDetail.myoldPass,this.userDetail.newPass)
             alert("Password Updated Successfully");
           } else if(this.userDetail.myoldPass == this.userDetail.newPass) {
