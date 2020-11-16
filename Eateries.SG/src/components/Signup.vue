@@ -1,11 +1,6 @@
 <template>
 <body>
-    <!-- <div id="Banner" class="banner">
-        <div class="banner-wrap">
-            <div class="notice-text">Check out our promotions and don't forget to invite yourfriends for more perks!</div>
-        </div>
-    </div> -->
-    <div data-collapse="medium" data-animation="default" data-duration="400" id="Navigation">
+    <div id="Navigation">
         <div class="navigation-container">
             <div class="navigation-left"><img src="..\assets\EateriesSG.svg" loading="lazy" width="83" height="auto">
                 <div class="logo-text">EATERIES.SG</div>
@@ -71,7 +66,6 @@
                     })
                     .then(function(){
                         alert("Successfully created!")
-                        //console.log("Document successfully written")
                     },
                     err => {this.error = err.message; alert(this.error)})
                     , err => {this.error = err.message; alert(this.error)})

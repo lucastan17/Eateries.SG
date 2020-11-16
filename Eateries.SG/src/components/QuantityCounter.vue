@@ -1,4 +1,4 @@
-<template>
+<!--template>
   <div id="app">
     <button v-on:click="decrement" style="background-color:#f0bcbc">-</button>
     {{ counter }}
